@@ -1,0 +1,1402 @@
+body {
+    font-family: Arial, sans-serif;
+    background: #ccd1ca;
+}
+
+.login-box {
+    width: 350px;
+    margin: 150px auto;
+    padding: 30px;
+    background: rgb(252, 255, 254);
+    border: 1px solid #ccc;
+}
+
+.login-box h1 {
+    text-align: center;
+    font-size: 24px;
+}
+
+label {
+    display: block;
+    margin-top: 15px;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    margin-top: 6px;
+    margin-bottom: 12px;
+    border: 1px solid #cccccc;
+    border-radius: 6px;
+    box-sizing: border-box;
+    font-size: 15px;
+}
+button {
+    width: 100%;
+    padding: 12px;
+    margin-top: 15px;
+    background: blue;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+}
+button:hover {
+    opacity: 0.85;
+}
+.company-logo {
+    display: block;
+    width: 300px;
+    margin: 0 auto 20px;
+}
+
+#datetime {
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: bold;
+}
+.dashboard {
+    width: 90%;
+    margin: 40px auto;
+    font-family: Arial, sans-serif;
+}
+
+.dashboard h1 {
+    text-align: center;
+    color: blue;
+}
+
+.dashboard-cards {
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    min-width: 180px;
+    padding: 20px;
+    background: white;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    text-align: center;
+}
+
+.card h2 {
+    font-size: 18px;
+}
+
+.card p {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.dashboard-menu {
+    margin-top: 35px;
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.dashboard-menu a {
+    text-decoration: none;
+    background: blue;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 6px;
+}
+.dashboard-header {
+    width: 90%;
+    margin: 25px auto;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 15px;
+}
+
+.dashboard-logo {
+    width: 140px;
+}
+
+.dashboard-header h1 {
+    color: blue;
+    margin: 0;
+}
+
+.dashboard-header p {
+    margin-top: 8px;
+}
+
+.logout-btn {
+    text-decoration: none;
+    background: #333333;
+    color: white;
+    padding: 10px 18px;
+    border-radius: 6px;
+}
+
+.dashboard {
+    width: 90%;
+    margin: 30px auto;
+}
+
+.dashboard-cards {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.card {
+    flex: 1;
+    min-width: 170px;
+    background: white;
+    border: 1px solid #cccccc;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: center;
+}
+
+.card h2 {
+    font-size: 17px;
+}
+
+.card p {
+    font-size: 30px;
+    font-weight: bold;
+}
+
+.register-title {
+    margin-top: 40px;
+}
+
+.dashboard-menu {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+}
+
+.dashboard-menu a {
+    text-decoration: none;
+    background: blue;
+    color: white;
+    padding: 12px 18px;
+    border-radius: 6px;
+}
+.dashboard-body {
+    margin: 0;
+    background: #f4f6f8;
+    font-family: Arial, sans-serif;
+}
+
+
+/* LEFT SIDEBAR */
+
+.sidebar {
+    position: fixed;
+    left: 0;
+    top: 0;
+
+    width: 230px;
+    height: 100vh;
+
+    background: #123b69;
+    padding: 20px;
+
+    box-sizing: border-box;
+}
+
+
+.sidebar-logo {
+    display: block;
+    width: 170px;
+    margin: 0 auto 15px;
+    background: white;
+}
+
+
+.sidebar h2 {
+    text-align: center;
+    color: white;
+    margin-bottom: 30px;
+}
+
+
+.sidebar a {
+    display: block;
+
+    color: white;
+    text-decoration: none;
+
+    padding: 13px 15px;
+    margin-bottom: 7px;
+
+    border-radius: 5px;
+}
+
+
+.sidebar a:hover {
+    background: #ffffff;
+    color: #123b69;
+}
+
+
+.sidebar-logout {
+    margin-top: 30px;
+}
+
+
+/* MAIN AREA */
+
+.main-content {
+    margin-left: 230px;
+    padding: 30px;
+}
+
+
+.top-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    background: white;
+
+    padding: 20px 25px;
+
+    border-radius: 8px;
+    margin-bottom: 25px;
+}
+
+
+.top-header h1 {
+    margin: 0;
+    color: #123b69;
+}
+
+
+.top-header p {
+    margin-bottom: 0;
+    color: #666;
+}
+
+
+.user-info {
+    font-size: 15px;
+}
+
+
+/* DASHBOARD CARDS */
+
+.dashboard-cards {
+    display: flex;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+
+.card {
+    flex: 1;
+    min-width: 160px;
+
+    background: white;
+
+    padding: 20px;
+
+    border-radius: 8px;
+    text-align: center;
+
+    border: 1px solid #ddd;
+}
+
+
+.card h2 {
+    font-size: 16px;
+}
+
+
+.card p {
+    font-size: 30px;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+.project-form-box {
+    background: white;
+    padding: 25px;
+    border-radius: 8px;
+    margin-bottom: 30px;
+    max-width: 600px;
+}
+
+.project-number-row {
+    display: flex;
+    gap: 10px;
+}
+
+.project-number-row input {
+    flex: 1;
+}
+
+.project-number-row button {
+    width: auto;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+#projectMessage {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.project-list {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.project-card {
+    width: 250px;
+    background: white;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 20px;
+}
+
+.project-card h3 {
+    color: #123b69;
+    margin-top: 0;
+}
+
+.project-card button {
+    width: auto;
+    margin-right: 5px;
+    padding: 8px 12px;
+}
+.register-toolbar {
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 20px;
+}
+
+.register-toolbar input,
+.register-toolbar select {
+    width: auto;
+    min-width: 180px;
+    padding: 10px;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+}
+
+.register-toolbar button {
+    width: auto;
+    margin-top: 0;
+    padding: 10px 16px;
+}
+
+
+.color-guide {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+}
+
+.color-guide span {
+    margin-left: 20px;
+    font-weight: bold;
+}
+
+.guide-green {
+    color: green;
+}
+
+.guide-orange {
+    color: orange;
+}
+
+.guide-red {
+    color: red;
+}
+
+
+.register-box {
+    background: white;
+    padding: 20px;
+    border-radius: 8px;
+    overflow-x: auto;
+}
+
+.register-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.register-table th,
+.register-table td {
+    border: 1px solid #dddddd;
+    padding: 10px;
+    text-align: left;
+}
+
+.register-table th {
+    background: #123b69;
+    color: white;
+}
+/* ========================================
+   PROJECT SUBMITTAL PAGE
+======================================== */
+
+.project-top-card {
+    background: white;
+    padding: 18px 25px;
+    border-radius: 8px;
+    margin-bottom: 18px;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.project-top-card h1 {
+    margin: 0 0 10px 0;
+    color: #123b69;
+}
+
+.project-top-card p {
+    margin: 5px 0;
+}
+
+
+/* SEQUENCE YELLOW BAR */
+
+.sequence-banner {
+    background: #ffd633;
+    color: black;
+
+    padding: 12px;
+
+    margin-bottom: 18px;
+
+    border-radius: 5px;
+
+    text-align: center;
+
+    font-size: 20px;
+    font-weight: bold;
+}
+
+
+/* NEW SUBMITTAL CARD */
+
+.new-submittal-card {
+    background: white;
+
+    padding: 20px 25px;
+
+    border-radius: 8px;
+
+    margin-bottom: 20px;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+.new-submittal-card h2 {
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: #123b69;
+}
+
+
+/* FORM FIRST ROW */
+
+.submittal-row {
+    display: grid;
+
+    grid-template-columns:
+        1fr
+        1fr
+        1fr
+        1.4fr
+        0.9fr;
+
+    gap: 20px;
+
+    align-items: end;
+}
+
+
+.submittal-field {
+    display: flex;
+    flex-direction: column;
+}
+
+
+.submittal-field label,
+.description-field label,
+.pdf-field label {
+    margin-bottom: 7px;
+
+    font-size: 14px;
+
+    font-weight: 500;
+}
+
+
+.submittal-field input,
+.submittal-field select {
+    width: 100%;
+
+    height: 42px;
+
+    padding: 8px 10px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 5px;
+
+    background: white;
+}
+
+
+/* DESCRIPTION */
+
+.description-field {
+    margin-top: 20px;
+}
+
+.description-field textarea {
+    width: 100%;
+
+    height: 48px;
+
+    padding: 10px;
+
+    box-sizing: border-box;
+
+    resize: vertical;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 5px;
+}
+
+
+/* PDF */
+
+.pdf-field {
+    margin-top: 20px;
+
+    width: 340px;
+}
+
+.pdf-field input {
+    width: 100%;
+
+    padding: 9px;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 5px;
+
+    box-sizing: border-box;
+}
+
+
+/* FORM BUTTONS */
+
+.submittal-buttons {
+    margin-top: 20px;
+
+    display: flex;
+
+    justify-content: flex-end;
+
+    gap: 12px;
+}
+
+
+.submittal-buttons button {
+    width: auto;
+
+    padding: 11px 22px;
+
+    margin: 0;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+
+.cancel-button {
+    background: white !important;
+
+    color: black !important;
+
+    border: 1px solid #cccccc !important;
+}
+
+
+.save-button {
+    background: #123b69 !important;
+
+    color: white !important;
+
+    border: none !important;
+}
+
+
+/* ========================================
+   REGISTER
+======================================== */
+
+.submittal-register-card {
+    background: white;
+
+    padding: 20px 25px;
+
+    border-radius: 8px;
+
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+}
+
+
+.submittal-register-card h2 {
+    margin-top: 0;
+
+    color: #123b69;
+
+    font-size: 19px;
+}
+
+
+/* FILTER CONTROLS */
+
+.register-controls {
+    display: grid;
+
+    grid-template-columns:
+        1.5fr
+        1.1fr
+        1.1fr
+        auto
+        auto;
+
+    gap: 12px;
+
+    align-items: center;
+}
+
+
+.register-controls input,
+.register-controls select {
+    height: 44px;
+
+    padding: 8px 12px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cccccc;
+
+    border-radius: 5px;
+
+    background: white;
+}
+
+
+.register-controls button {
+    width: auto;
+
+    height: 44px;
+
+    margin: 0;
+
+    padding: 0 18px;
+
+    border: none;
+
+    border-radius: 5px;
+
+    cursor: pointer;
+}
+
+
+.new-button {
+    background: #123b69 !important;
+
+    color: white !important;
+}
+
+
+.excel-button {
+    background: #198f43 !important;
+
+    color: white !important;
+}
+
+
+/* COLOR GUIDE */
+
+.color-guide {
+    margin-top: 18px;
+    margin-bottom: 15px;
+
+    font-size: 14px;
+}
+
+
+.color-guide span {
+    margin-left: 20px;
+}
+
+
+.green-dot,
+.orange-dot,
+.red-dot {
+    width: 14px;
+    height: 14px;
+
+    display: inline-block;
+
+    border-radius: 50%;
+
+    margin-right: 6px;
+
+    vertical-align: middle;
+}
+
+
+.green-dot {
+    background: green;
+}
+
+
+.orange-dot {
+    background: orange;
+}
+
+
+.red-dot {
+    background: red;
+}
+
+
+/* TABLE */
+
+.table-wrapper {
+    width: 100%;
+
+    overflow-x: auto;
+}
+
+
+.register-table {
+    width: 100%;
+
+    border-collapse: collapse;
+
+    font-size: 13px;
+}
+
+
+.register-table th {
+    background: #123b69;
+
+    color: white;
+
+    padding: 11px 8px;
+
+    text-align: center;
+
+    white-space: nowrap;
+}
+
+
+.register-table td {
+    padding: 10px 8px;
+
+    border-bottom: 1px solid #dddddd;
+
+    text-align: center;
+}
+
+
+.no-data {
+    padding: 25px !important;
+
+    color: #555555;
+}
+
+
+/* RESPONSIVE */
+
+@media (max-width: 1100px) {
+
+    .submittal-row {
+        grid-template-columns: 1fr 1fr;
+    }
+
+    .register-controls {
+        grid-template-columns: 1fr 1fr;
+    }
+
+}
+/* =================================
+   ISSUED INFORMATION - COMPACT ROW
+================================= */
+
+.submittal-info-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    align-items: end;
+    margin-top: 12px;
+    margin-bottom: 18px;
+}
+
+.submittal-info-row .submittal-field {
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+}
+
+.submittal-info-row label {
+    margin-bottom: 6px;
+    font-size: 12px;
+    font-weight: 600;
+}
+
+.submittal-info-row input,
+.submittal-info-row select {
+    width: 100%;
+    height: 38px;
+    padding: 7px 9px;
+    box-sizing: border-box;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+    background: white;
+}
+/* =========================================
+   FINAL FIX - ISSUED INFORMATION ALIGNMENT
+========================================= */
+
+.submittal-info-row {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+    gap: 12px !important;
+    align-items: end !important;
+    width: 100% !important;
+}
+
+.submittal-info-row .submittal-field {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    margin: 0 !important;
+}
+
+.submittal-info-row label {
+    display: block !important;
+    height: 18px !important;
+    margin: 0 0 6px 0 !important;
+    padding: 0 !important;
+}
+
+.submittal-info-row input,
+.submittal-info-row select {
+    display: block !important;
+    width: 100% !important;
+    height: 38px !important;
+
+    margin: 0 !important;
+    padding: 7px 9px !important;
+
+    box-sizing: border-box !important;
+
+    border: 1px solid #cccccc !important;
+    border-radius: 5px !important;
+
+    background: white !important;
+}
+/* =========================================
+   FINAL FIX - TOP SUBMITTAL ROW ALIGNMENT
+========================================= */
+
+.submittal-row {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr 1fr 1.4fr 0.9fr !important;
+    gap: 16px !important;
+    align-items: end !important;
+    width: 100% !important;
+}
+
+.submittal-row .submittal-field {
+    display: flex !important;
+    flex-direction: column !important;
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+}
+
+.submittal-row .submittal-field label {
+    display: block !important;
+    height: 18px !important;
+    margin: 0 0 6px 0 !important;
+    padding: 0 !important;
+    line-height: 18px !important;
+}
+
+.submittal-row .submittal-field input,
+.submittal-row .submittal-field select {
+    display: block !important;
+    width: 100% !important;
+    height: 38px !important;
+    margin: 0 !important;
+    padding: 7px 9px !important;
+    box-sizing: border-box !important;
+    border: 1px solid #cccccc !important;
+    border-radius: 5px !important;
+    background: white !important;
+}
+/* ==============================
+   ISSUER ADD BUTTON
+============================== */
+
+.issuer-select-row {
+    display: flex;
+    gap: 6px;
+    width: 100%;
+}
+
+.issuer-select-row select {
+    flex: 1;
+    height: 38px;
+}
+
+.add-issuer-btn {
+    height: 38px;
+    padding: 0 12px;
+    border: none;
+    border-radius: 5px;
+    background: #123f70;
+    color: white;
+    font-weight: bold;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.add-issuer-btn:hover {
+    background: #0b2f55;
+}
+/* =========================================
+   FINAL PROJECT PAGE LAYOUT FIX
+========================================= */
+
+* {
+    box-sizing: border-box;
+}
+
+.dashboard-body {
+    margin: 0 !important;
+    width: 100% !important;
+    overflow-x: hidden !important;
+}
+
+/* LEFT SIDEBAR */
+
+.sidebar {
+    width: 188px !important;
+}
+
+/* MAIN CONTENT */
+
+.main-content {
+    margin-left: 188px !important;
+    width: calc(100% - 188px) !important;
+    max-width: calc(100% - 188px) !important;
+    padding: 24px !important;
+    overflow-x: hidden !important;
+}
+
+
+/* =========================================
+   NEW SUBMITTAL TOP ROW
+========================================= */
+
+.submittal-row {
+    display: grid !important;
+
+    grid-template-columns:
+        1fr
+        1fr
+        1fr
+        1.4fr
+        0.9fr !important;
+
+    gap: 16px !important;
+    width: 100% !important;
+    align-items: end !important;
+}
+
+.submittal-row .submittal-field {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+}
+
+.submittal-row input,
+.submittal-row select {
+    width: 100% !important;
+    height: 38px !important;
+    margin: 0 !important;
+}
+
+
+/* =========================================
+   DESCRIPTION
+========================================= */
+
+.description-field {
+    width: 100% !important;
+    margin-top: 18px !important;
+}
+
+.description-field textarea {
+    width: 100% !important;
+    height: 48px !important;
+    margin: 0 !important;
+}
+
+
+/* =========================================
+   ISSUED INFORMATION
+========================================= */
+
+.submittal-info-row {
+    display: grid !important;
+    grid-template-columns: repeat(4, 1fr) !important;
+
+    gap: 12px !important;
+    width: 100% !important;
+
+    align-items: end !important;
+}
+
+.submittal-info-row .submittal-field {
+    width: 100% !important;
+    min-width: 0 !important;
+    margin: 0 !important;
+}
+
+.submittal-info-row input,
+.submittal-info-row select {
+    width: 100% !important;
+    height: 38px !important;
+    margin: 0 !important;
+}
+
+
+/* ISSUER DROPDOWN + ADD BUTTON */
+
+.issuer-select-row {
+    display: flex !important;
+    width: 100% !important;
+    gap: 5px !important;
+}
+
+.issuer-select-row select {
+    flex: 1 !important;
+    min-width: 0 !important;
+}
+
+.add-issuer-btn {
+    width: auto !important;
+    height: 38px !important;
+    margin: 0 !important;
+    padding: 0 10px !important;
+}
+
+
+/* =========================================
+   PDF
+========================================= */
+
+.pdf-field {
+    width: 280px !important;
+    margin-top: 18px !important;
+}
+
+.pdf-field input {
+    width: 100% !important;
+}
+
+
+/* =========================================
+   REGISTER
+========================================= */
+
+.submittal-register-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: hidden !important;
+}
+
+.table-wrapper {
+    width: 100% !important;
+    overflow-x: auto !important;
+}
+
+.register-table {
+    width: 100% !important;
+    min-width: 1150px;
+}
+
+
+/* SEARCH / FILTER BAR */
+
+.register-controls {
+    width: 100% !important;
+
+    display: grid !important;
+
+    grid-template-columns:
+        1.4fr
+        1fr
+        1fr
+        auto
+        auto !important;
+
+    gap: 10px !important;
+}
+
+.register-controls input,
+.register-controls select {
+    width: 100% !important;
+    min-width: 0 !important;
+}
+
+.register-controls button {
+    width: auto !important;
+    white-space: nowrap !important;
+}
+.open-pdf-btn {
+    width: auto !important;
+    margin: 0 !important;
+    padding: 6px 10px !important;
+    background: #123b69 !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 4px !important;
+    cursor: pointer;
+}
+.register-table tbody tr {
+    cursor: pointer;
+}
+
+.register-table tbody tr.selected-row td {
+    background: #cfe5ff !important;
+    outline: 1px solid #8bbbe8;
+}
+
+.register-table tbody tr:hover td {
+    filter: brightness(0.97);
+}
+.edit-selected-btn,
+.delete-selected-btn {
+    width: auto !important;
+    height: 44px !important;
+    margin: 0 !important;
+    padding: 0 14px !important;
+    border: none !important;
+    border-radius: 5px !important;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.edit-selected-btn {
+    background: #d89b00 !important;
+    color: white !important;
+}
+
+.delete-selected-btn {
+    background: #b52b2b !important;
+    color: white !important;
+}
+
+.edit-selected-btn:disabled,
+.delete-selected-btn:disabled {
+    opacity: 0.4;
+    cursor: not-allowed;
+}
+/* =========================================
+   FINAL REGISTER CONTROL BAR
+========================================= */
+
+.register-controls {
+    display: grid !important;
+
+    grid-template-columns:
+        minmax(180px, 1.5fr)
+        minmax(150px, 1fr)
+        minmax(150px, 1fr)
+        auto
+        auto
+        auto
+        auto !important;
+
+    gap: 8px !important;
+    align-items: center !important;
+
+    width: 100% !important;
+}
+
+.register-controls input,
+.register-controls select {
+    width: 100% !important;
+    height: 38px !important;
+    margin: 0 !important;
+}
+
+.register-controls button {
+    width: auto !important;
+    height: 38px !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+    white-space: nowrap !important;
+}
+
+.edit-selected-btn {
+    background: #d89b00 !important;
+    color: white !important;
+}
+
+.delete-selected-btn {
+    background: #b52b2b !important;
+    color: white !important;
+}
+
+.new-button {
+    background: #123b69 !important;
+    color: white !important;
+}
+
+.excel-button {
+    background: #198f43 !important;
+    color: white !important;
+}
+
+.edit-selected-btn:disabled,
+.delete-selected-btn:disabled {
+    opacity: 0.4 !important;
+    cursor: not-allowed !important;
+}
+/* RESPONSE / ACTION */
+
+.response-action-section {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 2px solid #e5e5e5;
+}
+
+.action-row {
+    display: grid !important;
+    grid-template-columns: 1fr 0.7fr 2fr !important;
+    gap: 12px !important;
+    margin-bottom: 12px;
+    align-items: end;
+}
+
+.closing-row {
+    display: grid !important;
+    grid-template-columns: repeat(3, 1fr) !important;
+    gap: 12px !important;
+    align-items: end;
+}
+
+.action-row input,
+.closing-row input,
+.closing-row select {
+    width: 100% !important;
+    height: 38px !important;
+    margin: 0 !important;
+    box-sizing: border-box;
+}
+.status-select-row {
+    display: flex !important;
+    gap: 6px !important;
+    width: 100% !important;
+}
+
+.status-select-row select {
+    flex: 1 !important;
+    min-width: 0 !important;
+    height: 38px !important;
+    margin: 0 !important;
+}
+
+.add-status-btn {
+    width: auto !important;
+    height: 38px !important;
+    margin: 0 !important;
+    padding: 0 12px !important;
+
+    border: none !important;
+    border-radius: 5px !important;
+
+    background: #123f70 !important;
+    color: white !important;
+
+    font-weight: bold;
+    cursor: pointer;
+}
+/* ============================= */
+/* SELECTED SUBMITTAL SUMMARY */
+/* ============================= */
+
+.selected-submittal-summary {
+    background: #eef4f8;
+    border: 1px solid #d6e1ea;
+    border-radius: 8px;
+    padding: 18px 20px;
+    margin-bottom: 22px;
+}
+
+.selected-submittal-summary h3 {
+    margin: 0 0 15px 0;
+    color: #123f6d;
+    font-size: 18px;
+}
+
+.summary-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px 25px;
+}
+
+.summary-grid div {
+    display: flex;
+    flex-direction: column;
+}
+
+.summary-grid span {
+    font-size: 11px;
+    font-weight: 600;
+    color: #667788;
+    margin-bottom: 4px;
+}
+
+.summary-grid strong {
+    font-size: 14px;
+    color: #111;
+    font-weight: 600;
+}
+.status-in-progress {
+    font-weight: bold !important;
+}
