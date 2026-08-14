@@ -1,5 +1,6 @@
 // ==========================================
-// DOCUMENT CONTROLLER - PROJECT DASHBOARD
+// MAIN DOCUMENT CONTROL DASHBOARD
+// PROJECT OVERVIEW
 // ==========================================
 
 const projects =
@@ -9,16 +10,23 @@ const dashboardContainer =
     document.getElementById("projectDashboardContainer");
 
 
-// ------------------------------------------
+// ==========================================
 // TODAY DATE
-// ------------------------------------------
+// ==========================================
 
 function getTodayDate() {
+
     const today = new Date();
 
     const year = today.getFullYear();
-    const month = String(today.getMonth() + 1).padStart(2, "0");
-    const day = String(today.getDate()).padStart(2, "0");
+
+    const month =
+        String(today.getMonth() + 1)
+        .padStart(2, "0");
+
+    const day =
+        String(today.getDate())
+        .padStart(2, "0");
 
     return `${year}-${month}-${day}`;
 }
@@ -26,9 +34,9 @@ function getTodayDate() {
 const todayDate = getTodayDate();
 
 
-// ------------------------------------------
-// DATE CHECK
-// ------------------------------------------
+// ==========================================
+// DATE ONLY
+// ==========================================
 
 function getDateOnly(value) {
 
@@ -40,27 +48,49 @@ function getDateOnly(value) {
 }
 
 
-// ------------------------------------------
-// SAFE VALUE
-// ------------------------------------------
+// ==========================================
+// PROJECT INFORMATION
+// ==========================================
 
-function showValue(value) {
+function getProjectName(project) {
 
-    if (
-        value === undefined ||
-        value === null ||
-        value === ""
-    ) {
-        return "-";
-    }
-
-    return value;
+    return (
+        project.projectName ||
+        project.name ||
+        project.title ||
+        "Project"
+    );
 }
 
 
-// ------------------------------------------
-// CREATE EACH PROJECT DASHBOARD
-// ------------------------------------------
+function getProjectCode(project) {
+
+    return (
+        project.projectCode ||
+        project.code ||
+        "-"
+    );
+}
+
+
+// ==========================================
+// ALL PROJECT TOTALS
+// ==========================================
+
+let overallDocuments = 0;
+let overallInProgress = 0;
+let overallClosed = 0;
+let overallTodayIssued = 0;
+let overallTodayResponses = 0;
+
+
+// This will contain all project cards
+let projectCardsHTML = "";
+
+
+// ==========================================
+// EACH PROJECT
+// ==========================================
 
 projects.forEach(function(project) {
 
@@ -72,27 +102,53 @@ projects.forEach(function(project) {
         ) || [];
 
 
-    // --------------------------------------
-    // PROJECT NAME
-    // --------------------------------------
-
     const projectName =
-        project.projectName ||
-        project.name ||
-        project.title ||
-        "Project";
+        getProjectName(project);
 
     const projectCode =
-        project.projectCode ||
-        project.code ||
-        "";
+        getProjectCode(project);
 
 
     // --------------------------------------
-    // TOTAL
+    // TOTAL DOCUMENTS
     // --------------------------------------
 
-    const totalDocuments = submittals.length;
+    const totalDocuments =
+        submittals.length;
+
+
+    // --------------------------------------
+    // IN PROGRESS
+    // --------------------------------------
+
+    const inProgress =
+        submittals.filter(function(item) {
+
+            const closingStatus =
+                (item.closingStatus || "")
+                .trim()
+                .toLowerCase();
+
+            return closingStatus !== "closed";
+
+        }).length;
+
+
+    // --------------------------------------
+    // CLOSED
+    // --------------------------------------
+
+    const closed =
+        submittals.filter(function(item) {
+
+            const closingStatus =
+                (item.closingStatus || "")
+                .trim()
+                .toLowerCase();
+
+            return closingStatus === "closed";
+
+        }).length;
 
 
     // --------------------------------------
@@ -106,9 +162,12 @@ projects.forEach(function(project) {
                 item.createdAt ||
                 item.issueDate;
 
-            return getDateOnly(date) === todayDate;
+            return (
+                getDateOnly(date) ===
+                todayDate
+            );
 
-        });
+        }).length;
 
 
     // --------------------------------------
@@ -118,641 +177,144 @@ projects.forEach(function(project) {
     const todayResponses =
         submittals.filter(function(item) {
 
-            const responseDate =
+            const date =
                 item.responseUpdatedAt ||
                 item.actionDate ||
                 item.responseDate;
 
-            return getDateOnly(responseDate) === todayDate;
-
-        });
-
-
-    // --------------------------------------
-    // APPROVED
-    // --------------------------------------
-
-    const approved =
-        submittals.filter(function(item) {
-
-            const status =
-                (item.status || "")
-                .trim()
-                .toLowerCase();
-
             return (
-                status === "approved" ||
-                status === "approved as noted"
+                getDateOnly(date) ===
+                todayDate
             );
 
         }).length;
 
 
     // --------------------------------------
-    // IN PROGRESS
+    // LAST ACTIVITY DATE
     // --------------------------------------
 
-    const inProgress =
-        submittals.filter(function(item) {
+    let lastActivity = "-";
 
-            const status =
-                (item.status || "")
-                .trim()
-                .toLowerCase();
+    const activityDates = [];
 
-            return (
-                status === "in progress" ||
-                status === "under review"
+    submittals.forEach(function(item) {
+
+        const date =
+            item.responseUpdatedAt ||
+            item.actionDate ||
+            item.responseDate ||
+            item.createdAt ||
+            item.issueDate;
+
+        if (date) {
+            activityDates.push(
+                getDateOnly(date)
             );
+        }
 
-        }).length;
+    });
 
 
-    // --------------------------------------
-    // REVISE & RESUBMIT
-    // --------------------------------------
+    if (activityDates.length > 0) {
 
-    const revise =
-        submittals.filter(function(item) {
+        activityDates.sort();
 
-            return (
-                (item.status || "")
-                .trim()
-                .toLowerCase()
-                === "revise & resubmit"
-            );
-
-        }).length;
+        lastActivity =
+            activityDates[
+                activityDates.length - 1
+            ];
+    }
 
 
     // --------------------------------------
-    // REJECTED
+    // ADD TO OVERALL TOTALS
     // --------------------------------------
 
-    const rejected =
-        submittals.filter(function(item) {
+    overallDocuments += totalDocuments;
 
-            return (
-                (item.status || "")
-                .trim()
-                .toLowerCase()
-                === "rejected"
-            );
+    overallInProgress += inProgress;
 
-        }).length;
+    overallClosed += closed;
+
+    overallTodayIssued += todayIssued;
+
+    overallTodayResponses += todayResponses;
 
 
     // --------------------------------------
-    // CLOSED
+    // PROJECT CARD
     // --------------------------------------
 
-    const closedItems =
-        submittals.filter(function(item) {
+    projectCardsHTML += `
 
-            return (
-                (item.closingStatus || "")
-                .trim()
-                .toLowerCase()
-                === "closed"
-            );
+        <div class="project-overview-card">
 
-        });
+            <div class="project-card-heading">
 
-    const closed = closedItems.length;
-
-
-    // --------------------------------------
-    // OPEN ITEMS
-    // --------------------------------------
-
-    const openItems =
-        submittals.filter(function(item) {
-
-            return (
-                (item.closingStatus || "")
-                .trim()
-                .toLowerCase()
-                !== "closed"
-            );
-
-        });
-
-
-    // ======================================
-    // PROJECT SECTION
-    // ======================================
-
-    const section = document.createElement("div");
-
-    section.className = "project-dashboard-section";
-
-
-    section.innerHTML = `
-
-        <div class="project-dashboard-header">
-
-            <div>
                 <h2>${projectName}</h2>
-                <p>
-                    Project Code:
-                    <strong>
-                        ${projectCode || "-"}
-                    </strong>
-                </p>
+
+                <span>
+                    ${projectCode}
+                </span>
+
             </div>
 
-            <div>
-                Report Date:
-                <strong>${todayDate}</strong>
+
+            <div class="project-card-stats">
+
+                <div>
+                    <small>Total Documents</small>
+                    <strong>${totalDocuments}</strong>
+                </div>
+
+                <div>
+                    <small>In Progress</small>
+                    <strong>${inProgress}</strong>
+                </div>
+
+                <div>
+                    <small>Closed</small>
+                    <strong>${closed}</strong>
+                </div>
+
+                <div>
+                    <small>Today Issued</small>
+                    <strong>${todayIssued}</strong>
+                </div>
+
+                <div>
+                    <small>Today Responses</small>
+                    <strong>${todayResponses}</strong>
+                </div>
+
             </div>
+
+
+            <div class="project-last-activity">
+
+                Last Activity:
+                <strong>${lastActivity}</strong>
+
+            </div>
+
+
+            <a
+                class="open-project-dashboard-button"
+                href="project-dashboard.html?projectId=${encodeURIComponent(project.id)}"
+            >
+                Open Project
+            </a>
 
         </div>
-
-
-        <div class="dashboard-cards">
-
-            <div class="card">
-                <h2>Total Documents</h2>
-                <p>${totalDocuments}</p>
-            </div>
-
-            <div class="card">
-                <h2>Today Issued</h2>
-                <p>${todayIssued.length}</p>
-            </div>
-
-            <div class="card">
-                <h2>Today Responses</h2>
-                <p>${todayResponses.length}</p>
-            </div>
-
-            <div class="card">
-                <h2>Approved</h2>
-                <p>${approved}</p>
-            </div>
-
-            <div class="card">
-                <h2>In Progress</h2>
-                <p>${inProgress}</p>
-            </div>
-
-            <div class="card">
-                <h2>Revise & Resubmit</h2>
-                <p>${revise}</p>
-            </div>
-
-            <div class="card">
-                <h2>Rejected</h2>
-                <p>${rejected}</p>
-            </div>
-
-            <div class="card">
-                <h2>Closed</h2>
-                <p>${closed}</p>
-            </div>
-
-        </div>
-
-
-        <!-- TODAY ISSUED -->
-
-        <h3 class="dashboard-table-title">
-            Today Issued Submittals
-        </h3>
-
-        ${createIssuedTable(todayIssued)}
-
-
-        <!-- TODAY RESPONSES -->
-
-        <h3 class="dashboard-table-title">
-            Today Received Responses
-        </h3>
-
-        ${createResponseTable(todayResponses)}
-
-
-        <!-- OPEN -->
-
-        <h3 class="dashboard-table-title">
-            Open / In Progress Submittals
-        </h3>
-
-        ${createOpenTable(openItems)}
-
-
-        <!-- CLOSED -->
-
-        <h3 class="dashboard-table-title">
-            Closed Submittals
-        </h3>
-
-        ${createClosedTable(closedItems)}
 
     `;
-
-    dashboardContainer.appendChild(section);
 
 });
 
 
 // ==========================================
-// TODAY ISSUED TABLE
-// ==========================================
-
-function createIssuedTable(items) {
-
-    if (items.length === 0) {
-
-        return `
-            <div class="no-dashboard-data">
-                No submittals issued today.
-            </div>
-        `;
-    }
-
-    let rows = "";
-
-    items.forEach(function(item, index) {
-
-        rows += `
-
-            <tr>
-
-                <td>${index + 1}</td>
-
-                <td>
-                    ${showValue(
-                        item.refNo ||
-                        item.referenceNo
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(item.subject)}
-                </td>
-
-                <td>
-                    ${showValue(
-                        item.documentType ||
-                        item.type
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(item.issueDate)}
-                </td>
-
-                <td>
-                    ${showValue(
-                        item.requestedBy ||
-                        item.submittalRequestedBy
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(item.issuerName)}
-                </td>
-
-                <td>
-                    ${showValue(item.status)}
-                </td>
-
-            </tr>
-
-        `;
-    });
-
-
-    return `
-
-        <div class="dashboard-table-wrapper">
-
-            <table class="dashboard-table">
-
-                <thead>
-
-                    <tr>
-                        <th>S.No</th>
-                        <th>Ref No.</th>
-                        <th>Subject</th>
-                        <th>Type</th>
-                        <th>Issue Date</th>
-                        <th>Submittal Requested By</th>
-                        <th>Issued By</th>
-                        <th>Status</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-                    ${rows}
-                </tbody>
-
-            </table>
-
-        </div>
-
-    `;
-}
-
-
-// ==========================================
-// RESPONSE TABLE
-// ==========================================
-
-function createResponseTable(items) {
-
-    if (items.length === 0) {
-
-        return `
-            <div class="no-dashboard-data">
-                No responses received today.
-            </div>
-        `;
-    }
-
-
-    let rows = "";
-
-
-    items.forEach(function(item, index) {
-
-        rows += `
-
-            <tr>
-
-                <td>${index + 1}</td>
-
-                <td>
-                    ${showValue(
-                        item.refNo ||
-                        item.referenceNo
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(item.subject)}
-                </td>
-
-                <td>
-                    ${showValue(
-                        item.actionBy ||
-                        item.responseBy
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(
-                        item.actionDate ||
-                        item.responseDate
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(item.status)}
-                </td>
-
-                <td>
-                    ${showValue(item.closingStatus)}
-                </td>
-
-            </tr>
-
-        `;
-    });
-
-
-    return `
-
-        <div class="dashboard-table-wrapper">
-
-            <table class="dashboard-table">
-
-                <thead>
-
-                    <tr>
-                        <th>S.No</th>
-                        <th>Ref No.</th>
-                        <th>Subject</th>
-                        <th>Action By</th>
-                        <th>Action Date</th>
-                        <th>Status</th>
-                        <th>Closing</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-                    ${rows}
-                </tbody>
-
-            </table>
-
-        </div>
-
-    `;
-}
-
-
-// ==========================================
-// OPEN TABLE
-// ==========================================
-
-function createOpenTable(items) {
-
-    if (items.length === 0) {
-
-        return `
-            <div class="no-dashboard-data">
-                No open submittals.
-            </div>
-        `;
-    }
-
-
-    let rows = "";
-
-
-    items.forEach(function(item, index) {
-
-        rows += `
-
-            <tr>
-
-                <td>${index + 1}</td>
-
-                <td>
-                    ${showValue(
-                        item.refNo ||
-                        item.referenceNo
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(item.subject)}
-                </td>
-
-                <td>
-                    ${showValue(
-                        item.documentType ||
-                        item.type
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(item.issueDate)}
-                </td>
-
-                <td>
-                    ${showValue(
-                        item.requestedBy ||
-                        item.submittalRequestedBy
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(item.status)}
-                </td>
-
-            </tr>
-
-        `;
-    });
-
-
-    return `
-
-        <div class="dashboard-table-wrapper">
-
-            <table class="dashboard-table">
-
-                <thead>
-
-                    <tr>
-                        <th>S.No</th>
-                        <th>Ref No.</th>
-                        <th>Subject</th>
-                        <th>Type</th>
-                        <th>Issue Date</th>
-                        <th>Submittal Requested By</th>
-                        <th>Status</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-                    ${rows}
-                </tbody>
-
-            </table>
-
-        </div>
-
-    `;
-}
-
-
-// ==========================================
-// CLOSED TABLE
-// ==========================================
-
-function createClosedTable(items) {
-
-    if (items.length === 0) {
-
-        return `
-            <div class="no-dashboard-data">
-                No closed submittals.
-            </div>
-        `;
-    }
-
-
-    let rows = "";
-
-
-    items.forEach(function(item, index) {
-
-        rows += `
-
-            <tr>
-
-                <td>${index + 1}</td>
-
-                <td>
-                    ${showValue(
-                        item.refNo ||
-                        item.referenceNo
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(item.subject)}
-                </td>
-
-                <td>
-                    ${showValue(
-                        item.requestedBy ||
-                        item.submittalRequestedBy
-                    )}
-                </td>
-
-                <td>
-                    ${showValue(item.status)}
-                </td>
-
-                <td>
-                    ${showValue(item.closingDate)}
-                </td>
-
-                <td>
-                    ${showValue(
-                        item.actionBy ||
-                        item.responseBy
-                    )}
-                </td>
-
-            </tr>
-
-        `;
-    });
-
-
-    return `
-
-        <div class="dashboard-table-wrapper">
-
-            <table class="dashboard-table">
-
-                <thead>
-
-                    <tr>
-                        <th>S.No</th>
-                        <th>Ref No.</th>
-                        <th>Subject</th>
-                        <th>Submittal Requested By</th>
-                        <th>Final Status</th>
-                        <th>Closing Date</th>
-                        <th>Last Action By</th>
-                    </tr>
-
-                </thead>
-
-                <tbody>
-                    ${rows}
-                </tbody>
-
-            </table>
-
-        </div>
-
-    `;
-}
-
-
-// ==========================================
-// NO PROJECTS
+// SHOW DASHBOARD
 // ==========================================
 
 if (projects.length === 0) {
@@ -760,8 +322,64 @@ if (projects.length === 0) {
     dashboardContainer.innerHTML = `
 
         <div class="no-dashboard-data">
-
             No projects found.
+        </div>
+
+    `;
+
+} else {
+
+    dashboardContainer.innerHTML = `
+
+        <div class="overall-dashboard-summary">
+
+            <h2>Overall Summary</h2>
+
+            <div class="overall-summary-cards">
+
+                <div>
+                    <span>Total Projects</span>
+                    <strong>${projects.length}</strong>
+                </div>
+
+                <div>
+                    <span>Total Documents</span>
+                    <strong>${overallDocuments}</strong>
+                </div>
+
+                <div>
+                    <span>In Progress</span>
+                    <strong>${overallInProgress}</strong>
+                </div>
+
+                <div>
+                    <span>Closed</span>
+                    <strong>${overallClosed}</strong>
+                </div>
+
+                <div>
+                    <span>Today Issued</span>
+                    <strong>${overallTodayIssued}</strong>
+                </div>
+
+                <div>
+                    <span>Today Responses</span>
+                    <strong>${overallTodayResponses}</strong>
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <h2 class="projects-overview-title">
+            Projects
+        </h2>
+
+
+        <div class="project-overview-grid">
+
+            ${projectCardsHTML}
 
         </div>
 
