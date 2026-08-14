@@ -2100,3 +2100,43 @@ button:hover {
 .project-dashboard-header p {
     font-size: 12px !important;
 }
+/* FINAL SMALL SUMMARY BOXES */
+
+.project-dashboard-section .dashboard-cards {
+    display: grid !important;
+    grid-template-columns: repeat(8, minmax(0, 1fr)) !important;
+    gap: 5px !important;
+    margin: 12px 0 14px 0 !important;
+}
+
+.project-dashboard-section .dashboard-cards .card {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+
+    min-height: 0 !important;
+    height: 58px !important;
+
+    padding: 6px 3px !important;
+    margin: 0 !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: center !important;
+    align-items: center !important;
+
+    box-sizing: border-box !important;
+}
+
+.project-dashboard-section .dashboard-cards .card h2 {
+    font-size: 10px !important;
+    line-height: 11px !important;
+    margin: 0 0 4px 0 !important;
+    text-align: center !important;
+}
+
+.project-dashboard-section .dashboard-cards .card p {
+    font-size: 16px !important;
+    line-height: 16px !important;
+    margin: 0 !important;
+}
