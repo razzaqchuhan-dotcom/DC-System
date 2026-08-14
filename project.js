@@ -699,9 +699,6 @@ document
             issueDate:
                 issueDate.value,
 
-            issuerName:
-                currentUser,
-
             status:
                 "In Progress",
 
