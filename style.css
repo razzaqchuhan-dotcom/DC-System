@@ -2181,10 +2181,10 @@ button:hover {
 /* DARK DOWNLOAD PDF BUTTON */
 
 .download-project-pdf-button {
-    background: #194775 !important;
+    background: #4a4a4a !important;
     color: #ffffff !important;
 
-    border: 1px solid #194775 !important;
+    border: 1px solid #4a4a4a !important;
     border-radius: 4px !important;
 
     padding: 8px 18px !important;
@@ -2196,5 +2196,5 @@ button:hover {
 }
 
 .download-project-pdf-button:hover {
-    background: #12375c !important;
+    background: #333333 !important;
 }
