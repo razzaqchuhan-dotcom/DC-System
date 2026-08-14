@@ -2140,3 +2140,61 @@ button:hover {
     line-height: 16px !important;
     margin: 0 !important;
 }
+/* =========================================
+   FINAL COMPACT SUMMARY CARDS + DARK PDF
+   ========================================= */
+
+.project-dashboard-section .dashboard-cards {
+    display: grid !important;
+    grid-template-columns: repeat(8, 118px) !important;
+    gap: 8px !important;
+    justify-content: start !important;
+
+    margin: 12px 0 15px 0 !important;
+}
+
+.project-dashboard-section .dashboard-cards .card {
+    width: 118px !important;
+    height: 54px !important;
+
+    min-width: 118px !important;
+    min-height: 54px !important;
+
+    padding: 5px 3px !important;
+    margin: 0 !important;
+
+    box-sizing: border-box !important;
+}
+
+.project-dashboard-section .dashboard-cards .card h2 {
+    font-size: 9px !important;
+    line-height: 11px !important;
+    margin: 0 0 4px 0 !important;
+}
+
+.project-dashboard-section .dashboard-cards .card p {
+    font-size: 16px !important;
+    line-height: 17px !important;
+}
+
+
+/* DARK DOWNLOAD PDF BUTTON */
+
+.download-project-pdf-button {
+    background: #194775 !important;
+    color: #ffffff !important;
+
+    border: 1px solid #194775 !important;
+    border-radius: 4px !important;
+
+    padding: 8px 18px !important;
+
+    font-size: 12px !important;
+    font-weight: bold !important;
+
+    cursor: pointer !important;
+}
+
+.download-project-pdf-button:hover {
+    background: #12375c !important;
+}
