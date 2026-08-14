@@ -1958,3 +1958,94 @@ button:hover {
     display: block;
     margin: 15px auto;
 }
+/* =========================================
+   COMPACT PROJECT DASHBOARD SUMMARY
+   ========================================= */
+
+.project-dashboard-section .dashboard-cards {
+    display: grid;
+    grid-template-columns: repeat(8, minmax(0, 1fr));
+    gap: 7px;
+    margin-bottom: 18px;
+}
+
+.project-dashboard-section .card {
+    min-height: 62px;
+    padding: 9px 5px;
+    border-radius: 5px;
+}
+
+.project-dashboard-section .card h2 {
+    font-size: 11px;
+    margin: 0 0 7px 0;
+    white-space: nowrap;
+}
+
+.project-dashboard-section .card p {
+    font-size: 19px;
+    margin: 0;
+}
+
+
+/* Project header also little smaller */
+
+.project-dashboard-header {
+    padding: 11px 14px;
+    margin-bottom: 14px;
+}
+
+.project-dashboard-header h2 {
+    font-size: 18px;
+}
+
+
+/* Smaller table headings / rows */
+
+.dashboard-table-title {
+    padding: 7px 10px;
+    font-size: 13px;
+    margin-top: 15px;
+}
+
+.dashboard-table {
+    font-size: 11px;
+}
+
+.dashboard-table th {
+    padding: 6px 5px;
+}
+
+.dashboard-table td {
+    padding: 6px 5px;
+}
+
+
+/* Tablet */
+
+@media screen and (max-width: 1100px) {
+
+    .project-dashboard-section .dashboard-cards {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+}
+.project-report-actions {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.download-project-pdf-button {
+    background: #eeeeee;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+    padding: 7px 14px;
+    font-size: 12px;
+    font-weight: bold;
+    cursor: pointer;
+    color: #222222;
+}
+
+.download-project-pdf-button:hover {
+    background: #dddddd;
+}

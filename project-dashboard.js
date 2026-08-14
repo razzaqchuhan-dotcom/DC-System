@@ -326,14 +326,22 @@ function loadProjectDashboard() {
                 </div>
 
 
+            <div class="project-report-actions">
+
                 <div>
-
                     Report Date:
-                    <strong>
-                        ${todayDate}
-                    </strong>
-
+                    <strong>${todayDate}</strong>
                 </div>
+
+                <button
+                    type="button"
+                    id="downloadProjectPdf"
+                    class="download-project-pdf-button"
+                >
+                    Download PDF
+                </button>
+
+            </div>
 
             </div>
 
