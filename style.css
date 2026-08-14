@@ -1400,3 +1400,171 @@ button:hover {
 .status-in-progress {
     font-weight: bold !important;
 }
+/* =========================================
+   PROJECT WISE DOCUMENT CONTROL DASHBOARD
+   ========================================= */
+
+#projectDashboardContainer {
+    margin-top: 25px;
+}
+
+
+/* EACH PROJECT SECTION */
+
+.project-dashboard-section {
+    background: #ffffff;
+    border: 1px solid #d6d6d6;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 35px;
+}
+
+
+/* PROJECT HEADER */
+
+.project-dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+
+    background: #f2f2f2;
+    border: 1px solid #d6d6d6;
+    border-radius: 6px;
+
+    padding: 15px 18px;
+    margin-bottom: 18px;
+}
+
+.project-dashboard-header h2 {
+    margin: 0 0 5px 0;
+    font-size: 22px;
+    color: #222222;
+}
+
+.project-dashboard-header p {
+    margin: 0;
+    color: #555555;
+}
+
+
+/* SUMMARY CARDS */
+
+.project-dashboard-section .dashboard-cards {
+    display: grid;
+    grid-template-columns:
+        repeat(auto-fit, minmax(140px, 1fr));
+
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.project-dashboard-section .card {
+    background: #f7f7f7;
+    border: 1px solid #d6d6d6;
+    border-radius: 6px;
+
+    padding: 15px 10px;
+    text-align: center;
+
+    min-height: 90px;
+}
+
+.project-dashboard-section .card h2 {
+    font-size: 14px;
+    margin: 0 0 12px 0;
+    color: #444444;
+}
+
+.project-dashboard-section .card p {
+    margin: 0;
+    font-size: 24px;
+    font-weight: bold;
+    color: #222222;
+}
+
+
+/* TABLE TITLES */
+
+.dashboard-table-title {
+    background: #eeeeee;
+    border: 1px solid #d2d2d2;
+
+    padding: 9px 12px;
+    margin: 20px 0 0 0;
+
+    font-size: 15px;
+    color: #222222;
+}
+
+
+/* TABLE CONTAINER */
+
+.dashboard-table-wrapper {
+    overflow-x: auto;
+    margin-bottom: 22px;
+}
+
+
+/* DASHBOARD TABLE */
+
+.dashboard-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: #ffffff;
+    font-size: 13px;
+}
+
+.dashboard-table th {
+    background: #e6e6e6;
+    color: #222222;
+    font-weight: bold;
+
+    padding: 9px 8px;
+    border: 1px solid #cfcfcf;
+
+    text-align: center;
+    white-space: nowrap;
+}
+
+.dashboard-table td {
+    padding: 8px;
+    border: 1px solid #d8d8d8;
+
+    color: #333333;
+    vertical-align: top;
+}
+
+.dashboard-table tbody tr:nth-child(even) {
+    background: #fafafa;
+}
+
+
+/* EMPTY TABLE MESSAGE */
+
+.no-dashboard-data {
+    background: #fafafa;
+    border: 1px solid #d8d8d8;
+
+    padding: 12px;
+    margin-bottom: 22px;
+
+    color: #666666;
+    font-size: 13px;
+}
+
+
+/* MOBILE / SMALL SCREEN */
+
+@media screen and (max-width: 900px) {
+
+    .project-dashboard-header {
+        flex-direction: column;
+        align-items: flex-start;
+    }
+
+    .project-dashboard-section .dashboard-cards {
+        grid-template-columns:
+            repeat(2, minmax(120px, 1fr));
+    }
+}
