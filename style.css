@@ -1753,3 +1753,208 @@ button:hover {
     }
 
 }
+/* =========================================
+   FINAL MAIN DASHBOARD LAYOUT
+   ========================================= */
+
+#projectDashboardContainer {
+    margin-top: 20px;
+}
+
+
+/* OVERALL SUMMARY */
+
+.overall-dashboard-summary {
+    background: #ffffff;
+    border: 1px solid #d6d6d6;
+    border-radius: 8px;
+    padding: 18px;
+    margin-bottom: 25px;
+}
+
+.overall-dashboard-summary h2 {
+    margin: 0 0 15px;
+    font-size: 18px;
+    color: #222;
+}
+
+.overall-summary-cards {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+}
+
+.overall-summary-cards div {
+    background: #f3f3f3;
+    border: 1px solid #d4d4d4;
+    border-radius: 5px;
+    padding: 12px 6px;
+    text-align: center;
+}
+
+.overall-summary-cards span {
+    display: block;
+    font-size: 11px;
+    color: #555;
+    margin-bottom: 6px;
+}
+
+.overall-summary-cards strong {
+    display: block;
+    font-size: 20px;
+    color: #222;
+}
+
+
+/* PROJECT TITLE */
+
+.projects-overview-title {
+    margin: 0 0 12px;
+    font-size: 18px;
+    color: #222;
+}
+
+
+/* MAXIMUM 4 PROJECTS IN ONE ROW */
+
+.project-overview-grid {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 14px;
+    align-items: start;
+}
+
+
+/* SMALL PROJECT CARD */
+
+.project-overview-card {
+    background: #ffffff;
+    border: 1px solid #d4d4d4;
+    border-radius: 7px;
+    padding: 12px;
+    min-width: 0;
+}
+
+
+/* PROJECT NAME */
+
+.project-card-heading {
+    display: block;
+    background: #eeeeee;
+    border: 1px solid #d5d5d5;
+    border-radius: 5px;
+    padding: 9px;
+    margin-bottom: 10px;
+}
+
+.project-card-heading h2 {
+    margin: 0 0 4px;
+    font-size: 14px;
+    color: #222;
+}
+
+.project-card-heading span {
+    font-size: 11px;
+    color: #555;
+}
+
+
+/* PROJECT COUNTERS */
+
+.project-card-stats {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 6px;
+}
+
+.project-card-stats div {
+    background: #f7f7f7;
+    border: 1px solid #dedede;
+    border-radius: 4px;
+    padding: 7px 3px;
+    text-align: center;
+}
+
+.project-card-stats small {
+    display: block;
+    font-size: 9px;
+    color: #666;
+    margin-bottom: 4px;
+}
+
+.project-card-stats strong {
+    display: block;
+    font-size: 15px;
+    color: #222;
+}
+
+
+/* LAST ACTIVITY */
+
+.project-last-activity {
+    margin: 10px 0;
+    font-size: 10px;
+    color: #555;
+}
+
+
+/* OPEN BUTTON */
+
+.open-project-dashboard-button {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+
+    background: #eeeeee;
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+
+    color: #222;
+    text-align: center;
+    text-decoration: none;
+    font-size: 11px;
+    font-weight: bold;
+
+    padding: 8px;
+}
+
+.open-project-dashboard-button:hover {
+    background: #dddddd;
+}
+
+
+/* TABLET */
+
+@media screen and (max-width: 1100px) {
+
+    .project-overview-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .overall-summary-cards {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+
+/* MOBILE */
+
+@media screen and (max-width: 650px) {
+
+    .project-overview-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .overall-summary-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+/* PROJECT DASHBOARD SIDEBAR LOGO FIX */
+
+.sidebar img {
+    width: 150px;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 15px auto;
+}
