@@ -310,19 +310,12 @@ function loadIssuerNames() {
 
         option.value = name;
         option.textContent = name;
-
         issuerName.appendChild(option);
+
     });
+
 }
-
-
-loadIssuerNames();    
-
-const responseStatus =
-    document.getElementById("responseStatus");
-
-const addStatusBtn =
-    document.getElementById("addStatusBtn");    
+        loadIssuerNames();
 
 const addIssuerBtn =
     document.getElementById("addIssuerBtn");
@@ -384,7 +377,9 @@ issuerMenuBtn.addEventListener("click", function (event) {
 
 
 // EDIT ISSUER
-editIssuerBtn.addEventListener("click", function () {
+editIssuerBtn.addEventListener("click", function (event) {
+
+    event.stopPropagation();
 
     const oldName = issuerName.value;
 
@@ -422,7 +417,9 @@ editIssuerBtn.addEventListener("click", function () {
 
 
 // DELETE ISSUER
-deleteIssuerBtn.addEventListener("click", function () {
+deleteIssuerBtn.addEventListener("click", function (event) {
+
+    event.stopPropagation();
 
     const selectedName = issuerName.value;
 
@@ -449,14 +446,19 @@ deleteIssuerBtn.addEventListener("click", function () {
     issuerMenu.style.display = "none";
 });
 
-
-// CLICK OUTSIDE = CLOSE MENU
+// CLICK ANYWHERE OUTSIDE = CLOSE MENU
 document.addEventListener("click", function () {
+
     issuerMenu.style.display = "none";
+
 });
 
+
+// CLICK INSIDE MENU = DO NOT CLOSE
 issuerMenu.addEventListener("click", function (event) {
+
     event.stopPropagation();
+
 });
 
 const submissionMethod =
