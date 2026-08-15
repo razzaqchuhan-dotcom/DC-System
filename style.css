@@ -2198,3 +2198,34 @@ button:hover {
 .download-project-pdf-button:hover {
     background: #333333 !important;
 }
+/* SUBMITTAL REQUEST INFORMATION */
+
+.request-info-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 18px;
+    align-items: start;
+    margin-bottom: 15px;
+}
+
+.request-info-row .submittal-field {
+    width: 100%;
+}
+
+.request-info-row label {
+    display: block;
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+.request-info-row input[type="text"],
+.request-info-row input[type="file"] {
+    width: 100%;
+    box-sizing: border-box;
+    min-height: 38px;
+}
+
+.request-info-row small {
+    display: block;
+    margin-top: 4px;
+}
