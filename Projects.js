@@ -232,3 +232,35 @@ function openProject(id) {
 
 
 renderProjects();
+// ==========================================
+// SHOW / HIDE CREATE PROJECT FORM
+// ==========================================
+
+const showCreateProjectButton =
+    document.getElementById("showCreateProject");
+
+const projectFormBox =
+    document.getElementById("projectFormBox");
+
+
+showCreateProjectButton.addEventListener(
+    "click",
+    function () {
+
+        if (projectFormBox.style.display === "none") {
+
+            projectFormBox.style.display = "block";
+
+            showCreateProjectButton.textContent =
+                "× Close";
+
+        } else {
+
+            projectFormBox.style.display = "none";
+
+            showCreateProjectButton.textContent =
+                "+ Create Project";
+        }
+
+    }
+);

@@ -2256,3 +2256,114 @@ button:hover {
     width: 100% !important;
     box-sizing: border-box !important;
 }
+/* =========================================
+   ALL PROJECTS PAGE - FINAL CARD LAYOUT
+   ========================================= */
+
+.projects-toolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 18px;
+}
+
+.projects-toolbar h2 {
+    margin: 0;
+    font-size: 20px;
+    color: #222222;
+}
+
+.create-project-button {
+    background: #4a4a4a;
+    color: #ffffff;
+    border: 1px solid #4a4a4a;
+    border-radius: 5px;
+    padding: 9px 16px;
+    font-size: 13px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.create-project-button:hover {
+    background: #333333;
+}
+
+
+/* CREATE PROJECT FORM */
+
+#projectFormBox {
+    max-width: 520px;
+    margin-bottom: 25px;
+}
+
+
+/* PROJECT CARD GRID */
+
+.project-list {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    align-items: start;
+}
+
+
+/* EACH PROJECT CARD */
+
+.project-card {
+    background: #ffffff !important;
+    border: 1px solid #d4d4d4 !important;
+    border-radius: 7px !important;
+    padding: 14px !important;
+    margin: 0 !important;
+    min-width: 0 !important;
+}
+
+.project-card h3 {
+    margin: 0 0 10px 0 !important;
+    font-size: 15px !important;
+    color: #222222 !important;
+}
+
+.project-card p {
+    margin: 5px 0 !important;
+    font-size: 12px !important;
+    color: #444444 !important;
+}
+
+
+/* PROJECT CARD BUTTONS */
+
+.project-card button {
+    padding: 6px 11px !important;
+    font-size: 11px !important;
+    border-radius: 4px !important;
+    margin-right: 5px !important;
+}
+
+
+/* TABLET */
+
+@media screen and (max-width: 1100px) {
+
+    .project-list {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+
+}
+
+
+/* MOBILE */
+
+@media screen and (max-width: 650px) {
+
+    .project-list {
+        grid-template-columns: 1fr !important;
+    }
+
+    .projects-toolbar {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+}

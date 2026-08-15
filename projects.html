@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>All Projects</title>
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css?v=13">
 </head>
 
 <body class="dashboard-body">
@@ -24,7 +24,26 @@
             </div>
         </div>
 
-        <div class="project-form-box">
+        <div class="projects-toolbar">
+
+    <h2>Projects</h2>
+
+    <button
+        type="button"
+        id="showCreateProject"
+        class="create-project-button"
+    >
+        + Create Project
+    </button>
+
+</div>
+
+
+<div
+    class="project-form-box"
+    id="projectFormBox"
+    style="display: none;"
+>
 
             <h2>Add New Project</h2>
 <label>Project Name</label>
