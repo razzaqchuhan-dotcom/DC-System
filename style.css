@@ -2467,3 +2467,48 @@ button:hover {
         grid-template-columns: 1fr !important;
     }
 }
+/* =========================================
+   SIDEBAR MENU - ALWAYS VISIBLE + ACTIVE
+   ========================================= */
+
+.sidebar a {
+    display: block !important;
+    visibility: visible !important;
+
+    color: #333333 !important;
+    background: transparent !important;
+
+    padding: 10px 14px !important;
+    margin: 3px 8px !important;
+
+    border-radius: 4px !important;
+    text-decoration: none !important;
+
+    font-size: 13px !important;
+    font-weight: 500 !important;
+}
+
+
+/* CURRENT PAGE */
+
+.sidebar a.active {
+    background: #4a4a4a !important;
+    color: #ffffff !important;
+    font-weight: bold !important;
+}
+
+
+/* HOVER */
+
+.sidebar a:hover {
+    background: #dddddd !important;
+    color: #222222 !important;
+}
+
+
+/* ACTIVE LINK HOVER */
+
+.sidebar a.active:hover {
+    background: #3a3a3a !important;
+    color: #ffffff !important;
+}
