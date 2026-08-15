@@ -1031,7 +1031,7 @@ document.addEventListener("click", async function(event) {
     doc.setFontSize(16);
 
     doc.text(
-        "DOCUMENT SAMITTAL DAILY SUMMARY",
+        "DOCUMENT SABMITTAL DAILY SUMMARY",
         56,
         16,
     );
