@@ -829,11 +829,30 @@ function createClosedTable(items) {
 
     `;
 }
+function loadLogoBase64(imagePath) {
+    return new Promise((resolve, reject) => {
+        const img = new Image();
+        img.onload = function () {
+            const canvas = document.createElement("canvas");
+            canvas.width = img.width;
+            canvas.height = img.height;
+
+            const ctx = canvas.getContext("2d");
+            ctx.drawImage(img, 0, 0);
+
+            const dataURL = canvas.toDataURL("image/png");
+            resolve(dataURL);
+        };
+        img.onerror = reject;
+        img.src = imagePath;
+    });
+}
+
 // ==========================================
 // DOWNLOAD PROJECT PDF
 // ==========================================
 
-document.addEventListener("click", function(event) {
+document.addEventListener("click", async function(event) {
 
     if (event.target.id !== "downloadProjectPdf") {
         return;
@@ -852,6 +871,16 @@ document.addEventListener("click", function(event) {
         unit: "mm",
         format: "a4"
     });
+
+    const logoBase64 = await loadLogoBase64("ALMAS LOGO.jpeg");
+    doc.addImage(
+        logoBase64,
+        "PNG",
+        12,
+        8,
+        38,
+        16
+    );
 
 
     // --------------------------------------
@@ -1003,8 +1032,8 @@ document.addEventListener("click", function(event) {
 
     doc.text(
         "DOCUMENT CONTROL DAILY SUMMARY",
-        12,
-        14
+        56,
+        16,
     );
 
 
@@ -1016,7 +1045,7 @@ document.addEventListener("click", function(event) {
 
     doc.rect(
         12,
-        19,
+        28,
         273,
         13,
         "F"
@@ -1027,7 +1056,7 @@ document.addEventListener("click", function(event) {
 
     doc.rect(
         12,
-        19,
+        28,
         273,
         13
     );
@@ -1035,7 +1064,7 @@ document.addEventListener("click", function(event) {
 
     doc.setFont("helvetica", "bold");
 
-    doc.text("Project:", 15, 27);
+    doc.text("Project:", 15, 36);
 
     doc.setFont("helvetica", "normal");
 
@@ -1048,7 +1077,7 @@ document.addEventListener("click", function(event) {
 
     doc.setFont("helvetica", "bold");
 
-    doc.text("Project Code:", 95, 27);
+    doc.text("Project Code:", 95, 36);
 
     doc.setFont("helvetica", "normal");
 
@@ -1061,7 +1090,7 @@ document.addEventListener("click", function(event) {
 
     doc.setFont("helvetica", "bold");
 
-    doc.text("Report Date:", 160, 27);
+    doc.text("Report Date:", 160, 36);
 
     doc.setFont("helvetica", "normal");
 
@@ -1074,14 +1103,14 @@ document.addEventListener("click", function(event) {
 
     doc.setFont("helvetica", "bold");
 
-    doc.text("Prepared By:", 220, 27);
+    doc.text("Prepared By:", 220, 36);
 
     doc.setFont("helvetica", "normal");
 
     doc.text(
         localStorage.getItem("currentUser") || "Admin",
         241,
-        27
+        36
     );
 
 
@@ -1091,7 +1120,7 @@ document.addEventListener("click", function(event) {
 
     doc.autoTable({
 
-        startY: 37,
+        startY: 46,
 
         head: [[
             "Total",
