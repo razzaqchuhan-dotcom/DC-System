@@ -326,9 +326,8 @@ const addStatusBtn =
 
 const addIssuerBtn =
     document.getElementById("addIssuerBtn");
-addIssuerBtn.addEventListener("click", function () {
-    
-    const issuerMenuBtn =
+
+const issuerMenuBtn =
     document.getElementById("issuerMenuBtn");
 
 const issuerMenu =
@@ -341,19 +340,50 @@ const deleteIssuerBtn =
     document.getElementById("deleteIssuerBtn");
 
 
-// OPEN / CLOSE MENU
-issuerMenuBtn.addEventListener("click", function () {
+// ADD ISSUER
+addIssuerBtn.addEventListener("click", function () {
 
-    if (issuerMenu.style.display === "none") {
-        issuerMenu.style.display = "block";
-    } else {
-        issuerMenu.style.display = "none";
+    const name = prompt("Enter Issuer Name:");
+
+    if (!name || name.trim() === "") {
+        return;
     }
 
+    const cleanName = name.trim();
+
+    const alreadyExists =
+        issuerNames.some(function(item) {
+            return item.toLowerCase() === cleanName.toLowerCase();
+        });
+
+    if (alreadyExists) {
+        alert("This issuer already exists.");
+        issuerName.value = cleanName;
+        return;
+    }
+
+    issuerNames.push(cleanName);
+
+    saveIssuerNames();
+    loadIssuerNames();
+
+    issuerName.value = cleanName;
 });
 
 
-// EDIT SELECTED ISSUER
+// OPEN / CLOSE 3 DOT MENU
+issuerMenuBtn.addEventListener("click", function (event) {
+
+    event.stopPropagation();
+
+    issuerMenu.style.display =
+        issuerMenu.style.display === "block"
+            ? "none"
+            : "block";
+});
+
+
+// EDIT ISSUER
 editIssuerBtn.addEventListener("click", function () {
 
     const oldName = issuerName.value;
@@ -363,10 +393,8 @@ editIssuerBtn.addEventListener("click", function () {
         return;
     }
 
-    const newName = prompt(
-        "Edit Issuer Name:",
-        oldName
-    );
+    const newName =
+        prompt("Edit Issuer Name:", oldName);
 
     if (!newName || newName.trim() === "") {
         return;
@@ -389,12 +417,11 @@ editIssuerBtn.addEventListener("click", function () {
     loadIssuerNames();
 
     issuerName.value = cleanName;
-
     issuerMenu.style.display = "none";
 });
 
 
-// DELETE SELECTED ISSUER
+// DELETE ISSUER
 deleteIssuerBtn.addEventListener("click", function () {
 
     const selectedName = issuerName.value;
@@ -404,9 +431,8 @@ deleteIssuerBtn.addEventListener("click", function () {
         return;
     }
 
-    const confirmed = confirm(
-        "Delete issuer: " + selectedName + " ?"
-    );
+    const confirmed =
+        confirm("Delete issuer: " + selectedName + " ?");
 
     if (!confirmed) {
         return;
@@ -423,43 +449,15 @@ deleteIssuerBtn.addEventListener("click", function () {
     issuerMenu.style.display = "none";
 });
 
-    const name =
-        prompt("Enter Issuer Name:");
 
-    if (!name || name.trim() === "") {
-        return;
-    }
+// CLICK OUTSIDE = CLOSE MENU
+document.addEventListener("click", function () {
+    issuerMenu.style.display = "none";
+});
 
-    const cleanName =
-        name.trim();
-
-    const alreadyExists =
-        issuerNames.some(function(item) {
-
-            return (
-                item.toLowerCase() ===
-                cleanName.toLowerCase()
-            );
-
-        });
-
-    if (alreadyExists) {
-
-        alert("This issuer already exists.");
-
-        issuerName.value = cleanName;
-
-        return;
-    }
-
-    issuerNames.push(cleanName);
-
-    saveIssuerNames();
-
-    loadIssuerNames();
-
-    issuerName.value = cleanName;
-});       
+issuerMenu.addEventListener("click", function (event) {
+    event.stopPropagation();
+});
 
 const submissionMethod =
     document.getElementById("submissionMethod");
