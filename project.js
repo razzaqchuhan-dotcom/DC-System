@@ -279,6 +279,44 @@ const issueDate =
 issueDate.value = today;
 const issuerName =
     document.getElementById("issuerName");
+// ===============================
+// ISSUER MASTER LIST
+// ===============================
+
+let issuerNames =
+    JSON.parse(
+        localStorage.getItem("issuerNames")
+    ) || [];
+
+
+function saveIssuerNames() {
+
+    localStorage.setItem(
+        "issuerNames",
+        JSON.stringify(issuerNames)
+    );
+}
+
+
+function loadIssuerNames() {
+
+    issuerName.innerHTML =
+        '<option value="">Select Issuer</option>';
+
+    issuerNames.forEach(function(name) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = name;
+        option.textContent = name;
+
+        issuerName.appendChild(option);
+    });
+}
+
+
+loadIssuerNames();    
 
 const responseStatus =
     document.getElementById("responseStatus");
@@ -289,22 +327,139 @@ const addStatusBtn =
 const addIssuerBtn =
     document.getElementById("addIssuerBtn");
 addIssuerBtn.addEventListener("click", function () {
+    
+    const issuerMenuBtn =
+    document.getElementById("issuerMenuBtn");
 
-    const name = prompt("Enter Issuer Name:");
+const issuerMenu =
+    document.getElementById("issuerMenu");
+
+const editIssuerBtn =
+    document.getElementById("editIssuerBtn");
+
+const deleteIssuerBtn =
+    document.getElementById("deleteIssuerBtn");
+
+
+// OPEN / CLOSE MENU
+issuerMenuBtn.addEventListener("click", function () {
+
+    if (issuerMenu.style.display === "none") {
+        issuerMenu.style.display = "block";
+    } else {
+        issuerMenu.style.display = "none";
+    }
+
+});
+
+
+// EDIT SELECTED ISSUER
+editIssuerBtn.addEventListener("click", function () {
+
+    const oldName = issuerName.value;
+
+    if (!oldName) {
+        alert("Please select an issuer first.");
+        return;
+    }
+
+    const newName = prompt(
+        "Edit Issuer Name:",
+        oldName
+    );
+
+    if (!newName || newName.trim() === "") {
+        return;
+    }
+
+    const cleanName = newName.trim();
+
+    const index =
+        issuerNames.findIndex(function(item) {
+            return item === oldName;
+        });
+
+    if (index === -1) {
+        return;
+    }
+
+    issuerNames[index] = cleanName;
+
+    saveIssuerNames();
+    loadIssuerNames();
+
+    issuerName.value = cleanName;
+
+    issuerMenu.style.display = "none";
+});
+
+
+// DELETE SELECTED ISSUER
+deleteIssuerBtn.addEventListener("click", function () {
+
+    const selectedName = issuerName.value;
+
+    if (!selectedName) {
+        alert("Please select an issuer first.");
+        return;
+    }
+
+    const confirmed = confirm(
+        "Delete issuer: " + selectedName + " ?"
+    );
+
+    if (!confirmed) {
+        return;
+    }
+
+    issuerNames =
+        issuerNames.filter(function(item) {
+            return item !== selectedName;
+        });
+
+    saveIssuerNames();
+    loadIssuerNames();
+
+    issuerMenu.style.display = "none";
+});
+
+    const name =
+        prompt("Enter Issuer Name:");
 
     if (!name || name.trim() === "") {
         return;
     }
 
-    const option = document.createElement("option");
+    const cleanName =
+        name.trim();
 
-    option.value = name.trim();
-    option.textContent = name.trim();
+    const alreadyExists =
+        issuerNames.some(function(item) {
 
-    issuerName.appendChild(option);
+            return (
+                item.toLowerCase() ===
+                cleanName.toLowerCase()
+            );
 
-    issuerName.value = name.trim();
-});        
+        });
+
+    if (alreadyExists) {
+
+        alert("This issuer already exists.");
+
+        issuerName.value = cleanName;
+
+        return;
+    }
+
+    issuerNames.push(cleanName);
+
+    saveIssuerNames();
+
+    loadIssuerNames();
+
+    issuerName.value = cleanName;
+});       
 
 const submissionMethod =
     document.getElementById("submissionMethod");

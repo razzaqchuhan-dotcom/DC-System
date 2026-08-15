@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Project - Outgoing Submittals</title>
-    <link rel="stylesheet" href="style.css?v=15">
+    <link rel="stylesheet" href="style.css?v=16">
 </head>
 
 <body class="dashboard-body">
@@ -186,10 +186,37 @@
             >
                 + Add
             </button>
+    <div class="issuer-menu-wrapper">
+
+        <button
+            type="button"
+            id="issuerMenuBtn"
+            class="issuer-menu-btn"
+            title="Manage Issuer"
+        >
+            ⋮
+        </button>
+
+        <div
+            id="issuerMenu"
+            class="issuer-menu"
+            style="display: none;">
+
+            <button type="button" id="editIssuerBtn">
+            Edit
+            </button>
+
+            <button
+                type="button"
+                id="deleteIssuerBtn"
+            >
+            Delete
+            </button>
 
         </div>
-    </div>
 
+    </div>
+</div>
 
     <div class="submittal-field">
         <label>Submission Method</label>
@@ -624,7 +651,7 @@
     </div>
 
 
-    <script src="project.js?v=2"></script>
+    <script src="project.js?v=3"></script>
 
 </body>
 </html>

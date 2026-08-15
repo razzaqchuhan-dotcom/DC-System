@@ -2512,3 +2512,85 @@ button:hover {
     background: #3a3a3a !important;
     color: #ffffff !important;
 }
+/* =========================================
+   ISSUER 3-DOTS MENU
+   ========================================= */
+
+.issuer-select-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.issuer-select-row select {
+    flex: 1;
+}
+
+.issuer-menu-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+.issuer-menu-btn {
+    width: 36px;
+    height: 36px;
+
+    border: 1px solid #c9c9c9;
+    border-radius: 4px;
+
+    background: #eeeeee;
+    color: #333333;
+
+    font-size: 20px;
+    font-weight: bold;
+
+    cursor: pointer;
+    line-height: 1;
+}
+
+.issuer-menu-btn:hover {
+    background: #dddddd;
+}
+
+
+/* DROPDOWN */
+
+.issuer-menu {
+    position: absolute;
+    right: 0;
+    top: 40px;
+
+    width: 100px;
+
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 5px;
+
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+
+    z-index: 1000;
+    overflow: hidden;
+}
+
+.issuer-menu button {
+    display: block;
+    width: 100%;
+
+    border: none;
+    background: #ffffff;
+
+    padding: 9px 12px;
+
+    text-align: left;
+    font-size: 12px;
+
+    cursor: pointer;
+}
+
+.issuer-menu button:hover {
+    background: #eeeeee;
+}
+
+#deleteIssuerBtn {
+    color: #a00000;
+}
