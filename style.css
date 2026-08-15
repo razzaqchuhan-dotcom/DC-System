@@ -2367,3 +2367,103 @@ button:hover {
     }
 
 }
+/* =========================================
+   ALL PROJECTS - FINAL LAYOUT
+   ========================================= */
+
+.projects-toolbar {
+    display: flex !important;
+    justify-content: space-between !important;
+    align-items: center !important;
+    margin-bottom: 18px !important;
+}
+
+.projects-toolbar h2 {
+    margin: 0 !important;
+    font-size: 20px !important;
+    color: #222222 !important;
+}
+
+.create-project-button {
+    width: auto !important;
+    margin: 0 !important;
+    padding: 9px 16px !important;
+
+    background: #4a4a4a !important;
+    color: white !important;
+
+    border: none !important;
+    border-radius: 5px !important;
+
+    font-size: 12px !important;
+    font-weight: bold !important;
+}
+
+
+/* PROJECTS - 4 CARDS PER ROW */
+
+#projectList.project-list {
+    display: grid !important;
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+    gap: 14px !important;
+    align-items: start !important;
+}
+
+
+/* SMALL PROJECT CARD */
+
+#projectList .project-card {
+    width: auto !important;
+    min-width: 0 !important;
+
+    padding: 14px !important;
+    margin: 0 !important;
+
+    background: #ffffff !important;
+    border: 1px solid #d4d4d4 !important;
+    border-radius: 7px !important;
+}
+
+#projectList .project-card h3 {
+    margin: 0 0 10px 0 !important;
+    font-size: 14px !important;
+    color: #222222 !important;
+}
+
+#projectList .project-card p {
+    margin: 5px 0 !important;
+    font-size: 11px !important;
+}
+
+
+/* CARD BUTTONS */
+
+#projectList .project-card button {
+    width: auto !important;
+    margin: 8px 4px 0 0 !important;
+    padding: 6px 10px !important;
+    font-size: 11px !important;
+}
+
+
+/* CREATE FORM */
+
+#projectFormBox {
+    max-width: 500px !important;
+    margin-bottom: 20px !important;
+}
+
+
+/* SMALL SCREENS */
+
+@media screen and (max-width: 1100px) {
+    #projectList.project-list {
+        grid-template-columns: repeat(2, 1fr) !important;
+    }
+}
+
+@media screen and (max-width: 650px) {
+    #projectList.project-list {
+        grid-template-columns: 1fr !important;
+    }
+}
