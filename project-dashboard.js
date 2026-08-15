@@ -1031,7 +1031,7 @@ document.addEventListener("click", async function(event) {
     doc.setFontSize(16);
 
     doc.text(
-        "DOCUMENT CONTROL DAILY SUMMARY",
+        "DOCUMENT SAMITTAL DAILY SUMMARY",
         56,
         16,
     );
@@ -1071,7 +1071,7 @@ document.addEventListener("click", async function(event) {
     doc.text(
         String(projectName),
         29,
-        27
+        36
     );
 
 
@@ -1084,7 +1084,7 @@ document.addEventListener("click", async function(event) {
     doc.text(
         String(projectCode),
         116,
-        27
+        36
     );
 
 
@@ -1097,7 +1097,7 @@ document.addEventListener("click", async function(event) {
     doc.text(
         String(todayDate),
         180,
-        27
+        36
     );
 
 
