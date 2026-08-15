@@ -1743,5 +1743,5 @@ deleteSelectedButton.addEventListener("click", function() {
 
 renderSubmittals();
 
-formCard.style.display = "none";
+formCard.style.display = "block";
 responseActionSection.style.display = "none";
