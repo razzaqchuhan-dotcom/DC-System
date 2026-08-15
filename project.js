@@ -572,7 +572,21 @@ document
                 .getElementById("description")
                 .value
                 .trim();
+        const submittalRequestedBy =
+            document
+                .getElementById("submittalRequestedBy")
+                .value
+                .trim();
 
+
+        const requestAttachmentInput =
+            document.getElementById("requestAttachment");
+
+
+        const requestAttachmentFile =
+            requestAttachmentInput.files.length > 0
+                ? requestAttachmentInput.files[0]
+                : null;
 
         const pdfInput =
             document.getElementById("pdfFile");
@@ -652,11 +666,28 @@ document
         const pdfId =
             pdfFile
                 ? "PDF-" + Date.now()
-                : "";    
+                : "";
+        const requestAttachmentId =
+            requestAttachmentFile
+                ? "REQUEST-" + Date.now()
+                : "";            
 
         const newSubmittal = {
 
             issuerName: issuerName.value.trim(),
+
+            submittalRequestedBy: submittalRequestedBy,
+            requestAttachmentId: requestAttachmentId,
+
+            requestAttachmentName:
+                requestAttachmentFile
+                    ? requestAttachmentFile.name
+                    : "",
+
+            requestAttachmentType:
+                requestAttachmentFile
+                    ? requestAttachmentFile.type
+                    : "",
 
             submissionMethod: submissionMethod.value,
 
@@ -743,6 +774,26 @@ if (pdfFile && pdfDatabase) {
         id: pdfId,
         name: pdfFile.name,
         file: pdfFile
+    });
+}    
+
+if (requestAttachmentFile && pdfDatabase) {
+
+    const requestTransaction =
+        pdfDatabase.transaction(
+            ["pdfFiles"],
+            "readwrite"
+        );
+
+    const requestStore =
+        requestTransaction.objectStore(
+            "pdfFiles"
+        );
+
+    requestStore.put({
+        id: requestAttachmentId,
+        name: requestAttachmentFile.name,
+        file: requestAttachmentFile
     });
 }
 
@@ -1200,6 +1251,22 @@ row.addEventListener("dblclick", function() {
                 </td>
                 <td>
                     ${item.issuerName || "-"}
+                </td>
+                <td>
+                    ${item.submittalRequestedBy || "-"}
+
+                    ${
+                        item.requestAttachmentId
+                            ? `<br>
+                                <button
+                                    type="button"
+                                    class="open-pdf-btn"
+                                    onclick="openSavedPDF('${item.requestAttachmentId}')"
+                                >
+                                    View Request
+                                </button>`
+                            : ""
+                    }
                 </td>
 
                 <td>

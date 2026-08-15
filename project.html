@@ -225,6 +225,42 @@
     </div>
 
 </div>
+<!-- SUBMITTAL REQUEST INFORMATION -->
+
+<h3>Submittal Request Information</h3>
+
+<div class="submittal-info-row">
+
+    <div class="submittal-field">
+
+        <label>Submittal Requested By</label>
+
+        <input
+            type="text"
+            id="submittalRequestedBy"
+            placeholder="Enter Requester Name"
+        >
+
+    </div>
+
+
+    <div class="submittal-field">
+
+        <label>Request Attachment</label>
+
+        <input
+            type="file"
+            id="requestAttachment"
+            accept=".pdf,image/png,image/jpeg,image/webp"
+        >
+
+        <small>
+            WhatsApp screenshot, image or PDF
+        </small>
+
+    </div>
+
+</div>
 
             <!-- PDF -->
             <div class="pdf-field">
@@ -551,6 +587,7 @@
                             <th>Discipline</th>
                             <th>Type</th>
                             <th>Issue Date</th>
+                            <th>Submittal Requested By</th>
                             <th>Issued By</th>
                             <th>Method</th>
                             <th>Receiver</th>
@@ -588,7 +625,7 @@
     </div>
 
 
-    <script src="project.js"></script>
+    <script src="project.js?v=2"></script>
 
 </body>
 </html>
