@@ -2700,3 +2700,108 @@ button:hover {
 #deleteIssuerBtn:hover {
     background: #eeeeee !important;
 }
+/* =========================================
+   DOCUMENT TYPE ADD + 3 DOT MENU
+   ========================================= */
+
+.document-type-select-row {
+    display: flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    width: 100% !important;
+}
+
+.document-type-select-row select {
+    flex: 1 !important;
+    min-width: 0 !important;
+    height: 40px !important;
+}
+
+.add-document-type-btn {
+    height: 40px !important;
+    padding: 0 10px !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+}
+
+.document-type-menu-wrapper {
+    position: relative !important;
+    display: flex !important;
+    align-items: center !important;
+}
+
+.document-type-menu-btn {
+    width: 36px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: #eeeeee !important;
+    color: #333333 !important;
+
+    border: 1px solid #c9c9c9 !important;
+    border-radius: 4px !important;
+
+    font-size: 20px !important;
+    cursor: pointer !important;
+}
+
+
+/* POPUP MENU */
+
+.document-type-menu {
+    position: absolute !important;
+    right: 0 !important;
+    top: 44px !important;
+
+    width: 110px !important;
+
+    background: #ffffff !important;
+    border: 1px solid #cccccc !important;
+    border-radius: 5px !important;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+
+    z-index: 9999 !important;
+}
+
+
+/* EDIT */
+
+#editDocumentTypeBtn {
+    display: block !important;
+    width: 100% !important;
+
+    background: #ffffff !important;
+    color: #222222 !important;
+
+    border: none !important;
+
+    padding: 9px 12px !important;
+    text-align: left !important;
+
+    cursor: pointer !important;
+}
+
+
+/* DELETE */
+
+#deleteDocumentTypeBtn {
+    display: block !important;
+    width: 100% !important;
+
+    background: #ffffff !important;
+    color: #b00000 !important;
+
+    border: none !important;
+
+    padding: 9px 12px !important;
+    text-align: left !important;
+
+    cursor: pointer !important;
+}
+
+#editDocumentTypeBtn:hover,
+#deleteDocumentTypeBtn:hover {
+    background: #eeeeee !important;
+}

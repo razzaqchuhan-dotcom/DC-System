@@ -160,23 +160,7 @@ function loadDocumentTypes() {
         documentTypeFilter.appendChild(option2);
 
     });
-
-
-    // ADMIN ADD OPTION
-    if (currentRole === "admin") {
-
-        const addOption =
-            document.createElement("option");
-
-        addOption.value = "__ADD_NEW__";
-
-        addOption.textContent =
-            "+ Add New Document Type";
-
-        documentType.appendChild(addOption);
-    }
 }
-
 
 loadDocumentTypes();
 
@@ -185,86 +169,294 @@ loadDocumentTypes();
 // ADMIN ADD DOCUMENT TYPE
 // ===============================
 
-documentType.addEventListener("change", function() {
+const addDocumentTypeBtn =
+    document.getElementById("addDocumentTypeBtn");
 
-    if (documentType.value !== "__ADD_NEW__") {
-        generateSequenceId();
-        return;
-    }
+const documentTypeMenuBtn =
+    document.getElementById("documentTypeMenuBtn");
+
+const documentTypeMenu =
+    document.getElementById("documentTypeMenu");
+
+const editDocumentTypeBtn =
+    document.getElementById("editDocumentTypeBtn");
+
+const deleteDocumentTypeBtn =
+    document.getElementById("deleteDocumentTypeBtn");
 
 
-    if (currentRole !== "admin") {
-        documentType.value = "";
-        return;
-    }
+// NORMAL DOCUMENT TYPE CHANGE
+documentType.addEventListener("change", function () {
+    generateSequenceId();
+});
 
+
+// ==========================================
+// ADD DOCUMENT TYPE
+// ==========================================
+
+addDocumentTypeBtn.addEventListener("click", function () {
 
     const code = prompt(
-        "Enter Document Type Code (Example: RFI)"
+        "Enter Document Type Code:\nExample: RFI"
     );
 
-    if (!code) {
-        documentType.value = "";
+    if (!code || code.trim() === "") {
         return;
     }
 
+    const name = prompt(
+        "Enter Document Type Name:\nExample: Request for Information"
+    );
+
+    if (!name || name.trim() === "") {
+        return;
+    }
 
     const cleanCode =
         code.trim().toUpperCase();
 
+    const cleanName =
+        name.trim();
 
-    const duplicate =
-        documentTypes.some(
-            type => type.code === cleanCode
-        );
+    const alreadyExists =
+        documentTypes.some(function(item) {
 
-    if (duplicate) {
+            return (
+                item.code.toLowerCase() ===
+                cleanCode.toLowerCase()
+            );
 
-        alert(
-            "This Document Type already exists."
-        );
+        });
 
-        documentType.value = "";
+    if (alreadyExists) {
+
+        alert("This Document Type already exists.");
+
         return;
     }
-
-
-    const name = prompt(
-        "Enter Full Document Type Name"
-    );
-
-    if (!name) {
-        documentType.value = "";
-        return;
-    }
-
-
-    const hoursInput = prompt(
-        "Enter Response Time in Hours",
-        "24"
-    );
-
-    const responseHours =
-        Number(hoursInput) || 24;
-
 
     documentTypes.push({
         code: cleanCode,
-        name: name.trim(),
-        responseHours: responseHours
+        name: cleanName
     });
-
 
     saveDocumentTypes();
 
     loadDocumentTypes();
-
 
     documentType.value = cleanCode;
 
     generateSequenceId();
 });
 
+
+// ==========================================
+// OPEN / CLOSE 3 DOT MENU
+// ==========================================
+
+documentTypeMenuBtn.addEventListener(
+    "click",
+    function (event) {
+
+        event.stopPropagation();
+
+        documentTypeMenu.style.display =
+            documentTypeMenu.style.display === "block"
+                ? "none"
+                : "block";
+    }
+);
+
+
+// ==========================================
+// EDIT DOCUMENT TYPE
+// ==========================================
+
+editDocumentTypeBtn.addEventListener(
+    "click",
+    function (event) {
+
+        event.stopPropagation();
+
+        const selectedCode =
+            documentType.value;
+
+        if (!selectedCode) {
+
+            alert(
+                "Please select a Document Type first."
+            );
+
+            return;
+        }
+
+        const index =
+            documentTypes.findIndex(
+                function (item) {
+                    return item.code === selectedCode;
+                }
+            );
+
+        if (index === -1) {
+            return;
+        }
+
+        const oldItem =
+            documentTypes[index];
+
+        const newCode =
+            prompt(
+                "Edit Document Type Code:",
+                oldItem.code
+            );
+
+        if (!newCode || newCode.trim() === "") {
+            return;
+        }
+
+        const newName =
+            prompt(
+                "Edit Document Type Name:",
+                oldItem.name
+            );
+
+        if (!newName || newName.trim() === "") {
+            return;
+        }
+
+        const cleanCode =
+            newCode.trim().toUpperCase();
+
+        const cleanName =
+            newName.trim();
+
+        const duplicate =
+            documentTypes.some(
+                function (item, itemIndex) {
+
+                    return (
+                        itemIndex !== index &&
+                        item.code.toLowerCase() ===
+                        cleanCode.toLowerCase()
+                    );
+                }
+            );
+
+        if (duplicate) {
+
+            alert(
+                "Another Document Type already uses this code."
+            );
+
+            return;
+        }
+
+        documentTypes[index] = {
+            code: cleanCode,
+            name: cleanName
+        };
+
+        saveDocumentTypes();
+
+        loadDocumentTypes();
+
+        documentType.value =
+            cleanCode;
+
+        generateSequenceId();
+
+        documentTypeMenu.style.display =
+            "none";
+    }
+);
+
+
+// ==========================================
+// DELETE DOCUMENT TYPE
+// ==========================================
+
+deleteDocumentTypeBtn.addEventListener(
+    "click",
+    function (event) {
+
+        event.stopPropagation();
+
+        const selectedCode =
+            documentType.value;
+
+        if (!selectedCode) {
+
+            alert(
+                "Please select a Document Type first."
+            );
+
+            return;
+        }
+
+        const selectedItem =
+            documentTypes.find(
+                function (item) {
+                    return item.code === selectedCode;
+                }
+            );
+
+        if (!selectedItem) {
+            return;
+        }
+
+        const confirmed =
+            confirm(
+                "Delete Document Type: " +
+                selectedItem.code +
+                " - " +
+                selectedItem.name +
+                " ?"
+            );
+
+        if (!confirmed) {
+            return;
+        }
+
+        documentTypes =
+            documentTypes.filter(
+                function (item) {
+                    return item.code !== selectedCode;
+                }
+            );
+
+        saveDocumentTypes();
+
+        loadDocumentTypes();
+
+        documentType.value = "";
+
+        generateSequenceId();
+
+        documentTypeMenu.style.display =
+            "none";
+    }
+);
+
+
+// ==========================================
+// CLICK OUTSIDE = CLOSE MENU
+// ==========================================
+
+document.addEventListener("click", function () {
+
+    documentTypeMenu.style.display =
+        "none";
+});
+
+
+documentTypeMenu.addEventListener(
+    "click",
+    function (event) {
+
+        event.stopPropagation();
+    }
+);
 
 // ===============================
 // DATE
