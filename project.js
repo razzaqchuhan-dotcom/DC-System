@@ -2138,6 +2138,132 @@ deleteSelectedButton.addEventListener("click", function() {
     editSelectedButton.disabled = true;
     deleteSelectedButton.disabled = true;
 });
+// ==========================================
+// DOWNLOAD EXCEL
+// ==========================================
+
+const downloadExcelButton =
+    document.getElementById("downloadExcelButton");
+
+downloadExcelButton.addEventListener("click", function () {
+
+    if (typeof XLSX === "undefined") {
+        alert("Excel library is not loaded.");
+        return;
+    }
+
+    const searchText =
+        searchInput.value.trim().toLowerCase();
+
+    const selectedDiscipline =
+        disciplineFilter.value;
+
+    const selectedDocumentType =
+        documentTypeFilter.value;
+
+    const exportSubmittals =
+        submittals.filter(function (item) {
+
+            const matchesSearch =
+                (item.sequenceId || "").toLowerCase().includes(searchText) ||
+                (item.referenceNo || "").toLowerCase().includes(searchText) ||
+                (item.subject || "").toLowerCase().includes(searchText) ||
+                (item.status || "").toLowerCase().includes(searchText) ||
+                (item.actionBy || "").toLowerCase().includes(searchText) ||
+                (item.issueDate || "").toLowerCase().includes(searchText);
+
+            const matchesDiscipline =
+                selectedDiscipline === "" ||
+                item.discipline === selectedDiscipline;
+
+            const matchesDocumentType =
+                selectedDocumentType === "" ||
+                item.documentType === selectedDocumentType;
+
+            return (
+                matchesSearch &&
+                matchesDiscipline &&
+                matchesDocumentType
+            );
+        });
+
+
+    if (exportSubmittals.length === 0) {
+        alert("No submittals available to export.");
+        return;
+    }
+
+
+    const excelData =
+        exportSubmittals.map(function (item, index) {
+
+            return {
+                "S.No": index + 1,
+                "Sequence ID": item.sequenceId || "",
+                "Ref No.": item.referenceNo || "",
+                "Subject": item.subject || "",
+                "Discipline": getDisciplineName(item.discipline) || "",
+                "Document Type": item.documentType || "",
+                "Issue Date": item.issueDate || "",
+                "Submittal Requested By": item.submittalRequestedBy || "",
+                "Issued By": item.issuerName || "",
+                "Submission Method": item.submissionMethod || "",
+                "Receiver Name": item.receiverName || "",
+                "Received Date": item.receivedDate || "",
+                "Status": item.status || "",
+                "Last Action By": item.actionBy || "",
+                "Last Action Date": item.actionDate || "",
+                "Closing Status": item.closingStatus || "Open",
+                "Closing Date": item.closingDate || ""
+            };
+
+        });
+
+
+    const worksheet =
+        XLSX.utils.json_to_sheet(excelData);
+
+    worksheet["!cols"] = [
+        { wch: 7 },
+        { wch: 25 },
+        { wch: 30 },
+        { wch: 50 },
+        { wch: 18 },
+        { wch: 18 },
+        { wch: 15 },
+        { wch: 24 },
+        { wch: 20 },
+        { wch: 20 },
+        { wch: 22 },
+        { wch: 15 },
+        { wch: 20 },
+        { wch: 20 },
+        { wch: 18 },
+        { wch: 18 },
+        { wch: 15 }
+    ];
+
+
+    const workbook =
+        XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(
+        workbook,
+        worksheet,
+        "Submittal Register"
+    );
+
+
+    const safeProjectName =
+        (selectedProject.name || "Project")
+            .replace(/[\\/:*?"<>|]/g, "-");
+
+    XLSX.writeFile(
+        workbook,
+        safeProjectName + "_Submittal_Register.xlsx"
+    );
+
+});
 // ===============================
 // START
 // ===============================
