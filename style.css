@@ -2996,3 +2996,154 @@ button:hover {
 .issuer-menu button:hover {
     background: #eeeeee !important;
 }
+/* =========================================
+   FINAL SUBMITTAL REGISTER ROWS
+   ========================================= */
+
+.register-table {
+    width: 100% !important;
+    min-width: 1900px !important;
+    border-collapse: collapse !important;
+}
+
+.register-table th,
+.register-table td {
+    white-space: nowrap !important;
+    vertical-align: middle !important;
+    text-align: center !important;
+
+    padding: 7px 9px !important;
+
+    line-height: 1.2 !important;
+    font-size: 12px !important;
+}
+
+/* Subject ko thori extra width */
+.register-table th:nth-child(4),
+.register-table td:nth-child(4) {
+    min-width: 180px !important;
+}
+
+/* Requested By */
+.register-table th:nth-child(8),
+.register-table td:nth-child(8) {
+    min-width: 180px !important;
+}
+
+/* Horizontal scroll rahe */
+.table-wrapper {
+    width: 100% !important;
+    overflow-x: auto !important;
+}
+/* =========================================
+   RECEIVER NAME ADD + 3 DOT MENU
+   ========================================= */
+
+.receiver-select-row {
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) 62px 36px !important;
+    gap: 5px !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.receiver-select-row select {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 40px !important;
+}
+
+.add-receiver-btn {
+    background: #4a4a4a !important;
+    color: #ffffff !important;
+    border: 1px solid #4a4a4a !important;
+    border-radius: 4px !important;
+
+    width: 62px !important;
+    min-width: 62px !important;
+    height: 40px !important;
+
+    padding: 0 8px !important;
+    margin: 0 !important;
+
+    font-size: 13px !important;
+    font-weight: bold !important;
+    cursor: pointer !important;
+}
+
+.add-receiver-btn:hover {
+    background: #333333 !important;
+}
+
+.receiver-menu-wrapper {
+    position: relative !important;
+}
+
+.receiver-menu-btn {
+    width: 36px !important;
+    min-width: 36px !important;
+    height: 40px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: #eeeeee !important;
+    color: #333333 !important;
+
+    border: 1px solid #c9c9c9 !important;
+    border-radius: 4px !important;
+
+    font-size: 20px !important;
+    cursor: pointer !important;
+}
+
+.receiver-menu {
+    position: absolute !important;
+    right: 0 !important;
+    top: 44px !important;
+
+    width: 110px !important;
+    min-width: 110px !important;
+
+    background: #ffffff !important;
+    border: 1px solid #cccccc !important;
+    border-radius: 5px !important;
+
+    box-shadow: 0 4px 10px rgba(0,0,0,0.15) !important;
+
+    padding: 0 !important;
+    overflow: hidden !important;
+
+    z-index: 9999 !important;
+}
+
+.receiver-menu button {
+    display: block !important;
+    width: 100% !important;
+
+    padding: 9px 12px !important;
+    margin: 0 !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+
+    background: #ffffff !important;
+
+    font-size: 12px !important;
+    font-weight: normal !important;
+    text-align: left !important;
+
+    cursor: pointer !important;
+}
+
+#editReceiverBtn {
+    color: #222222 !important;
+}
+
+#deleteReceiverBtn {
+    color: #b00000 !important;
+}
+
+.receiver-menu button:hover {
+    background: #eeeeee !important;
+}

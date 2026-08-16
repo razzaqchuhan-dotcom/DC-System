@@ -659,6 +659,196 @@ const submissionMethod =
 const receiverName =
     document.getElementById("receiverName");
 
+// ===============================
+// RECEIVER MASTER LIST
+// ===============================
+
+let receiverNames =
+    JSON.parse(
+        localStorage.getItem("receiverNames")
+    ) || [];
+
+
+function saveReceiverNames() {
+
+    localStorage.setItem(
+        "receiverNames",
+        JSON.stringify(receiverNames)
+    );
+}
+
+
+function loadReceiverNames() {
+
+    receiverName.innerHTML =
+        '<option value="">Select Receiver</option>';
+
+    receiverNames.forEach(function(name) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = name;
+        option.textContent = name;
+
+        receiverName.appendChild(option);
+
+    });
+
+}
+
+
+loadReceiverNames();
+
+const addReceiverBtn =
+    document.getElementById("addReceiverBtn");
+
+const receiverMenuBtn =
+    document.getElementById("receiverMenuBtn");
+
+const receiverMenu =
+    document.getElementById("receiverMenu");
+
+const editReceiverBtn =
+    document.getElementById("editReceiverBtn");
+
+const deleteReceiverBtn =
+    document.getElementById("deleteReceiverBtn");
+
+
+// ADD RECEIVER
+addReceiverBtn.addEventListener("click", function () {
+
+    const name = prompt("Enter Receiver Name:");
+
+    if (!name || name.trim() === "") {
+        return;
+    }
+
+    const cleanName = name.trim();
+
+    const alreadyExists =
+        receiverNames.some(function(item) {
+            return (
+                item.toLowerCase() ===
+                cleanName.toLowerCase()
+            );
+        });
+
+    if (alreadyExists) {
+        alert("This receiver already exists.");
+        receiverName.value = cleanName;
+        return;
+    }
+
+    receiverNames.push(cleanName);
+
+    saveReceiverNames();
+    loadReceiverNames();
+
+    receiverName.value = cleanName;
+});
+
+
+// OPEN / CLOSE 3 DOT MENU
+receiverMenuBtn.addEventListener("click", function (event) {
+
+    event.stopPropagation();
+
+    receiverMenu.style.display =
+        receiverMenu.style.display === "block"
+            ? "none"
+            : "block";
+});
+
+
+// EDIT RECEIVER
+editReceiverBtn.addEventListener("click", function (event) {
+
+    event.stopPropagation();
+
+    const oldName = receiverName.value;
+
+    if (!oldName) {
+        alert("Please select a receiver first.");
+        return;
+    }
+
+    const newName =
+        prompt("Edit Receiver Name:", oldName);
+
+    if (!newName || newName.trim() === "") {
+        return;
+    }
+
+    const cleanName = newName.trim();
+
+    const index =
+        receiverNames.findIndex(function(item) {
+            return item === oldName;
+        });
+
+    if (index === -1) {
+        return;
+    }
+
+    receiverNames[index] = cleanName;
+
+    saveReceiverNames();
+    loadReceiverNames();
+
+    receiverName.value = cleanName;
+
+    receiverMenu.style.display = "none";
+});
+
+
+// DELETE RECEIVER
+deleteReceiverBtn.addEventListener("click", function (event) {
+
+    event.stopPropagation();
+
+    const selectedName = receiverName.value;
+
+    if (!selectedName) {
+        alert("Please select a receiver first.");
+        return;
+    }
+
+    const confirmed =
+        confirm(
+            "Delete receiver: " +
+            selectedName +
+            " ?"
+        );
+
+    if (!confirmed) {
+        return;
+    }
+
+    receiverNames =
+        receiverNames.filter(function(item) {
+            return item !== selectedName;
+        });
+
+    saveReceiverNames();
+    loadReceiverNames();
+
+    receiverMenu.style.display = "none";
+});
+
+
+// CLICK OUTSIDE = CLOSE
+document.addEventListener("click", function () {
+    receiverMenu.style.display = "none";
+});
+
+
+// CLICK INSIDE MENU = DO NOT CLOSE
+receiverMenu.addEventListener("click", function (event) {
+    event.stopPropagation();
+});
+
 const receivedDate =
     document.getElementById("receivedDate");
 

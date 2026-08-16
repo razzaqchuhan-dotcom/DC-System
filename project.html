@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Project - Outgoing Submittals</title>
-    <link rel="stylesheet" href="style.css?v=21">
+    <link rel="stylesheet" href="style.css?v=23">
 </head>
 
 <body class="dashboard-body">
@@ -277,15 +277,61 @@
 
 
     <div class="submittal-field">
-        <label>Receiver Name</label>
 
-        <input
-            type="text"
-            id="receiverName"
-            placeholder="Enter Receiver Name"
+    <label>Receiver Name</label>
+
+    <div class="receiver-select-row">
+
+        <select id="receiverName">
+            <option value="">Select Receiver</option>
+        </select>
+
+        <button
+            type="button"
+            id="addReceiverBtn"
+            class="add-receiver-btn"
         >
+            + Add
+        </button>
+
+        <div class="receiver-menu-wrapper">
+
+            <button
+                type="button"
+                id="receiverMenuBtn"
+                class="receiver-menu-btn"
+                title="Manage Receiver"
+            >
+                ⋮
+            </button>
+
+            <div
+                id="receiverMenu"
+                class="receiver-menu"
+                style="display: none;"
+            >
+
+                <button
+                    type="button"
+                    id="editReceiverBtn"
+                >
+                    Edit
+                </button>
+
+                <button
+                    type="button"
+                    id="deleteReceiverBtn"
+                >
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
+
     </div>
 
+</div>
 
     <div class="submittal-field">
         <label>Received Date</label>
@@ -696,7 +742,7 @@
     </div>
 
 
-    <script src="project.js?v=6"></script>
+    <script src="project.js?v=7"></script>
 
 </body>
 </html>
