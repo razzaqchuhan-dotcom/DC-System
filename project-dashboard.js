@@ -749,25 +749,61 @@ function createResponseTable(items) {
 // OPEN TABLE
 // ==========================================
 
-function filterOpenTable(searchText) {
+function filterOpenTable() {
 
     const table =
         document.getElementById("openSubmittalsTable");
 
     if (!table) return;
 
+    const searchInput =
+        document.getElementById("openTableSearch");
+
+    const disciplineFilter =
+        document.getElementById("openDisciplineFilter");
+
+    const typeFilter =
+        document.getElementById("openTypeFilter");
+
+    const searchText =
+        searchInput.value.toLowerCase().trim();
+
+    const selectedDiscipline =
+        disciplineFilter.value.toLowerCase();
+
+    const selectedType =
+        typeFilter.value.toLowerCase();
+
     const rows =
         table.querySelectorAll("tbody tr");
-
-    const search =
-        searchText.toLowerCase().trim();
 
     rows.forEach(function(row) {
 
         const rowText =
             row.textContent.toLowerCase();
 
-        if (rowText.includes(search)) {
+        const rowDiscipline =
+            row.dataset.discipline || "";
+
+        const rowType =
+            row.dataset.type || "";
+
+        const matchesSearch =
+            rowText.includes(searchText);
+
+        const matchesDiscipline =
+            selectedDiscipline === "" ||
+            rowDiscipline === selectedDiscipline;
+
+        const matchesType =
+            selectedType === "" ||
+            rowType === selectedType;
+
+        if (
+            matchesSearch &&
+            matchesDiscipline &&
+            matchesType
+        ) {
             row.style.display = "";
         } else {
             row.style.display = "none";
@@ -794,7 +830,10 @@ function createOpenTable(items) {
 
         rows += `
 
-            <tr>
+            <tr
+                data-discipline="${(item.discipline || "").toLowerCase()}"
+                data-type="${(item.documentType || item.type || "").toLowerCase()}"
+            >
 
                 <td>${index + 1}</td>
 
@@ -867,11 +906,35 @@ function createOpenTable(items) {
         <div class="dashboard-table-wrapper">
 
         <div class="open-table-search">
+
             <input
                 type="text"
+                id="openTableSearch"
                 placeholder="Search Open / In Progress..."
-                oninput="filterOpenTable(this.value)"
+                oninput="filterOpenTable()"
             >
+
+            <select
+                id="openDisciplineFilter"
+                onchange="filterOpenTable()"
+            >
+                <option value="">All Disciplines</option>
+                <option value="civil">Civil</option>
+                <option value="arch">ARCH</option>
+                <option value="str">STR</option>
+                <option value="mep">MEP</option>
+            </select>
+
+            <select
+                id="openTypeFilter"
+                onchange="filterOpenTable()"
+            >
+                <option value="">All Types</option>
+                <option value="wir">WIR</option>
+                <option value="mir">MIR</option>
+                <option value="mar">MAR</option>
+            </select>
+
         </div>
 
             <table class="dashboard-table" id="openSubmittalsTable">
@@ -1636,10 +1699,56 @@ document.addEventListener("click", async function(event) {
         "OPEN / IN PROGRESS SUBMITTALS",
         currentY
     );
+    const selectedOpenDiscipline =
+        document.getElementById("openDisciplineFilter")?.value || "";
 
+    const selectedOpenType =
+        document.getElementById("openTypeFilter")?.value || "";
+
+    const openSearchText =
+        document.getElementById("openTableSearch")?.value
+            .toLowerCase()
+            .trim() || "";
+
+    const filteredOpenItems =
+        openItems.filter(function(item) {
+
+            const itemDiscipline =
+                (item.discipline || "").toLowerCase();
+
+            const itemType =
+                (item.documentType || item.type || "").toLowerCase();
+
+            const searchableText = `
+                ${item.refNo || item.referenceNo || ""}
+                ${item.subject || ""}
+                ${item.documentType || item.type || ""}
+                ${item.issueDate || ""}
+                ${item.requestedBy || item.submittalRequestedBy || ""}
+                ${item.status || ""}
+            `.toLowerCase();
+
+            const matchesDiscipline =
+                selectedOpenDiscipline === "" ||
+                itemDiscipline === selectedOpenDiscipline;
+
+            const matchesType =
+                selectedOpenType === "" ||
+                itemType === selectedOpenType;
+
+            const matchesSearch =
+                openSearchText === "" ||
+                searchableText.includes(openSearchText);
+
+            return (
+                matchesDiscipline &&
+                matchesType &&
+                matchesSearch
+            );
+        });
 
     const openRows =
-        openItems.map(function(item, index) {
+        filteredOpenItems.map(function(item, index) {
 
             return [
 
