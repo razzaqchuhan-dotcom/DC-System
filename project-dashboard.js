@@ -822,7 +822,21 @@ function createOpenTable(items) {
             </div>
         `;
     }
+const dashboardDocumentTypes =
+    JSON.parse(localStorage.getItem("documentTypes")) || [];
 
+const typeFilterOptions =
+    dashboardDocumentTypes
+        .map(function(type) {
+
+            return `
+                <option value="${type.code.toLowerCase()}">
+                    ${type.code} - ${type.name}
+                </option>
+            `;
+
+        })
+        .join("");
 
     let rows = "";
 
@@ -919,20 +933,18 @@ function createOpenTable(items) {
                 onchange="filterOpenTable()"
             >
                 <option value="">All Disciplines</option>
-                <option value="civil">Civil</option>
-                <option value="arch">ARCH</option>
-                <option value="str">STR</option>
-                <option value="mep">MEP</option>
+                <option value="str">STR - CIVIL</option>
+                <option value="arch">ARCH - ARCHITECTURE</option>
+                <option value="mech">MECH - MECHANICAL</option>
+                <option value="elec">ELEC - ELECTRICAL</option>
             </select>
 
             <select
-                id="openTypeFilter"
-                onchange="filterOpenTable()"
+                    id="openTypeFilter"
+                    onchange="filterOpenTable()"
             >
-                <option value="">All Types</option>
-                <option value="wir">WIR</option>
-                <option value="mir">MIR</option>
-                <option value="mar">MAR</option>
+                    <option value="">All Types</option>
+                    ${typeFilterOptions}
             </select>
 
         </div>
