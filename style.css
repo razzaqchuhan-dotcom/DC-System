@@ -3147,3 +3147,39 @@ button:hover {
 .receiver-menu button:hover {
     background: #eeeeee !important;
 }
+/* Small View Request Button */
+.request-view-btn {
+    background: #6c757d !important;
+    color: white !important;
+    padding: 3px 8px !important;
+    font-size: 11px !important;
+    border-radius: 4px !important;
+    border: none !important;
+    margin-top: 3px !important;
+    min-width: auto !important;
+}
+
+.request-view-btn:hover {
+    background: #565e64 !important;
+}
+/* Open / In Progress Search */
+.open-table-search {
+    padding: 8px 0 10px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.open-table-search input {
+    width: 300px;
+    height: 32px;
+    padding: 5px 10px;
+    font-size: 12px;
+    border: 1px solid #bcbcbc;
+    border-radius: 4px;
+    background: #ffffff;
+    outline: none;
+}
+
+.open-table-search input:focus {
+    border-color: #666666;
+}

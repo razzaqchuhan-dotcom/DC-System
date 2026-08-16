@@ -790,7 +790,6 @@ function createOpenTable(items) {
 
     let rows = "";
 
-
     items.forEach(function(item, index) {
 
         rows += `
@@ -867,8 +866,15 @@ function createOpenTable(items) {
 
         <div class="dashboard-table-wrapper">
 
-            <table class="dashboard-table">
+        <div class="open-table-search">
+            <input
+                type="text"
+                placeholder="Search Open / In Progress..."
+                oninput="filterOpenTable(this.value)"
+            >
+        </div>
 
+            <table class="dashboard-table" id="openSubmittalsTable">
                 <thead>
 
                     <tr>
@@ -879,7 +885,7 @@ function createOpenTable(items) {
                         <th>Issue Date</th>
                         <th>Submittal Requested By</th>
                         <th>Status</th>
-                        <th>PDF <th>
+                        <th>PDF<th>
                     </tr>
 
                 </thead>
