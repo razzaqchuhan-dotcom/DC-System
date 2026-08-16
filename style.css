@@ -2934,3 +2934,65 @@ button:hover {
     border: 1px solid #c9c9c9 !important;
     border-radius: 4px !important;
 }
+/* =========================================
+   SAME SIZE 3-DOT MENUS
+   ========================================= */
+
+.document-type-menu,
+.issuer-menu {
+    width: 110px !important;
+    min-width: 110px !important;
+
+    background: #ffffff !important;
+    border: 1px solid #cccccc !important;
+    border-radius: 5px !important;
+
+    padding: 0 !important;
+    overflow: hidden !important;
+}
+
+
+/* SAME EDIT / DELETE SIZE */
+
+.document-type-menu button,
+.issuer-menu button {
+    display: block !important;
+    width: 100% !important;
+    height: auto !important;
+
+    padding: 9px 12px !important;
+    margin: 0 !important;
+
+    border: none !important;
+    border-radius: 0 !important;
+
+    background: #ffffff !important;
+
+    font-size: 12px !important;
+    font-weight: normal !important;
+    text-align: left !important;
+}
+
+
+/* EDIT */
+
+#editDocumentTypeBtn,
+#editIssuerBtn {
+    color: #222222 !important;
+}
+
+
+/* DELETE */
+
+#deleteDocumentTypeBtn,
+#deleteIssuerBtn {
+    color: #b00000 !important;
+}
+
+
+/* HOVER */
+
+.document-type-menu button:hover,
+.issuer-menu button:hover {
+    background: #eeeeee !important;
+}
