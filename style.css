@@ -2840,3 +2840,97 @@ button:hover {
     padding: 0 !important;
     margin: 0 !important;
 }
+/* =========================================
+   FINAL ADD BUTTONS + FIELD ALIGNMENT
+   ========================================= */
+
+/* SAME COLOR FOR BOTH ADD BUTTONS */
+
+.add-document-type-btn,
+.add-issuer-btn {
+    background: #4a4a4a !important;
+    color: #ffffff !important;
+
+    border: 1px solid #4a4a4a !important;
+    border-radius: 4px !important;
+
+    height: 40px !important;
+    width: 62px !important;
+    min-width: 62px !important;
+
+    padding: 0 8px !important;
+    margin: 0 !important;
+
+    font-size: 13px !important;
+    font-weight: bold !important;
+
+    cursor: pointer !important;
+}
+
+.add-document-type-btn:hover,
+.add-issuer-btn:hover {
+    background: #333333 !important;
+}
+
+
+/* DOCUMENT TYPE ROW */
+
+.document-type-select-row {
+    display: grid !important;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        62px
+        36px !important;
+
+    gap: 5px !important;
+    width: 100% !important;
+    align-items: center !important;
+}
+
+.document-type-select-row select {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 40px !important;
+}
+
+
+/* ISSUER ROW */
+
+.issuer-select-row {
+    display: grid !important;
+
+    grid-template-columns:
+        minmax(0, 1fr)
+        62px
+        36px !important;
+
+    gap: 5px !important;
+    width: 100% !important;
+    align-items: center !important;
+}
+
+.issuer-select-row select {
+    width: 100% !important;
+    min-width: 0 !important;
+    height: 40px !important;
+}
+
+
+/* 3 DOT BUTTONS SAME SIZE */
+
+.document-type-menu-btn,
+.issuer-menu-btn {
+    width: 36px !important;
+    min-width: 36px !important;
+    height: 40px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    background: #eeeeee !important;
+    color: #333333 !important;
+
+    border: 1px solid #c9c9c9 !important;
+    border-radius: 4px !important;
+}
