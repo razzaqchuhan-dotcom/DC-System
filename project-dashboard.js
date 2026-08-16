@@ -749,6 +749,33 @@ function createResponseTable(items) {
 // OPEN TABLE
 // ==========================================
 
+function filterOpenTable(searchText) {
+
+    const table =
+        document.getElementById("openSubmittalsTable");
+
+    if (!table) return;
+
+    const rows =
+        table.querySelectorAll("tbody tr");
+
+    const search =
+        searchText.toLowerCase().trim();
+
+    rows.forEach(function(row) {
+
+        const rowText =
+            row.textContent.toLowerCase();
+
+        if (rowText.includes(search)) {
+            row.style.display = "";
+        } else {
+            row.style.display = "none";
+        }
+
+    });
+}
+
 function createOpenTable(items) {
 
     if (items.length === 0) {
