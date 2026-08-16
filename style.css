@@ -2805,3 +2805,38 @@ button:hover {
 #deleteDocumentTypeBtn:hover {
     background: #eeeeee !important;
 }
+/* =========================================
+   FIX DOCUMENT TYPE ROW WIDTH
+   ========================================= */
+
+.document-type-select-row {
+    display: grid !important;
+    grid-template-columns: minmax(150px, 1fr) auto 36px !important;
+    gap: 6px !important;
+    align-items: center !important;
+    width: 100% !important;
+}
+
+.document-type-select-row select {
+    width: 100% !important;
+    min-width: 150px !important;
+    height: 40px !important;
+    box-sizing: border-box !important;
+}
+
+.add-document-type-btn {
+    width: auto !important;
+    min-width: 65px !important;
+    height: 40px !important;
+    padding: 0 10px !important;
+    margin: 0 !important;
+    white-space: nowrap !important;
+}
+
+.document-type-menu-btn {
+    width: 36px !important;
+    min-width: 36px !important;
+    height: 40px !important;
+    padding: 0 !important;
+    margin: 0 !important;
+}
