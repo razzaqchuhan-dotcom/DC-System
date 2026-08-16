@@ -1364,6 +1364,19 @@ if (requestAttachmentFile && pdfDatabase) {
                 .getElementById("submittalRequestedBy")
                 .value
                 .trim();    
+            // REQUEST ATTACHMENT
+            if (requestAttachmentFile) {
+
+                existingItem.requestAttachmentId =
+                    requestAttachmentId;
+
+                existingItem.requestAttachmentName =
+                    requestAttachmentFile.name;
+
+                existingItem.requestAttachmentType =
+                    requestAttachmentFile.type;
+            }
+
 
         existingItem.submissionMethod =
             submissionMethod.value;
