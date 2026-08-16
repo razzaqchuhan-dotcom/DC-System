@@ -572,6 +572,19 @@ function createIssuedTable(items) {
                         item.requestedBy ||
                         item.submittalRequestedBy
                     )}
+
+                    ${
+                        item.requestAttachmentId
+                            ? `<br>
+                                <button
+                                    type="button"
+                                    class="open-pdf-btn"
+                                    onclick="openDashboardPDF('${item.requestAttachmentId}')"
+                                >
+                                    View Request
+                                </button>`
+                            : ""
+                    }
                 </td>
 
                 <td>
@@ -786,6 +799,19 @@ function createOpenTable(items) {
                         item.requestedBy ||
                         item.submittalRequestedBy
                     )}
+
+                    ${
+                        item.requestAttachmentId
+                        ? `<br>
+                            <button
+                                type="button"
+                                class="open-pdf-btn"
+                                onclick="openDashboardPDF('${item.requestAttachmentId}')"
+                            >
+                                View Request
+                            </button>`
+                        : ""
+                    }
                 </td>
 
                 <td>
@@ -886,6 +912,19 @@ function createClosedTable(items) {
                         item.requestedBy ||
                         item.submittalRequestedBy
                     )}
+
+                    ${
+                        item.requestAttachmentId
+                            ? `<br>
+                            <button
+                                type="button"
+                                class="open-pdf-btn"
+                                onclick="openDashboardPDF('${item.requestAttachmentId}')"
+                            >
+                                View Request
+                            </button>`
+                            : ""
+                    }
                 </td>
 
                 <td>
