@@ -933,10 +933,10 @@ const typeFilterOptions =
                 onchange="filterOpenTable()"
             >
                 <option value="">All Disciplines</option>
-                <option value="str">STR - CIVIL</option>
-                <option value="arch">ARCH - ARCHITECTURE</option>
-                <option value="mech">MECH - MECHANICAL</option>
-                <option value="elec">ELEC - ELECTRICAL</option>
+                <option value="c">STR - CIVIL</option>
+                <option value="a">ARCH - ARCHITECTURE</option>
+                <option value="m">MECH - MECHANICAL</option>
+                <option value="e">ELEC - ELECTRICAL</option>
             </select>
 
             <select
