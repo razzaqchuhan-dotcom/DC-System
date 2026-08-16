@@ -1358,6 +1358,12 @@ if (requestAttachmentFile && pdfDatabase) {
 
         existingItem.issuerName =
             issuerName.value;
+        
+        existingItem.submittalRequestedBy =
+            document
+                .getElementById("submittalRequestedBy")
+                .value
+                .trim();    
 
         existingItem.submissionMethod =
             submissionMethod.value;
@@ -1787,11 +1793,7 @@ row.addEventListener("dblclick", function() {
                     ${item.issueDate}
                 </td>
                 <td>
-                    ${item.issuerName || "-"}
-                </td>
-                <td>
                     ${item.submittalRequestedBy || "-"}
-
                     ${
                         item.requestAttachmentId
                             ? `<br>
@@ -1804,6 +1806,10 @@ row.addEventListener("dblclick", function() {
                                 </button>`
                             : ""
                     }
+                </td>
+
+                <td>
+                    ${item.issuerName || "-"}
                 </td>
 
                 <td>

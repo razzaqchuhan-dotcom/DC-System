@@ -34,7 +34,91 @@ const dashboardContainer =
     document.getElementById(
         "singleProjectDashboard"
     );
+// ==========================================
+// PDF DATABASE FOR DASHBOARD
+// ==========================================
 
+let dashboardPdfDatabase;
+
+const dashboardDbRequest =
+    indexedDB.open("DCSystemPDFs", 1);
+
+dashboardDbRequest.onsuccess =
+    function(event) {
+
+        dashboardPdfDatabase =
+            event.target.result;
+    };
+
+dashboardDbRequest.onerror =
+    function() {
+
+        console.error(
+            "PDF database could not be opened."
+        );
+    };
+
+
+// ==========================================
+// OPEN PDF FROM DASHBOARD
+// ==========================================
+
+function openDashboardPDF(pdfId) {
+
+    if (!pdfId) {
+        alert("No PDF attached.");
+        return;
+    }
+
+    if (!dashboardPdfDatabase) {
+        alert("PDF database is not ready.");
+        return;
+    }
+
+    const transaction =
+        dashboardPdfDatabase.transaction(
+            ["pdfFiles"],
+            "readonly"
+        );
+
+    const store =
+        transaction.objectStore(
+            "pdfFiles"
+        );
+
+    const request =
+        store.get(pdfId);
+
+    request.onsuccess =
+        function() {
+
+            const record =
+                request.result;
+
+            if (!record) {
+                alert("PDF file not found.");
+                return;
+            }
+
+            const pdfURL =
+                URL.createObjectURL(
+                    record.file
+                );
+
+            window.open(
+                pdfURL,
+                "_blank"
+            );
+        };
+
+    request.onerror =
+        function() {
+
+            alert(
+                "Could not open PDF."
+            );
+        };
+}
 
 // ==========================================
 // SAFE VALUE
@@ -497,7 +581,19 @@ function createIssuedTable(items) {
                 <td>
                     ${showValue(item.status)}
                 </td>
-
+                <td>
+                    ${
+                        item.pdfId
+                            ? `<button
+                                    type="button"
+                                    class="open-pdf-btn"
+                                    onclick="openDashboardPDF('${item.pdfId}')"
+                                >
+                                    Open PDF
+                                    </button>`
+                        : "-"
+                    }
+                </td>
             </tr>
 
         `;
@@ -521,6 +617,7 @@ function createIssuedTable(items) {
                         <th>Submittal Requested By</th>
                         <th>Issued By</th>
                         <th>Status</th>
+                        <th>pdf<th>
                     </tr>
 
                 </thead>
@@ -694,7 +791,19 @@ function createOpenTable(items) {
                 <td>
                     ${showValue(item.status)}
                 </td>
-
+                <td>
+                    ${
+                        item.pdfId
+                            ? `<button
+                                type="button"
+                                class="open-pdf-btn"
+                                onclick="openDashboardPDF('${item.pdfId}')"
+                            >
+                                Open PDF
+                            </button>`
+                        : "-"
+                    }
+                </td>
             </tr>
 
         `;
@@ -717,6 +826,7 @@ function createOpenTable(items) {
                         <th>Issue Date</th>
                         <th>Submittal Requested By</th>
                         <th>Status</th>
+                        <th>PDF <th>
                     </tr>
 
                 </thead>
@@ -792,7 +902,19 @@ function createClosedTable(items) {
                         item.responseBy
                     )}
                 </td>
-
+                <td>
+                    ${
+                        item.pdfId
+                            ? `<button
+                                type="button"
+                                class="open-pdf-btn"
+                                onclick="openDashboardPDF('${item.pdfId}')"
+                            >
+                                Open PDF
+                            </button>`
+                        : "-"
+                    }
+                </td>
             </tr>
 
         `;
@@ -815,6 +937,7 @@ function createClosedTable(items) {
                         <th>Final Status</th>
                         <th>Closing Date</th>
                         <th>Last Action By</th>
+                        <th>pdf<th>
                     </tr>
 
                 </thead>
