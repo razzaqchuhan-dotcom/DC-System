@@ -3360,7 +3360,7 @@ button:hover {
     background: #eeeeee;
     color: #333333;
 
-    border: 1px solid #cccccc;
+    border: 1px solid #f0f0f0;
     border-radius: 4px;
 
     font-size: 13px;
@@ -3384,4 +3384,49 @@ button:hover {
     height: 36px;
     padding: 0 12px;
     white-space: nowrap;
+}
+/* ===============================
+   REQUESTED BY ALIGNMENT FIX
+================================ */
+
+.submittal-field > div:has(.add-requested-by-btn) {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.submittal-field > div:has(.add-requested-by-btn) select,
+.submittal-field > div:has(.add-requested-by-btn) button {
+    height: 36px;
+    margin: 0 !important;
+}
+
+.add-requested-by-btn {
+    width: auto !important;
+    min-width: 70px;
+    padding: 0 12px;
+    flex: 0 0 auto !important;
+}
+/* ===============================
+   REQUESTED BY MENU DOT COLOR
+================================ */
+
+.requested-by-menu-btn {
+    color: #000000 !important;
+}
+.requested-by-menu-btn {
+    width: 36px !important;
+    min-width: 36px !important;
+    height: 36px !important;
+
+    padding: 0 !important;
+    margin: 0 !important;
+
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+
+    color: #000000 !important;
+    font-size: 20px;
+    line-height: 1;
 }
