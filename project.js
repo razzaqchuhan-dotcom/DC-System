@@ -2459,3 +2459,28 @@ renderSubmittals();
 
 formCard.style.display = "block";
 responseActionSection.style.display = "none";
+
+// ==========================================
+// LOGOUT
+// ==========================================
+
+const logoutButton =
+    document.getElementById("logoutButton");
+
+if (logoutButton) {
+
+    logoutButton.addEventListener("click", function () {
+
+        const confirmLogout =
+            confirm("Are you sure you want to logout?");
+
+        if (!confirmLogout) return;
+
+        localStorage.removeItem("currentUser");
+        localStorage.removeItem("currentRole");
+
+        window.location.href = "login.html";
+
+    });
+
+}

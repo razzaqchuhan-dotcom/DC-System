@@ -3348,3 +3348,40 @@ button:hover {
 .requested-by-menu button:hover {
     background: #f1f1f1;
 }
+/* ==========================================
+   LOGOUT BUTTON
+   ========================================== */
+
+.logout-button {
+    width: calc(100% - 32px);
+    margin: 18px 16px 0 16px;
+    padding: 10px 12px;
+
+    background: #eeeeee;
+    color: #333333;
+
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+
+    font-size: 13px;
+    font-weight: 600;
+
+    cursor: pointer;
+    text-align: left;
+}
+
+.logout-button:hover {
+    background: #dddddd;
+}
+/* ===============================
+   SMALL REQUESTED BY ADD BUTTON
+================================ */
+
+.add-requested-by-btn {
+    width: auto !important;
+    min-width: 70px;
+    flex: 0 0 auto !important;
+    height: 36px;
+    padding: 0 12px;
+    white-space: nowrap;
+}
