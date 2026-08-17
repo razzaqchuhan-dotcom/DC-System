@@ -659,6 +659,193 @@ const submissionMethod =
 const receiverName =
     document.getElementById("receiverName");
 
+// ==========================================
+// REQUESTED BY MASTER LIST
+// ==========================================
+
+const requestedBySelect =
+    document.getElementById("submittalRequestedBy");
+
+let requestedByNames =
+    JSON.parse(
+        localStorage.getItem("requestedByNames")
+    ) || [];
+
+function saveRequestedByNames() {
+
+    localStorage.setItem(
+        "requestedByNames",
+        JSON.stringify(requestedByNames)
+    );
+}
+
+function loadRequestedByNames() {
+
+    requestedBySelect.innerHTML =
+        '<option value="">Select Requested By</option>';
+
+    requestedByNames.forEach(function(name) {
+
+        const option =
+            document.createElement("option");
+
+        option.value = name;
+        option.textContent = name;
+
+        requestedBySelect.appendChild(option);
+    });
+}
+
+loadRequestedByNames();
+
+const addRequestedByBtn =
+    document.getElementById("addRequestedByBtn");
+
+addRequestedByBtn.addEventListener("click", function () {
+
+    const newName =
+        prompt("Enter Requested By Name:");
+
+    if (!newName) return;
+
+    const cleanName =
+        newName.trim();
+
+    if (!cleanName) return;
+
+    const alreadyExists =
+        requestedByNames.some(function(name) {
+            return name.toLowerCase() ===
+                cleanName.toLowerCase();
+        });
+
+    if (alreadyExists) {
+        alert("This name already exists.");
+        return;
+    }
+
+    requestedByNames.push(cleanName);
+
+    saveRequestedByNames();
+    loadRequestedByNames();
+
+    requestedBySelect.value = cleanName;
+});
+
+const requestedByMenuBtn =
+    document.getElementById("requestedByMenuBtn");
+
+const requestedByMenu =
+    document.getElementById("requestedByMenu");
+
+requestedByMenuBtn.addEventListener("click", function (event) {
+
+    event.stopPropagation();
+
+    if (requestedByMenu.style.display === "none") {
+        requestedByMenu.style.display = "block";
+    } else {
+        requestedByMenu.style.display = "none";
+    }
+
+});
+
+requestedByMenu.addEventListener("click", function (event) {
+    event.stopPropagation();
+});
+
+document.addEventListener("click", function () {
+    requestedByMenu.style.display = "none";
+});
+
+const editRequestedByBtn =
+    document.getElementById("editRequestedByBtn");
+
+editRequestedByBtn.addEventListener("click", function () {
+
+    const selectedName =
+        requestedBySelect.value;
+
+    if (!selectedName) {
+        alert("Please select a Requested By name first.");
+        return;
+    }
+
+    const editedName =
+        prompt(
+            "Edit Requested By Name:",
+            selectedName
+        );
+
+    if (!editedName) return;
+
+    const cleanName =
+        editedName.trim();
+
+    if (!cleanName) return;
+
+    const alreadyExists =
+        requestedByNames.some(function(name) {
+            return (
+                name.toLowerCase() === cleanName.toLowerCase() &&
+                name !== selectedName
+            );
+        });
+
+    if (alreadyExists) {
+        alert("This name already exists.");
+        return;
+    }
+
+    const index =
+        requestedByNames.indexOf(selectedName);
+
+    if (index !== -1) {
+        requestedByNames[index] = cleanName;
+    }
+
+    saveRequestedByNames();
+    loadRequestedByNames();
+
+    requestedBySelect.value = cleanName;
+    requestedByMenu.style.display = "none";
+});
+
+const deleteRequestedByBtn =
+    document.getElementById("deleteRequestedByBtn");
+
+deleteRequestedByBtn.addEventListener("click", function () {
+
+    const selectedName =
+        requestedBySelect.value;
+
+    if (!selectedName) {
+        alert("Please select a Requested By name first.");
+        return;
+    }
+
+    const confirmDelete =
+        confirm(
+            'Are you sure you want to delete "' +
+            selectedName +
+            '"?'
+        );
+
+    if (!confirmDelete) return;
+
+    requestedByNames =
+        requestedByNames.filter(function(name) {
+            return name !== selectedName;
+        });
+
+    saveRequestedByNames();
+    loadRequestedByNames();
+
+    requestedByMenu.style.display = "none";
+
+    alert("Requested By name deleted successfully.");
+});
+
 // ===============================
 // RECEIVER MASTER LIST
 // ===============================

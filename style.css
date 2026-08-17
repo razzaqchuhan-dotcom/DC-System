@@ -3267,3 +3267,84 @@ button:hover {
     height: 22px !important;
     min-height: 22px !important;
 }
+/* ==========================================
+   SUBMITTAL REQUESTED BY
+   ========================================== */
+
+.requested-by-select-row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    width: 100%;
+}
+
+.requested-by-select-row select {
+    flex: 1;
+    min-width: 0;
+    height: 36px;
+}
+
+.add-requested-by-btn {
+    background: #4a4a4a;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    height: 36px;
+    padding: 0 10px;
+    font-size: 12px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.requested-by-menu-wrapper {
+    position: relative;
+}
+
+.requested-by-menu-btn {
+    width: 34px;
+    height: 36px;
+    border: 1px solid #cccccc;
+    background: #eeeeee;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 18px;
+}
+/* ==========================================
+   REQUESTED BY MENU
+   ========================================== */
+
+.requested-by-menu {
+    position: absolute;
+    right: 0;
+    top: 40px;
+    background: #ffffff;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    min-width: 90px;
+    padding: 4px;
+    z-index: 1000;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.12);
+}
+
+.requested-by-menu button {
+    display: block;
+    width: 100%;
+    border: none;
+    background: transparent;
+    text-align: left;
+    padding: 6px 8px;
+    font-size: 11px;
+    cursor: pointer;
+}
+
+#editRequestedByBtn {
+    color: #222222;
+}
+
+#deleteRequestedByBtn {
+    color: #c62828;
+}
+
+.requested-by-menu button:hover {
+    background: #f1f1f1;
+}

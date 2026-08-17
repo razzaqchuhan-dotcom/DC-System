@@ -351,15 +351,53 @@
 
     <div class="submittal-field">
 
-        <label>Submittal Requested By</label>
+    <label>Submittal Requested By</label>
 
-        <input
-            type="text"
-            id="submittalRequestedBy"
-            placeholder="Enter Requester Name"
+    <div class="requested-by-select-row">
+
+        <select id="submittalRequestedBy">
+            <option value="">Select Requested By</option>
+        </select>
+
+        <button
+            type="button"
+            id="addRequestedByBtn"
+            class="add-requested-by-btn"
         >
+            + Add
+        </button>
+
+        <div class="requested-by-menu-wrapper">
+
+            <button
+                type="button"
+                id="requestedByMenuBtn"
+                class="requested-by-menu-btn"
+                title="Manage Requested By"
+            >
+                ⋮
+            </button>
+
+            <div
+                id="requestedByMenu"
+                class="requested-by-menu"
+                style="display:none;"
+            >
+                <button type="button" id="editRequestedByBtn">
+                    Edit
+                </button>
+
+                <button type="button" id="deleteRequestedByBtn">
+                    Delete
+                </button>
+
+            </div>
+
+        </div>
 
     </div>
+
+</div>
 
 
     <div class="submittal-field">
@@ -742,7 +780,7 @@
     </div>
 
     <script src="https://cdn.sheetjs.com/xlsx-0.20.3/package/dist/xlsx.full.min.js"></script>
-    <script src="project.js?v=11"></script>
+    <script src="project.js?v=12"></script>
 
 </body>
 </html>
