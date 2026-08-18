@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="UTF-8">
     <title>DC Dashboard</title>
     <link rel="stylesheet" href="style.css?v=15">
 </head>
@@ -13,13 +14,14 @@
 
     <h2>DC SYSTEM</h2>
 
-    <a href="dashboard.html" class="active">Dashboard</a>
-    <a href="projects.html">All Projects</a>
+    <a href="dashboard.html" class="active" data-i18n="dashboard">Dashboard</a>
+    <a href="projects.html" data-i18n="allProjects">All Projects</a>
 
     <button
         type="button"
         id="logoutButton"
         class="logout-button"
+        data-i18n="logout"
     >
         Logout
     </button>
@@ -30,12 +32,13 @@
 
         <div class="top-header">
             <div>
-                <h1>Document Controller Dashboard</h1>
-                <p>All Projects</p>
+                <h1 data-i18n="dashboardTitle">Document Controller Dashboard</h1>
+                <p data-i18n="allProjects">All Projects</p>
             </div>
 
             <div class="user-info">
-                Logged in as: <strong>Admin</strong>
+                <span data-i18n="loggedInAs">Logged in as</span>:
+                <strong>Admin</strong>
             </div>
         </div>
 
@@ -46,6 +49,7 @@
 
     </div>
     <script src="dashboard.js?v=2"></script>
+    <script src="language.js?v=2"></script>
 
 </body>
 </html>

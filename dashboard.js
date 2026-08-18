@@ -264,27 +264,27 @@ projects.forEach(function(project) {
             <div class="project-card-stats">
 
                 <div>
-                    <small>Total Documents</small>
+                    <small data-i18n="totalDocuments">Total Documents</small>
                     <strong>${totalDocuments}</strong>
                 </div>
 
                 <div>
-                    <small>In Progress</small>
+                    <small data-i18n="inProgress">In Progress</small>
                     <strong>${inProgress}</strong>
                 </div>
 
                 <div>
-                    <small>Closed</small>
+                    <small data-i18n="closed">Closed</small>
                     <strong>${closed}</strong>
                 </div>
 
                 <div>
-                    <small>Today Issued</small>
+                    <small data-i18n="todayIssued">Today Issued</small>
                     <strong>${todayIssued}</strong>
                 </div>
 
                 <div>
-                    <small>Today Responses</small>
+                    <small data-i18n="todayResponses">Today Responses</small>
                     <strong>${todayResponses}</strong>
                 </div>
 
@@ -293,7 +293,7 @@ projects.forEach(function(project) {
 
             <div class="project-last-activity">
 
-                Last Activity:
+                <span data-i18n="lastActivity">Last Activity:</span>
                 <strong>${lastActivity}</strong>
 
             </div>
@@ -303,7 +303,7 @@ projects.forEach(function(project) {
                 class="open-project-dashboard-button"
                 href="project-dashboard.html?projectId=${encodeURIComponent(project.id)}"
             >
-                Open Project
+                <span data-i18n="openProject">Open Project</span>
             </a>
 
         </div>
@@ -333,37 +333,38 @@ if (projects.length === 0) {
 
         <div class="overall-dashboard-summary">
 
-            <h2>Overall Summary</h2>
+            <h2 data-i18n="overallSummary">Overall Summary</h2>
 
-            <div class="overall-summary-cards">
+            <div 
+                class="overall-summary-cards">
 
                 <div>
-                    <span>Total Projects</span>
+                    <span data-i18n="totalProjects">Total Projects</span>
                     <strong>${projects.length}</strong>
                 </div>
 
                 <div>
-                    <span>Total Documents</span>
+                    <span data-i18n="totalDocuments">Total Documents</span>
                     <strong>${overallDocuments}</strong>
                 </div>
 
                 <div>
-                    <span>In Progress</span>
+                    <span data-i18n="inProgress">In Progress</span>
                     <strong>${overallInProgress}</strong>
                 </div>
 
                 <div>
-                    <span>Closed</span>
+                    <span data-i18n="closed">Closed</span>
                     <strong>${overallClosed}</strong>
                 </div>
 
                 <div>
-                    <span>Today Issued</span>
+                    <span data-i18n="todayIssued">Today Issued</span>
                     <strong>${overallTodayIssued}</strong>
                 </div>
 
                 <div>
-                    <span>Today Responses</span>
+                    <span data-i18n="todayResponses">Today Responses</span>
                     <strong>${overallTodayResponses}</strong>
                 </div>
 
