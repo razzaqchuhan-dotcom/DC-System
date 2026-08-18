@@ -3483,3 +3483,646 @@ button:hover {
     background: #e9ecef !important;
     color: #000000 !important;
 }
+/* ==========================================
+   USERS MANAGEMENT - EDIT BUTTON
+========================================== */
+
+.edit-user-btn {
+    padding: 6px 14px;
+    border: 1px solid #bdbdbd;
+    border-radius: 4px;
+    background: #eeeeee;
+    color: #222222;
+    font-size: 13px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.edit-user-btn:hover {
+    background: #dddddd;
+    border-color: #999999;
+}
+
+.edit-user-btn:active {
+    background: #cccccc;
+}
+/* USERS FORM BUTTONS */
+
+#cancelUserButton,
+#saveUserButton {
+    width: auto !important;
+    min-width: 110px;
+    height: 34px;
+    padding: 6px 16px;
+    display: inline-block;
+    font-size: 13px;
+    border-radius: 4px;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+/* ==========================================
+   USERS FORM - COMPACT LAYOUT
+========================================== */
+
+#userFormCard {
+    max-width: 760px;
+    margin: 0 auto 20px auto;
+    padding: 22px;
+}
+
+#userFormCard .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 20px;
+}
+
+#userFormCard .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+#userFormCard input,
+#userFormCard select {
+    width: 100%;
+    max-width: 100%;
+    height: 36px;
+    padding: 6px 10px;
+    box-sizing: border-box;
+}
+
+#userFormCard label {
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+/* Password ko full row */
+#userPassword {
+    width: 100%;
+}
+
+/* Mobile */
+@media (max-width: 700px) {
+    #userFormCard {
+        max-width: 100%;
+    }
+
+    #userFormCard .form-grid {
+        grid-template-columns: 1fr;
+    }
+}
+/* ==========================================
+   USERS TABLE ACTION BUTTONS
+========================================== */
+
+.edit-user-btn,
+.toggle-user-btn {
+    width: auto !important;
+    min-width: 75px;
+    height: 30px;
+    padding: 4px 10px !important;
+    margin: 2px 3px;
+    display: inline-block !important;
+    border-radius: 4px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.edit-user-btn {
+    background: #eeeeee !important;
+    color: #222222 !important;
+    border: 1px solid #bbbbbb;
+}
+
+.toggle-user-btn {
+    background: #eeeeee !important;
+    color: #222222 !important;
+    border: 1px solid #bbbbbb;
+}
+
+.register-table td:last-child {
+    white-space: nowrap;
+    text-align: center;
+}
+#usersTableBody .toggle-user-btn {
+    width: 95px !important;
+    min-width: 95px !important;
+    max-width: 95px !important;
+    height: 30px !important;
+    padding: 4px 8px !important;
+    display: inline-block !important;
+
+    background: #eeeeee !important;
+    color: #222222 !important;
+
+    border: 1px solid #bbbbbb !important;
+    border-radius: 4px;
+
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}#usersTableBody .toggle-user-btn {
+    width: 95px !important;
+    min-width: 95px !important;
+    max-width: 95px !important;
+    height: 30px !important;
+    padding: 4px 8px !important;
+    display: inline-block !important;
+
+    background: #eeeeee !important;
+    color: #222222 !important;
+
+    border: 1px solid #bbbbbb !important;
+    border-radius: 4px;
+
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+#usersTableBody .toggle-user-btn {
+    width: 95px !important;
+    min-width: 95px !important;
+    max-width: 95px !important;
+    height: 30px !important;
+    padding: 4px 8px !important;
+    display: inline-block !important;
+
+    background: #eeeeee !important;
+    color: #222222 !important;
+
+    border: 1px solid #bbbbbb !important;
+    border-radius: 4px;
+
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+#usersTableBody .edit-user-btn,
+#usersTableBody .toggle-user-btn {
+    width: auto !important;
+    min-width: 75px !important;
+    height: 30px !important;
+    padding: 4px 10px !important;
+    margin: 2px 3px !important;
+    display: inline-block !important;
+
+    background: #eeeeee !important;
+    color: #222222 !important;
+
+    border: 1px solid #bbbbbb !important;
+    border-radius: 4px;
+
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+}
+/* ==========================================
+   USERS TABLE - COMPACT
+========================================== */
+
+.users-table {
+    width: 100% !important;
+    table-layout: fixed;
+    border-collapse: collapse;
+}
+
+.users-table th,
+.users-table td {
+    padding: 6px 5px !important;
+    font-size: 12px !important;
+    vertical-align: middle;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* S.No */
+.users-table th:nth-child(1),
+.users-table td:nth-child(1) {
+    width: 6%;
+    text-align: center;
+}
+
+/* Name */
+.users-table th:nth-child(2),
+.users-table td:nth-child(2) {
+    width: 17%;
+}
+
+/* Email */
+.users-table th:nth-child(3),
+.users-table td:nth-child(3) {
+    width: 21%;
+}
+
+/* Role */
+.users-table th:nth-child(4),
+.users-table td:nth-child(4) {
+    width: 20%;
+    text-align: center;
+}
+
+/* Status */
+.users-table th:nth-child(5),
+.users-table td:nth-child(5) {
+    width: 10%;
+    text-align: center;
+}
+
+/* Action */
+.users-table th:nth-child(6),
+.users-table td:nth-child(6) {
+    width: 26%;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.users-table .edit-user-btn,
+.users-table .toggle-user-btn {
+    min-width: 70px !important;
+    height: 28px !important;
+    padding: 3px 8px !important;
+    font-size: 11px !important;
+}
+/* ==========================================
+   USERS TABLE - FORCE ONE SCREEN
+========================================== */
+
+#usersTableBody {
+    width: 100%;
+}
+
+.users-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+    table-layout: fixed !important;
+}
+
+.users-table th,
+.users-table td {
+    padding: 6px 4px !important;
+    font-size: 11px !important;
+    white-space: normal !important;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+/* S.No */
+.users-table th:nth-child(1),
+.users-table td:nth-child(1) {
+    width: 5% !important;
+}
+
+/* Name */
+.users-table th:nth-child(2),
+.users-table td:nth-child(2) {
+    width: 16% !important;
+}
+
+/* Email */
+.users-table th:nth-child(3),
+.users-table td:nth-child(3) {
+    width: 20% !important;
+}
+
+/* Role */
+.users-table th:nth-child(4),
+.users-table td:nth-child(4) {
+    width: 19% !important;
+}
+
+/* Status */
+.users-table th:nth-child(5),
+.users-table td:nth-child(5) {
+    width: 10% !important;
+}
+
+/* Action */
+.users-table th:nth-child(6),
+.users-table td:nth-child(6) {
+    width: 30% !important;
+    white-space: nowrap !important;
+    text-align: center;
+}
+
+/* Users table wrapper */
+.users-table {
+    margin: 0 !important;
+}
+
+.users-table-wrapper,
+#usersTableBody {
+    max-width: 100%;
+}
+
+.users-table .edit-user-btn,
+.users-table .toggle-user-btn {
+    width: auto !important;
+    min-width: 65px !important;
+    max-width: 90px !important;
+    height: 27px !important;
+    padding: 3px 7px !important;
+    font-size: 10px !important;
+}
+/* USERS ACTION - 3 COMPACT BUTTONS */
+
+.users-table th:nth-child(2),
+.users-table td:nth-child(2) {
+    width: 14% !important;
+}
+
+.users-table th:nth-child(3),
+.users-table td:nth-child(3) {
+    width: 18% !important;
+}
+
+.users-table th:nth-child(4),
+.users-table td:nth-child(4) {
+    width: 17% !important;
+}
+
+.users-table th:nth-child(5),
+.users-table td:nth-child(5) {
+    width: 9% !important;
+}
+
+.users-table th:nth-child(6),
+.users-table td:nth-child(6) {
+    width: 37% !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+}
+
+#usersTableBody .edit-user-btn,
+#usersTableBody .reset-password-btn,
+#usersTableBody .toggle-user-btn {
+    width: auto !important;
+    min-width: 0 !important;
+    max-width: none !important;
+    height: 27px !important;
+    padding: 3px 7px !important;
+    margin: 2px !important;
+
+    display: inline-block !important;
+
+    background: #eeeeee !important;
+    color: #222222 !important;
+
+    border: 1px solid #bbbbbb !important;
+    border-radius: 4px;
+
+    font-size: 10px !important;
+    font-weight: 600;
+}
+/* ==========================================
+   USERS MANAGEMENT
+========================================== */
+
+
+/* ------------------------------------------
+   USER FORM
+------------------------------------------ */
+
+#userFormCard {
+    max-width: 760px;
+    margin: 0 auto 22px auto;
+    padding: 22px;
+}
+
+
+#userFormCard .form-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 20px;
+}
+
+
+#userFormCard .form-group {
+    display: flex;
+    flex-direction: column;
+}
+
+
+#userFormCard label {
+    margin-bottom: 5px;
+    font-size: 13px;
+    font-weight: 600;
+}
+
+
+#userFormCard input,
+#userFormCard select {
+    width: 100% !important;
+    height: 36px;
+    padding: 6px 10px;
+    box-sizing: border-box;
+}
+
+
+/* ------------------------------------------
+   ROLE PERMISSIONS
+------------------------------------------ */
+
+.role-permissions-preview {
+    margin-top: 18px;
+    padding: 12px 14px;
+
+    background: #f5f5f5;
+
+    border: 1px solid #dddddd;
+    border-radius: 4px;
+
+    font-size: 12px;
+}
+
+
+.role-permissions-preview strong {
+    color: #222222;
+}
+
+
+.role-permissions-preview p {
+    margin: 6px 0 0 0;
+    line-height: 1.6;
+    color: #555555;
+}
+
+
+/* ------------------------------------------
+   FORM ACTIONS
+------------------------------------------ */
+
+#userFormCard .form-actions {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+
+    margin-top: 20px;
+}
+
+
+#cancelUserButton,
+#saveUserButton {
+    width: auto !important;
+    min-width: 110px !important;
+
+    height: 34px;
+
+    padding: 6px 16px !important;
+
+    display: inline-block !important;
+
+    font-size: 13px;
+
+    border-radius: 4px;
+}
+
+
+/* ------------------------------------------
+   USERS TABLE
+------------------------------------------ */
+
+.users-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    max-width: 100% !important;
+
+    table-layout: fixed !important;
+
+    border-collapse: collapse;
+}
+
+
+.users-table th,
+.users-table td {
+    padding: 6px 4px !important;
+
+    font-size: 11px !important;
+
+    vertical-align: middle;
+
+    overflow: hidden;
+
+    text-overflow: ellipsis;
+}
+
+
+/* S.NO */
+
+.users-table th:nth-child(1),
+.users-table td:nth-child(1) {
+    width: 5% !important;
+    text-align: center;
+}
+
+
+/* NAME */
+
+.users-table th:nth-child(2),
+.users-table td:nth-child(2) {
+    width: 14% !important;
+}
+
+
+/* EMAIL */
+
+.users-table th:nth-child(3),
+.users-table td:nth-child(3) {
+    width: 18% !important;
+}
+
+
+/* ROLE */
+
+.users-table th:nth-child(4),
+.users-table td:nth-child(4) {
+    width: 17% !important;
+    text-align: center;
+}
+
+
+/* STATUS */
+
+.users-table th:nth-child(5),
+.users-table td:nth-child(5) {
+    width: 9% !important;
+    text-align: center;
+}
+
+
+/* ACTION */
+
+.users-table th:nth-child(6),
+.users-table td:nth-child(6) {
+    width: 37% !important;
+    text-align: center;
+
+    white-space: nowrap !important;
+
+    overflow: visible !important;
+}
+
+
+/* ------------------------------------------
+   USER ACTION BUTTONS
+------------------------------------------ */
+
+#usersTableBody .edit-user-btn,
+#usersTableBody .reset-password-btn,
+#usersTableBody .toggle-user-btn {
+
+    width: auto !important;
+
+    min-width: 0 !important;
+    max-width: none !important;
+
+    height: 27px !important;
+
+    padding: 3px 7px !important;
+    margin: 2px !important;
+
+    display: inline-block !important;
+
+    background: #eeeeee !important;
+    color: #222222 !important;
+
+    border: 1px solid #bbbbbb !important;
+    border-radius: 4px;
+
+    font-size: 10px !important;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+
+#usersTableBody .edit-user-btn:hover,
+#usersTableBody .reset-password-btn:hover,
+#usersTableBody .toggle-user-btn:hover {
+    background: #dddddd !important;
+}
+
+
+/* ------------------------------------------
+   MOBILE
+------------------------------------------ */
+
+@media (max-width: 700px) {
+
+    #userFormCard {
+        max-width: 100%;
+    }
+
+
+    #userFormCard .form-grid {
+        grid-template-columns: 1fr;
+    }
+
+}

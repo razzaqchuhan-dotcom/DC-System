@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Users Management</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css?v=17"
+    >
+
+</head>
+
+<body>
+
+    <!-- =====================================
+         SIDEBAR
+    ====================================== -->
+
+    <div class="sidebar">
+
+        <h2>
+            DC System
+        </h2>
+
+        <a
+            href="dashboard.html"
+            data-i18n="dashboard"
+        >
+            Dashboard
+        </a>
+
+        <a
+            href="projects.html"
+            data-i18n="allProjects"
+        >
+            All Projects
+        </a>
+
+        <a
+            href="users.html"
+            class="active"
+        >
+            Users
+        </a>
+
+        <button
+            type="button"
+            id="logoutButton"
+            data-i18n="logout"
+        >
+            Logout
+        </button>
+
+    </div>
+
+
+    <!-- =====================================
+         MAIN CONTENT
+    ====================================== -->
+
+    <div class="main-content">
+
+        <!-- PAGE HEADER -->
+
+        <div class="page-header">
+
+            <div>
+
+                <h1>
+                    Users Management
+                </h1>
+
+                <p>
+                    Create and manage system users and roles
+                </p>
+
+            </div>
+
+
+            <button
+                type="button"
+                id="addUserButton"
+                class="new-button"
+            >
+                + Add User
+            </button>
+
+        </div>
+
+
+        <!-- =================================
+             ADD / EDIT USER
+        ================================== -->
+
+        <div
+            class="card"
+            id="userFormCard"
+        >
+
+            <h2 id="userFormTitle">
+                Add New User
+            </h2>
+
+
+            <div class="form-grid">
+
+                <!-- NAME -->
+
+                <div class="form-group">
+
+                    <label for="userName">
+                        Full Name
+                    </label>
+
+                    <input
+                        type="text"
+                        id="userName"
+                        placeholder="Enter Full Name"
+                    >
+
+                </div>
+
+
+                <!-- EMAIL -->
+
+                <div class="form-group">
+
+                    <label for="userEmail">
+                        Email
+                    </label>
+
+                    <input
+                        type="email"
+                        id="userEmail"
+                        placeholder="Enter Email Address"
+                    >
+
+                </div>
+
+
+                <!-- ROLE -->
+
+                <div class="form-group">
+
+                    <label for="userRole">
+                        Role
+                    </label>
+
+                    <select id="userRole">
+
+                        <option value="">
+                            Select Role
+                        </option>
+
+                        <option value="admin">
+                            Admin
+                        </option>
+
+                        <option value="document-controller">
+                            Document Controller
+                        </option>
+
+                        <option value="engineer">
+                            Engineer
+                        </option>
+
+                        <option value="viewer">
+                            Viewer
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- STATUS -->
+
+                <div class="form-group">
+
+                    <label for="userStatus">
+                        Status
+                    </label>
+
+                    <select id="userStatus">
+
+                        <option value="Active">
+                            Active
+                        </option>
+
+                        <option value="Inactive">
+                            Inactive
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- TEMP PASSWORD -->
+
+                <div class="form-group">
+
+                    <label for="userPassword">
+                        Temporary Password
+                    </label>
+
+                    <input
+                        type="password"
+                        id="userPassword"
+                        placeholder="Set Temporary Password"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ROLE PERMISSIONS -->
+
+            <div
+                id="rolePermissionsPreview"
+                class="role-permissions-preview"
+            >
+
+                <strong>
+                    Role Permissions
+                </strong>
+
+                <p id="rolePermissionsText">
+                    Select a role to view permissions.
+                </p>
+
+            </div>
+
+
+            <!-- FORM BUTTONS -->
+
+            <div class="form-actions">
+
+                <button
+                    type="button"
+                    id="cancelUserButton"
+                >
+                    Cancel
+                </button>
+
+                <button
+                    type="button"
+                    id="saveUserButton"
+                    class="new-button"
+                >
+                    Save User
+                </button>
+
+            </div>
+
+        </div>
+
+
+        <!-- =================================
+             SYSTEM USERS
+        ================================== -->
+
+        <div class="card">
+
+            <h2>
+                System Users
+            </h2>
+
+
+            <div class="table-wrapper">
+
+                <table
+                    class="register-table users-table"
+                >
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                S.No.
+                            </th>
+
+                            <th>
+                                Name
+                            </th>
+
+                            <th>
+                                Email
+                            </th>
+
+                            <th>
+                                Role
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="usersTableBody">
+
+                        <tr>
+
+                            <td
+                                colspan="6"
+                                class="no-data"
+                            >
+                                No users found.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- =====================================
+         JAVASCRIPT
+    ====================================== -->
+
+    <script src="permissions.js?v=1"></script>
+
+    <script src="users.js?v=3"></script>
+
+    <script src="language.js?v=3"></script>
+
+</body>
+
+</html>
