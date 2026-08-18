@@ -3478,3 +3478,8 @@ button:hover {
 .main-content {
     padding-top: 48px;
 }
+/* SUBMITTAL REGISTER HEADER */
+.register-table thead th {
+    background: #e9ecef !important;
+    color: #000000 !important;
+}

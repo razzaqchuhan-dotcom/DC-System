@@ -1761,7 +1761,52 @@ function getDisciplineName(code) {
     return code;
 }
 
+// ===============================
+// SUBMITTAL TIMING COLOR
+// ===============================
 
+function getSubmittalTimingColor(item) {
+
+    // Closed item ka saved/frozen color
+    if (item.frozenColor) {
+        return item.frozenColor;
+    }
+
+    const issuedDate =
+        new Date(item.issueDate);
+
+    if (isNaN(issuedDate.getTime())) {
+        return "";
+    }
+
+    // Closed item ke liye closing date use hogi
+    // Open item ke liye current time
+    const endDate =
+        item.closingStatus === "Closed" &&
+        item.closingDate
+            ? new Date(item.closingDate)
+            : new Date();
+
+    const hoursPassed =
+        (endDate - issuedDate) /
+        (1000 * 60 * 60);
+
+    const responseHours =
+        item.responseHours || 24;
+
+    if (hoursPassed >= responseHours) {
+        return "red";
+    }
+
+    if (
+        hoursPassed >=
+        responseHours * 0.5
+    ) {
+        return "orange";
+    }
+
+    return "green";
+}
 // ===============================
 // RENDER REGISTER
 // ===============================
@@ -1871,6 +1916,24 @@ const filteredSubmittals = submittals.filter(function(item) {
             row.style.color = "#0056b3";
 }        
     row.dataset.id = item.id;
+
+    const timingColor =
+    getSubmittalTimingColor(item);
+
+if (timingColor === "green") {
+    row.style.backgroundColor = "#e8f5e9";
+}
+
+if (timingColor === "orange") {
+    row.style.backgroundColor = "#fff3e0";
+}
+
+if (timingColor === "red") {
+    row.style.backgroundColor = "#ffebee";
+}
+
+// Text hamesha black
+row.style.color = "#000000";
 
 row.addEventListener("click", function() {
 
@@ -2409,6 +2472,140 @@ downloadExcelButton.addEventListener("click", function () {
 
     const worksheet =
         XLSX.utils.json_to_sheet(excelData);
+
+    // ==========================================
+    // EXCEL STYLING
+    // ==========================================
+
+const range =
+    XLSX.utils.decode_range(worksheet["!ref"]);
+
+// HEADER - LIGHT GREY
+for (
+    let col = range.s.c;
+    col <= range.e.c;
+    col++
+) {
+    const cellAddress =
+        XLSX.utils.encode_cell({
+            r: 0,
+            c: col
+        });
+
+    if (worksheet[cellAddress]) {
+        worksheet[cellAddress].s = {
+            fill: {
+                fgColor: {
+                    rgb: "E9ECEF"
+                }
+            },
+            font: {
+                bold: true,
+                color: {
+                    rgb: "000000"
+                }
+            },
+            alignment: {
+                horizontal: "center",
+                vertical: "center"
+            },
+            border: {
+                top: {
+                    style: "thin",
+                    color: { rgb: "BFBFBF" }
+                },
+                bottom: {
+                    style: "thin",
+                    color: { rgb: "BFBFBF" }
+                },
+                left: {
+                    style: "thin",
+                    color: { rgb: "BFBFBF" }
+                },
+                right: {
+                    style: "thin",
+                    color: { rgb: "BFBFBF" }
+                }
+            }
+        };
+    }
+}
+
+
+// DATA ROW COLORS
+exportSubmittals.forEach(
+    function (item, index) {
+
+        const timingColor =
+            getSubmittalTimingColor(item);
+
+        let fillColor = "";
+
+        if (timingColor === "green") {
+            fillColor = "E8F5E9";
+        }
+
+        if (timingColor === "orange") {
+            fillColor = "FFF3E0";
+        }
+
+        if (timingColor === "red") {
+            fillColor = "FFEBEE";
+        }
+
+        // Excel row 1 = header
+        // Data starts from row 2
+        const excelRow =
+            index + 1;
+
+        for (
+            let col = range.s.c;
+            col <= range.e.c;
+            col++
+        ) {
+            const cellAddress =
+                XLSX.utils.encode_cell({
+                    r: excelRow,
+                    c: col
+                });
+
+            if (!worksheet[cellAddress]) {
+                continue;
+            }
+
+            worksheet[cellAddress].s = {
+                fill: {
+                    fgColor: {
+                        rgb: fillColor
+                    }
+                },
+                font: {
+                    color: {
+                        rgb: "000000"
+                    }
+                },
+                border: {
+                    top: {
+                        style: "thin",
+                        color: { rgb: "D9D9D9" }
+                    },
+                    bottom: {
+                        style: "thin",
+                        color: { rgb: "D9D9D9" }
+                    },
+                    left: {
+                        style: "thin",
+                        color: { rgb: "D9D9D9" }
+                    },
+                    right: {
+                        style: "thin",
+                        color: { rgb: "D9D9D9" }
+                    }
+                }
+            };
+        }
+    }
+);
 
     worksheet["!cols"] = [
         { wch: 7 },
