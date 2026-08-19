@@ -158,15 +158,26 @@ function renderProjects() {
                 <strong>${project.code || "-"}</strong>
             </p>
 
-            <button onclick="openProject(${project.id})">
+            <button
+                type="button"
+                onclick="openProject(${project.id})"
+            >
                 Open
             </button>
 
-            <button onclick="editProject(${project.id})">
+            <button
+                type="button"
+                data-permission="edit-project"
+                onclick="editProject(${project.id})"
+            >
                 Edit
             </button>
 
-            <button onclick="deleteProject(${project.id})">
+            <button
+                type="button"
+                data-permission="delete-project"
+                onclick="deleteProject(${project.id})"
+            >
                 Delete
             </button>
         `;
@@ -181,6 +192,9 @@ function editProject(id) {
     const project = projects.find(
         project => project.id === id
     );
+        if (!project) {
+        return;
+    }
 
     projectName.value = project.name;
     projectCode.value = project.code || "";
@@ -189,13 +203,14 @@ function editProject(id) {
     editProjectId = id;
 
     saveProjectButton.textContent = "Update Project";
+     // EDIT FORM OPEN
+    projectFormBox.style.display = "block";
 
     window.scrollTo({
         top: 0,
         behavior: "smooth"
     });
 }
-
 
 function deleteProject(id) {
 
@@ -257,6 +272,7 @@ showCreateProjectButton.addEventListener(
         } else {
 
             projectFormBox.style.display = "none";
+            projectFormBox.style.display = "block";
 
             showCreateProjectButton.textContent =
                 "+ Create Project";

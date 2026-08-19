@@ -19,6 +19,12 @@
 
         <a href="dashboard.html" data-i18n="dashboard">Dashboard</a>
         <a href="projects.html" class="active">All Projects</a>
+        <a
+            href="users.html"
+            data-permission="manage-users"
+        >
+            Users
+        </a>
         
         <button
             type="button"
@@ -641,6 +647,7 @@
         type="button"
         id="saveResponseButton"
         class="save-response-btn"
+        data-permission="update-response"
     >
         Save Response
     </button>
@@ -681,6 +688,7 @@
         id="editSelectedButton"
         class="edit-selected-btn"
         disabled
+        data-permission="edit-submittal"
     >
         Edit Selected
     </button>
@@ -690,6 +698,7 @@
         id="deleteSelectedButton"
         class="delete-selected-btn"
         disabled
+        data-permission="delete-submittal"
     >
         Delete Selected
     </button>
@@ -698,6 +707,7 @@
         type="button"
         id="newSubmittalButton"
         class="new-button"
+        data-permission="create-submittal"
     >
         + New Submittal
     </button>
@@ -706,6 +716,7 @@
         type="button"
         id="downloadExcelButton"
         class="excel-button"
+        data-permission="download-reports"
     >
         Download Excel
     </button>
@@ -789,8 +800,11 @@
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
-    <script src="language.js"></script>
+    <script src="permissions.js?v=2"></script>
     <script src="project.js?v=12"></script>
+    <script src="language.js=3"></script>
+    
+    
 
 </body>
 </html>

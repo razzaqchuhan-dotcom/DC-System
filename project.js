@@ -1963,7 +1963,9 @@ row.addEventListener("click", function() {
 });
 
 row.addEventListener("dblclick", function() {
-
+    if (!can("update-response")) {
+    return;
+}
     selectedSubmittalId = item.id;
     editingSubmittalId = item.id;
 

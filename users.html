@@ -19,7 +19,7 @@
 
 </head>
 
-<body>
+<body data-page-permission="manage-users">
 
     <!-- =====================================
          SIDEBAR
@@ -44,14 +44,14 @@
         >
             All Projects
         </a>
-
         <a
             href="users.html"
             class="active"
+            data-permission="manage-users"
         >
             Users
         </a>
-
+        
         <button
             type="button"
             id="logoutButton"
@@ -90,6 +90,7 @@
                 type="button"
                 id="addUserButton"
                 class="new-button"
+                data-permission="manage-users"
             >
                 + Add User
             </button>
@@ -344,7 +345,7 @@
          JAVASCRIPT
     ====================================== -->
 
-    <script src="permissions.js?v=1"></script>
+    <script src="permissions.js?v=2"></script>
 
     <script src="users.js?v=3"></script>
 

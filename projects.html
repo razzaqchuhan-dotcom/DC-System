@@ -14,6 +14,12 @@
 
         <a href="dashboard.html" data-i18n="dashboard">Dashboard</a>
         <a href="projects.html" class="active" data-i18n="allProjects">All Projects</a>
+        <a
+            href="users.html"
+            data-permission="manage-users"
+        >
+            Users
+        </a>
 
         <button
             type="button"
@@ -43,6 +49,7 @@
         type="button"
         id="showCreateProject"
         class="create-project-button"
+        data-permission="create-project"
     >
         <span data-i18n="createProject">+ Create Project</span>
     </button>
@@ -96,8 +103,10 @@
 
     </div>
     
+    <script src="permissions.js?v=2"></script>
     <script src="Projects.js?v=4"></script>
     <script src="language.js?v=3"></script>
+    
 
 </body>
 </html>
