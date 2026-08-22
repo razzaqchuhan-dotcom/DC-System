@@ -1,42 +1,31 @@
-// ==========================================
 // CENTRAL ROLE PERMISSIONS
-// ==========================================
 
 const rolePermissions = {
-
     admin: [
         "view-system",
         "manage-users",
-
         "create-project",
         "edit-project",
         "delete-project",
-
         "create-submittal",
         "edit-submittal",
         "delete-submittal",
-
         "update-response",
         "download-reports"
     ],
 
     "document-controller": [
         "view-system",
-
         "create-project",
         "edit-project",
-
         "create-submittal",
         "edit-submittal",
-        "delete-submittal",
-
         "update-response",
         "download-reports"
     ],
 
     engineer: [
         "view-system",
-        "update-response",
         "download-reports"
     ],
 
@@ -44,38 +33,25 @@ const rolePermissions = {
         "view-system",
         "download-reports"
     ]
-
 };
 
 
-// ==========================================
-// CURRENT ROLE
-// ==========================================
-
+// GET CURRENT ROLE
 function getCurrentRole() {
-
-    return (
-        localStorage.getItem("currentRole") ||
-        "admin"
-    );
+    return localStorage.getItem("currentRole") || "viewer";
 }
 
 
-// ==========================================
-// CHECK PERMISSION
-// ==========================================
-
+// CHECK ROLE PERMISSION
 function hasPermission(role, permission) {
-
-    const permissions =
-        rolePermissions[role] || [];
+    const permissions = rolePermissions[role] || [];
 
     return permissions.includes(permission);
 }
 
 
+// SIMPLE PERMISSION CHECK
 function can(permission) {
-
     return hasPermission(
         getCurrentRole(),
         permission
@@ -83,10 +59,7 @@ function can(permission) {
 }
 
 
-// ==========================================
 // ROLE DISPLAY NAME
-// ==========================================
-
 function getRoleDisplayName(role) {
 
     if (role === "admin") {
@@ -109,10 +82,7 @@ function getRoleDisplayName(role) {
 }
 
 
-// ==========================================
-// APPLY PERMISSION TO ELEMENT
-// ==========================================
-
+// APPLY PERMISSION TO ONE ELEMENT
 function applyPermissionToElement(element) {
 
     const permission =
@@ -124,8 +94,7 @@ function applyPermissionToElement(element) {
 
     if (!can(permission)) {
 
-        element.style.display =
-            "none";
+        element.style.display = "none";
 
         element.setAttribute(
             "aria-hidden",
@@ -145,10 +114,7 @@ function applyPermissionToElement(element) {
 }
 
 
-// ==========================================
-// APPLY PAGE PERMISSIONS
-// ==========================================
-
+// APPLY ALL PAGE PERMISSIONS
 function applyPermissions() {
 
     const pagePermission =
@@ -180,61 +146,55 @@ function applyPermissions() {
 }
 
 
-// ==========================================
-// WATCH DYNAMIC BUTTONS
-// ==========================================
-
+// WATCH DYNAMIC ELEMENTS
 function startPermissionObserver() {
 
     const observer =
         new MutationObserver(
-            function (mutations) {
+            function(mutations) {
 
                 mutations.forEach(
-                    function (mutation) {
+                    function(mutation) {
 
-                        mutation.addedNodes
-                            .forEach(
-                                function (node) {
+                        mutation.addedNodes.forEach(
+                            function(node) {
 
-                                    if (
-                                        node.nodeType !== 1
-                                    ) {
-                                        return;
-                                    }
+                                if (
+                                    node.nodeType !== 1
+                                ) {
+                                    return;
+                                }
 
-                                    if (
-                                        node.matches &&
-                                        node.matches(
+
+                                if (
+                                    node.matches &&
+                                    node.matches(
+                                        "[data-permission]"
+                                    )
+                                ) {
+
+                                    applyPermissionToElement(
+                                        node
+                                    );
+                                }
+
+
+                                if (
+                                    node.querySelectorAll
+                                ) {
+
+                                    node
+                                        .querySelectorAll(
                                             "[data-permission]"
                                         )
-                                    ) {
-
-                                        applyPermissionToElement(
-                                            node
+                                        .forEach(
+                                            applyPermissionToElement
                                         );
-                                    }
-
-
-                                    if (
-                                        node.querySelectorAll
-                                    ) {
-
-                                        node
-                                            .querySelectorAll(
-                                                "[data-permission]"
-                                            )
-                                            .forEach(
-                                                applyPermissionToElement
-                                            );
-                                    }
-
                                 }
-                            );
-
+                            }
+                        );
                     }
                 );
-
             }
         );
 
@@ -247,19 +207,3 @@ function startPermissionObserver() {
         }
     );
 }
-
-
-// ==========================================
-// START
-// ==========================================
-
-document.addEventListener(
-    "DOMContentLoaded",
-    function () {
-
-        applyPermissions();
-
-        startPermissionObserver();
-
-    }
-);

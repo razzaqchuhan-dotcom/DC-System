@@ -4126,3 +4126,110 @@ button:hover {
     }
 
 }
+.password-help {
+    display: block;
+    margin-top: 5px;
+    font-size: 12px;
+    color: #666;
+}
+
+.password-error {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    color: #d32f2f;
+}
+.users-table {
+    width: 100%;
+    min-width: 0;
+    table-layout: fixed;
+}
+
+.users-table th:nth-child(1),
+.users-table td:nth-child(1) {
+    width: 5%;
+}
+
+.users-table th:nth-child(2),
+.users-table td:nth-child(2) {
+    width: 13%;
+}
+
+.users-table th:nth-child(3),
+.users-table td:nth-child(3) {
+    width: 18%;
+}
+
+.users-table th:nth-child(4),
+.users-table td:nth-child(4) {
+    width: 13%;
+}
+
+.users-table th:nth-child(5),
+.users-table td:nth-child(5) {
+    width: 14%;
+}
+
+.users-table th:nth-child(6),
+.users-table td:nth-child(6) {
+    width: 9%;
+}
+
+.users-table th:nth-child(7),
+.users-table td:nth-child(7) {
+    width: 28%;
+}
+/* =========================================
+   PROJECT DASHBOARD DISCIPLINE TABS
+   ========================================= */
+
+.dashboard-discipline-tabs {
+    display: inline-flex;
+    align-items: center;
+    gap: 0;
+    margin: 16px 0 18px 0;
+    padding: 0;
+    border: 1px solid #cfcfcf;
+    border-radius: 6px;
+    overflow: hidden;
+    background: #f3f3f3;
+}
+
+.dashboard-discipline-tab {
+    width: auto !important;
+    min-width: 85px;
+    height: 36px;
+    flex: 0 0 auto !important;
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+
+    margin: 0 !important;
+    padding: 0 18px;
+
+    border: none;
+    border-right: 1px solid #cfcfcf;
+    border-radius: 0;
+
+    background: #f3f3f3;
+    color: #333;
+
+    font-size: 12px;
+    font-weight: 600;
+
+    cursor: pointer;
+}
+
+.dashboard-discipline-tab:last-child {
+    border-right: none;
+}
+
+.dashboard-discipline-tab:hover {
+    background: #e3e3e3;
+}
+
+.dashboard-discipline-tab.active {
+    background: #333;
+    color: #fff;
+}

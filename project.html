@@ -11,21 +11,29 @@
     <!-- SIDEBAR -->
     <div class="sidebar">
 
-        <img src="ALMAS LOGO.jpeg"
-             alt="Company Logo"
-             class="sidebar-logo">
+        <img
+            src="ALMAS LOGO.jpeg"
+            alt="Company Logo"
+            class="sidebar-logo"
+        >
 
         <h2>DC SYSTEM</h2>
 
-        <a href="dashboard.html" data-i18n="dashboard">Dashboard</a>
-        <a href="projects.html" class="active">All Projects</a>
+        <a href="dashboard.html" data-i18n="dashboard">
+            Dashboard
+        </a>
+
+        <a href="projects.html" class="active">
+            All Projects
+        </a>
+
         <a
             href="users.html"
             data-permission="manage-users"
         >
             Users
         </a>
-        
+
         <button
             type="button"
             id="logoutButton"
@@ -44,7 +52,10 @@
         <div class="project-top-card">
 
             <div>
-                <h1 id="projectTitle">Project</h1>
+
+                <h1 id="projectTitle">
+                    Project
+                </h1>
 
                 <p>
                     Project No:
@@ -55,17 +66,21 @@
                     Project Code:
                     <strong id="projectCodeText"></strong>
                 </p>
+
             </div>
 
-            <h3>OUTGOING SUBMITTALS</h3>
+            <h3>
+                OUTGOING SUBMITTALS
+            </h3>
 
         </div>
 
 
-        <!-- YELLOW SEQUENCE BAR -->
+        <!-- SEQUENCE BAR -->
         <div class="sequence-banner">
 
             SEQUENCE ID:
+
             <span id="sequenceId">
                 AUTO GENERATED
             </span>
@@ -74,17 +89,25 @@
 
 
         <!-- NEW SUBMITTAL FORM -->
-        <div class="new-submittal-card" id="newSubmittalForm">
+        <div
+            class="new-submittal-card"
+            id="newSubmittalForm"
+        >
 
-            <h2>New Outgoing Submittal</h2>
+            <h2>
+                New Outgoing Submittal
+            </h2>
 
 
             <!-- FIRST ROW -->
             <div class="submittal-row">
 
+                <!-- DISCIPLINE -->
                 <div class="submittal-field">
 
-                    <label>Discipline</label>
+                    <label>
+                        Discipline
+                    </label>
 
                     <select id="discipline">
 
@@ -92,7 +115,9 @@
                             Select Discipline
                         </option>
 
-                        <option value="C">Civil</option>
+                        <option value="C">
+                            Civil
+                        </option>
 
                         <option value="A">
                             Architectural
@@ -111,65 +136,93 @@
                 </div>
 
 
+                <!-- DOCUMENT TYPE -->
                 <div class="submittal-field">
 
-    <label>Document Type</label>
+                    <label>
+                        Document Type
+                    </label>
 
-    <div class="document-type-select-row">
+                    <div class="document-type-select-row">
 
-        <select id="documentType">
-            <option value="">
-                Select Document Type
-            </option>
-        </select>
+                        <select id="documentType">
 
-        <button
-            type="button"
-            id="addDocumentTypeBtn"
-            class="add-document-type-btn"
-        >
-            + Add
-        </button>
+                            <option value="">
+                                Select Document Type
+                            </option>
 
-        <div class="document-type-menu-wrapper">
+                        </select>
 
-            <button
-                type="button"
-                id="documentTypeMenuBtn"
-                class="document-type-menu-btn"
-                title="Manage Document Type"
-            >
-                ⋮
-            </button>
 
-            <div
-                id="documentTypeMenu"
-                class="document-type-menu"
-                style="display: none;"
-            >
+                        <button
+                            type="button"
+                            id="addDocumentTypeBtn"
+                            class="add-document-type-btn"
+                        >
+                            + Add
+                        </button>
 
-                <button
-                    type="button"
-                    id="editDocumentTypeBtn"
-                >
-                    Edit
-                </button>
 
-                <button
-                    type="button"
-                    id="deleteDocumentTypeBtn"
-                >
-                    Delete
-                </button>
+                        <div class="document-type-menu-wrapper">
 
-            </div>
+                            <button
+                                type="button"
+                                id="documentTypeMenuBtn"
+                                class="document-type-menu-btn"
+                                title="Manage Document Type"
+                            >
+                                ⋮
+                            </button>
 
-        </div>
 
-    </div>
+                            <div
+                                id="documentTypeMenu"
+                                class="document-type-menu"
+                                style="display: none;"
+                            >
 
-</div>
+                                <button
+                                    type="button"
+                                    id="editDocumentTypeBtn"
+                                >
+                                    Edit
+                                </button>
 
+                                <button
+                                    type="button"
+                                    id="deleteDocumentTypeBtn"
+                                >
+                                    Delete
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REVISION -->
+                <div class="submittal-field">
+
+                    <label>
+                        Revision
+                    </label>
+
+                    <input
+                        type="text"
+                        id="revisionNo"
+                        value="R00"
+                        placeholder="R00"
+                        maxlength="3"
+                    >
+
+                </div>
+
+
+                <!-- REFERENCE -->
                 <div class="submittal-field">
 
                     <label>
@@ -184,23 +237,12 @@
 
                 </div>
 
-
-                <div class="submittal-field subject-field">
-
-                    <label>Subject</label>
-
-                    <input
-                        type="text"
-                        id="subject"
-                        placeholder="Enter Subject"
-                    >
-
-                </div>
-
-
+                <!-- ISSUE DATE -->
                 <div class="submittal-field date-field">
 
-                    <label>Issue Date</label>
+                    <label>
+                        Issue Date
+                    </label>
 
                     <input
                         type="date"
@@ -210,12 +252,32 @@
                 </div>
 
             </div>
+                <!-- SUBJECT -->
+            <div class="description-field">
 
+                <label>
+                    Subject
+                </label>
+
+                <input
+                    type="text"
+                    id="subject"
+                    placeholder="Enter Subject"
+                    style="
+                        width: 100%;
+                        box-sizing: border-box;
+                        padding: 10px;
+                    "
+                >
+
+            </div>
 
             <!-- DESCRIPTION -->
             <div class="description-field">
 
-                <label>Description / Remarks</label>
+                <label>
+                    Description / Remarks
+                </label>
 
                 <textarea
                     id="description"
@@ -224,218 +286,307 @@
                 ></textarea>
 
             </div>
- <!-- ISSUED INFORMATION -->
-<h3>Issued Information</h3>
-
-<div class="submittal-info-row">
-
-    <div class="submittal-field">
-        <label>Issued By</label>
-
-        <div class="issuer-select-row">
-
-            <select id="issuerName">
-                <option value="">Select Issuer</option>
-            </select>
-
-            <button
-                type="button"
-                id="addIssuerBtn"
-                class="add-issuer-btn"
-            >
-                + Add
-            </button>
-    <div class="issuer-menu-wrapper">
-
-        <button
-            type="button"
-            id="issuerMenuBtn"
-            class="issuer-menu-btn"
-            title="Manage Issuer"
-        >
-            ⋮
-        </button>
-
-        <div
-            id="issuerMenu"
-            class="issuer-menu"
-            style="display: none;">
-
-            <button type="button" id="editIssuerBtn">
-            Edit
-            </button>
-
-            <button
-                type="button"
-                id="deleteIssuerBtn"
-            >
-            Delete
-            </button>
-
-        </div>
-
-    </div>
-</div>
-</div>
-
-    <div class="submittal-field">
-        <label>Submission Method</label>
-
-        <select id="submissionMethod">
-            <option value="">Select Method</option>
-            <option value="By Hand">By Hand</option>
-            <option value="By Email">By Email</option>
-            <option value="By Hand + Email">By Hand + Email</option>
-            <option value="Portal">Portal</option>
-        </select>
-    </div>
 
 
-    <div class="submittal-field">
+            <!-- ISSUED INFORMATION -->
+            <h3>
+                Issued Information
+            </h3>
 
-    <label>Receiver Name</label>
 
-    <div class="receiver-select-row">
+            <div class="submittal-info-row">
 
-        <select id="receiverName">
-            <option value="">Select Receiver</option>
-        </select>
+                <!-- ISSUED BY -->
+                <div class="submittal-field">
 
-        <button
-            type="button"
-            id="addReceiverBtn"
-            class="add-receiver-btn"
-        >
-            + Add
-        </button>
+                    <label>
+                        Issued By
+                    </label>
 
-        <div class="receiver-menu-wrapper">
+                    <div class="issuer-select-row">
 
-            <button
-                type="button"
-                id="receiverMenuBtn"
-                class="receiver-menu-btn"
-                title="Manage Receiver"
-            >
-                ⋮
-            </button>
+                        <select id="issuerName">
 
-            <div
-                id="receiverMenu"
-                class="receiver-menu"
-                style="display: none;"
-            >
+                            <option value="">
+                                Select Issuer
+                            </option>
 
-                <button
-                    type="button"
-                    id="editReceiverBtn"
-                >
-                    Edit
-                </button>
+                        </select>
 
-                <button
-                    type="button"
-                    id="deleteReceiverBtn"
-                >
-                    Delete
-                </button>
+
+                        <button
+                            type="button"
+                            id="addIssuerBtn"
+                            class="add-issuer-btn"
+                        >
+                            + Add
+                        </button>
+
+
+                        <div class="issuer-menu-wrapper">
+
+                            <button
+                                type="button"
+                                id="issuerMenuBtn"
+                                class="issuer-menu-btn"
+                                title="Manage Issuer"
+                            >
+                                ⋮
+                            </button>
+
+
+                            <div
+                                id="issuerMenu"
+                                class="issuer-menu"
+                                style="display: none;"
+                            >
+
+                                <button
+                                    type="button"
+                                    id="editIssuerBtn"
+                                >
+                                    Edit
+                                </button>
+
+                                <button
+                                    type="button"
+                                    id="deleteIssuerBtn"
+                                >
+                                    Delete
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- SUBMISSION METHOD -->
+                <div class="submittal-field">
+
+                    <label>
+                        Submission Method
+                    </label>
+
+                    <select id="submissionMethod">
+
+                        <option value="">
+                            Select Method
+                        </option>
+
+                        <option value="By Hand">
+                            By Hand
+                        </option>
+
+                        <option value="By Email">
+                            By Email
+                        </option>
+
+                        <option value="By Hand + Email">
+                            By Hand + Email
+                        </option>
+
+                        <option value="Portal">
+                            Portal
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- RECEIVER -->
+                <div class="submittal-field">
+
+                    <label>
+                        Receiver Name
+                    </label>
+
+                    <div class="receiver-select-row">
+
+                        <select id="receiverName">
+
+                            <option value="">
+                                Select Receiver
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            type="button"
+                            id="addReceiverBtn"
+                            class="add-receiver-btn"
+                        >
+                            + Add
+                        </button>
+
+
+                        <div class="receiver-menu-wrapper">
+
+                            <button
+                                type="button"
+                                id="receiverMenuBtn"
+                                class="receiver-menu-btn"
+                                title="Manage Receiver"
+                            >
+                                ⋮
+                            </button>
+
+
+                            <div
+                                id="receiverMenu"
+                                class="receiver-menu"
+                                style="display: none;"
+                            >
+
+                                <button
+                                    type="button"
+                                    id="editReceiverBtn"
+                                >
+                                    Edit
+                                </button>
+
+                                <button
+                                    type="button"
+                                    id="deleteReceiverBtn"
+                                >
+                                    Delete
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- RECEIVED DATE -->
+                <div class="submittal-field">
+
+                    <label>
+                        Received Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="receivedDate"
+                    >
+
+                </div>
 
             </div>
 
-        </div>
 
-    </div>
+            <!-- REQUEST INFORMATION -->
+            <h3>
+                Submittal Request Information
+            </h3>
 
-</div>
 
-    <div class="submittal-field">
-        <label>Received Date</label>
+            <div class="request-info-row">
 
-        <input
-            type="date"
-            id="receivedDate"
-        >
-    </div>
+                <!-- REQUESTED BY -->
+                <div class="submittal-field">
 
-</div>
-<!-- SUBMITTAL REQUEST INFORMATION -->
+                    <label>
+                        Submittal Requested By
+                    </label>
 
-<h3>Submittal Request Information</h3>
+                    <div class="requested-by-select-row">
 
-<div class="request-info-row">
+                        <select id="submittalRequestedBy">
 
-    <div class="submittal-field">
+                            <option value="">
+                                Select Requested By
+                            </option>
 
-    <label>Submittal Requested By</label>
+                        </select>
 
-    <div class="requested-by-select-row">
 
-        <select id="submittalRequestedBy">
-            <option value="">Select Requested By</option>
-        </select>
+                        <button
+                            type="button"
+                            id="addRequestedByBtn"
+                            class="add-requested-by-btn"
+                        >
+                            + Add
+                        </button>
 
-        <button
-            type="button"
-            id="addRequestedByBtn"
-            class="add-requested-by-btn"
-        >
-            + Add
-        </button>
 
-        <div class="requested-by-menu-wrapper">
+                        <div class="requested-by-menu-wrapper">
 
-            <button
-                type="button"
-                id="requestedByMenuBtn"
-                class="requested-by-menu-btn"
-                title="Manage Requested By"
-            >
-                ⋮
-            </button>
+                            <button
+                                type="button"
+                                id="requestedByMenuBtn"
+                                class="requested-by-menu-btn"
+                                title="Manage Requested By"
+                            >
+                                ⋮
+                            </button>
 
-            <div
-                id="requestedByMenu"
-                class="requested-by-menu"
-                style="display:none;"
-            >
-                <button type="button" id="editRequestedByBtn">
-                    Edit
-                </button>
 
-                <button type="button" id="deleteRequestedByBtn">
-                    Delete
-                </button>
+                            <div
+                                id="requestedByMenu"
+                                class="requested-by-menu"
+                                style="display: none;"
+                            >
+
+                                <button
+                                    type="button"
+                                    id="editRequestedByBtn"
+                                >
+                                    Edit
+                                </button>
+
+                                <button
+                                    type="button"
+                                    id="deleteRequestedByBtn"
+                                >
+                                    Delete
+                                </button>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+                <!-- REQUEST ATTACHMENT -->
+                <div class="submittal-field">
+
+                    <label>
+                        Request Attachment
+                    </label>
+
+                    <input
+                        type="file"
+                        id="requestAttachment"
+                        accept=".pdf,image/png,image/jpeg,image/webp"
+                    >
+
+                    <small>
+                        WhatsApp screenshot, image or PDF
+                    </small>
+
+                </div>
 
             </div>
 
-        </div>
 
-    </div>
-
-</div>
-
-
-    <div class="submittal-field">
-
-        <label>Request Attachment</label>
-
-        <input
-            type="file"
-            id="requestAttachment"
-            accept=".pdf,image/png,image/jpeg,image/webp"
-        >
-
-        <small>
-            WhatsApp screenshot, image or PDF
-        </small>
-
-    </div>
-
-</div>
-            <!-- PDF -->
+            <!-- SUBMITTED PDF -->
             <div class="pdf-field">
 
-                <label>Attach Submittal PDF</label>
+                <label>
+                    Attach Submittal PDF
+                </label>
 
                 <input
                     type="file"
@@ -444,6 +595,7 @@
                 >
 
             </div>
+
 
             <!-- BUTTONS -->
             <div class="submittal-buttons">
@@ -471,283 +623,425 @@
             <p id="submittalMessage"></p>
 
         </div>
-<!-- RESPONSE / ACTION SECTION -->
-<div id="responseActionSection" class="response-action-section">
-
-    <!-- SELECTED SUBMITTAL SUMMARY -->
-    <div class="selected-submittal-summary">
-
-        <h3>Selected Submittal</h3>
-
-        <div class="summary-grid">
-
-            <div>
-                <span>Sequence ID</span>
-                <strong id="responseSequenceId">-</strong>
-            </div>
-
-            <div>
-                <span>Ref No.</span>
-                <strong id="responseRefNo">-</strong>
-            </div>
-
-            <div>
-                <span>Subject</span>
-                <strong id="responseSubject">-</strong>
-            </div>
-
-            <div>
-                <span>Discipline</span>
-                <strong id="responseDiscipline">-</strong>
-            </div>
-
-            <div>
-                <span>Document Type</span>
-                <strong id="responseDocumentType">-</strong>
-            </div>
-
-            <div>
-                <span>Issue Date</span>
-                <strong id="responseIssueDate">-</strong>
-            </div>
-
-            <div>
-                <span>Issued By</span>
-                <strong id="responseIssuedBy">-</strong>
-            </div>
-
-            <div>
-                <span>Submission Method</span>
-                <strong id="responseMethod">-</strong>
-            </div>
-
-            <div>
-                <span>Receiver</span>
-                <strong id="responseReceiver">-</strong>
-            </div>
-
-            <div>
-                <span>Received Date</span>
-                <strong id="responseReceivedDate">-</strong>
-            </div>
-
-        </div>
-
-    </div>
-
-    <h3>Response / Action Information</h3>
-
-    <!-- ACTION 1 -->
-    <div class="action-row">
-        <div class="submittal-field">
-            <label>Action 1 By</label>
-            <input type="text" id="action1By">
-        </div>
-
-        <div class="submittal-field">
-            <label>Action 1 Date</label>
-            <input type="date" id="action1Date">
-        </div>
-
-        <div class="submittal-field action-evidence">
-
-            <label>Action 1 Evidence / Screenshot</label>
-
-            <input
-                type="file"
-                id="action1Evidence"
-                accept="image/png,image/jpeg,image/webp"
-            >
-
-        </div>
-    </div>
-
-    <!-- ACTION 2 -->
-    <div class="action-row">
-        <div class="submittal-field">
-            <label>Action 2 By</label>
-            <input type="text" id="action2By">
-        </div>
-
-        <div class="submittal-field">
-            <label>Action 2 Date</label>
-            <input type="date" id="action2Date">
-        </div>
-
-        <div class="submittal-field action-comment">
-            <label>Action 2 Comment</label>
-            <input type="text" id="action2Comment">
-        </div>
-    </div>
-
-    <!-- ACTION 3 -->
-    <div class="action-row">
-        <div class="submittal-field">
-            <label>Action 3 By</label>
-            <input type="text" id="action3By">
-        </div>
-
-        <div class="submittal-field">
-            <label>Action 3 Date</label>
-            <input type="date" id="action3Date">
-        </div>
-
-        <div class="submittal-field action-comment">
-            <label>Action 3 Comment</label>
-            <input type="text" id="action3Comment">
-        </div>
-    </div>
 
 
-    <!-- STATUS / CLOSING -->
-    <h3>Status / Closing</h3>
 
-    <div class="closing-row">
-
-        <div class="submittal-field">
-
-    <label>Response Status</label>
-
-    <div class="status-select-row">
-
-        <select id="responseStatus">
-            <option value="">Select Status</option>
-        </select>
-
-        <button
-            type="button"
-            id="addStatusBtn"
-            class="add-status-btn"
+        <!-- RESPONSE / ACTION SECTION -->
+        <div
+            id="responseActionSection"
+            class="response-action-section"
         >
-            + Add
-        </button>
 
-    </div>
+            <!-- SELECTED SUBMITTAL SUMMARY -->
+            <div class="selected-submittal-summary">
 
-</div>
-
-        <div class="submittal-field">
-            <label>Closing Status</label>
-
-            <select id="closingStatus">
-                <option value="Open">Open</option>
-                <option value="Closed">Closed</option>
-            </select>
-        </div>
-
-        <div class="submittal-field">
-            <label>Closing Date</label>
-            <input type="date" id="closingDate">
-        </div>
-
-    </div>
-    <div class="response-buttons">
-
-    <button
-        type="button"
-        id="saveResponseButton"
-        class="save-response-btn"
-        data-permission="update-response"
-    >
-        Save Response
-    </button>
-
-    </div>
-</div>
+                <h3>
+                    Selected Submittal
+                </h3>
 
 
-        <!-- REGISTER -->
-        <div class="submittal-register-card">
+                <div class="summary-grid">
 
-            <h2>OUTGOING SUBMITTAL REGISTER</h2>
+                    <div>
+                        <span>
+                            Sequence ID
+                        </span>
 
-
-            <!-- FILTER BAR -->
-        <div class="register-controls">
-
-    <input
-        type="text"
-        id="searchInput"
-        placeholder="Search submittals..."
-    >
-
-    <select id="disciplineFilter">
-        <option value="">All Disciplines</option>
-        <option value="C">Civil</option>
-        <option value="A">Architectural</option>
-        <option value="M">Mechanical</option>
-        <option value="E">Electrical</option>
-    </select>
-
-    <select id="documentTypeFilter">
-        <option value="">All Document Types</option>
-    </select>
-
-    <button
-        type="button"
-        id="editSelectedButton"
-        class="edit-selected-btn"
-        disabled
-        data-permission="edit-submittal"
-    >
-        Edit Selected
-    </button>
-
-    <button
-        type="button"
-        id="deleteSelectedButton"
-        class="delete-selected-btn"
-        disabled
-        data-permission="delete-submittal"
-    >
-        Delete Selected
-    </button>
-
-    <button
-        type="button"
-        id="newSubmittalButton"
-        class="new-button"
-        data-permission="create-submittal"
-    >
-        + New Submittal
-    </button>
-
-    <button
-        type="button"
-        id="downloadExcelButton"
-        class="excel-button"
-        data-permission="download-reports"
-    >
-        Download Excel
-    </button>
-
-</div>
+                        <strong id="responseSequenceId">
+                            -
+                        </strong>
+                    </div>
 
 
-            <!-- COLOR GUIDE -->
-            <div class="color-guide">
+                    <div>
+                        <span>
+                            Revision
+                        </span>
 
-                <strong>Color Guide:</strong>
+                        <strong id="responseRevision">
+                            R00
+                        </strong>
+                    </div>
 
-                <span>
-                    <i class="green-dot"></i>
-                    Green = Within Time
-                </span>
 
-                <span>
-                    <i class="orange-dot"></i>
-                    Orange = Due Soon
-                </span>
+                    <div>
+                        <span>
+                            Ref No.
+                        </span>
 
-                <span>
-                    <i class="red-dot"></i>
-                    Red = Overdue
-                </span>
+                        <strong id="responseRefNo">
+                            -
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            Subject
+                        </span>
+
+                        <strong id="responseSubject">
+                            -
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            Discipline
+                        </span>
+
+                        <strong id="responseDiscipline">
+                            -
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            Document Type
+                        </span>
+
+                        <strong id="responseDocumentType">
+                            -
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            Issue Date
+                        </span>
+
+                        <strong id="responseIssueDate">
+                            -
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            Issued By
+                        </span>
+
+                        <strong id="responseIssuedBy">
+                            -
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            Submission Method
+                        </span>
+
+                        <strong id="responseMethod">
+                            -
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            Receiver
+                        </span>
+
+                        <strong id="responseReceiver">
+                            -
+                        </strong>
+                    </div>
+
+
+                    <div>
+                        <span>
+                            Received Date
+                        </span>
+
+                        <strong id="responseReceivedDate">
+                            -
+                        </strong>
+                    </div>
+
+                </div>
 
             </div>
 
 
-            <!-- TABLE -->
+            <h3>
+                Response / Action Information
+            </h3>
+
+
+            <!-- ACTION 1 -->
+            <div class="action-row">
+
+                <div class="submittal-field">
+
+                    <label>
+                        Action 1 By
+                    </label>
+
+                    <input
+                        type="text"
+                        id="action1By"
+                    >
+
+                </div>
+
+
+                <div class="submittal-field">
+
+                    <label>
+                        Action 1 Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="action1Date"
+                    >
+
+                </div>
+
+
+                <div class="submittal-field action-evidence">
+
+                    <label>
+                        Action 1 Evidence / Screenshot
+                    </label>
+
+                    <input
+                        type="file"
+                        id="action1Evidence"
+                        accept="image/png,image/jpeg,image/webp"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTION 2 -->
+            <div class="action-row">
+
+                <div class="submittal-field">
+
+                    <label>
+                        Action 2 By
+                    </label>
+
+                    <input
+                        type="text"
+                        id="action2By"
+                    >
+
+                </div>
+
+
+                <div class="submittal-field">
+
+                    <label>
+                        Action 2 Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="action2Date"
+                    >
+
+                </div>
+
+
+                <div class="submittal-field action-comment">
+
+                    <label>
+                        Action 2 Comment
+                    </label>
+
+                    <input
+                        type="text"
+                        id="action2Comment"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- ACTION 3 -->
+            <div class="action-row">
+
+                <div class="submittal-field">
+
+                    <label>
+                        Action 3 By
+                    </label>
+
+                    <input
+                        type="text"
+                        id="action3By"
+                    >
+
+                </div>
+
+
+                <div class="submittal-field">
+
+                    <label>
+                        Action 3 Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="action3Date"
+                    >
+
+                </div>
+
+
+                <div class="submittal-field action-comment">
+
+                    <label>
+                        Action 3 Comment
+                    </label>
+
+                    <input
+                        type="text"
+                        id="action3Comment"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- STATUS / CLOSING -->
+            <h3>
+                Status / Closing
+            </h3>
+
+
+            <div class="closing-row">
+
+                <!-- RESPONSE STATUS -->
+                <div class="submittal-field">
+
+                    <label>
+                        Response Status
+                    </label>
+
+                    <div class="status-select-row">
+
+                        <select id="responseStatus">
+
+                            <option value="">
+                                Select Status
+                            </option>
+
+                        </select>
+
+
+                        <button
+                            type="button"
+                            id="addStatusBtn"
+                            class="add-status-btn"
+                        >
+                            + Add
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+                <!-- CLOSING STATUS -->
+                <div class="submittal-field">
+
+                    <label>
+                        Closing Status
+                    </label>
+
+                    <select id="closingStatus">
+
+                        <option value="Open">
+                            Open
+                        </option>
+
+                        <option value="Closed">
+                            Closed
+                        </option>
+
+                    </select>
+
+                </div>
+
+
+                <!-- CLOSING DATE -->
+                <div class="submittal-field">
+
+                    <label>
+                        Closing Date
+                    </label>
+
+                    <input
+                        type="date"
+                        id="closingDate"
+                    >
+
+                </div>
+
+            </div>
+
+
+            <!-- RESPONSE PDF -->
+            <div class="pdf-field">
+
+                <label>
+                    Consultant Response / Commented PDF
+                </label>
+
+                <input
+                    type="file"
+                    id="responsePdfFile"
+                    accept=".pdf,application/pdf"
+                >
+
+                <small id="currentResponsePdfName">
+                    No response PDF uploaded.
+                </small>
+
+            </div>
+
+
+            <!-- SAVE RESPONSE -->
+            <div class="response-buttons">
+
+                <button
+                    type="button"
+                    id="saveResponseButton"
+                    class="save-response-btn"
+                    data-permission="update-response"
+                >
+                    Save Response
+                </button>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- REVISION HISTORY -->
+        <div
+            id="revisionHistorySection"
+            class="submittal-register-card"
+            style="display: none; margin-top: 16px;"
+        >
+
+            <h3>
+                Revision History
+            </h3>
+
+
             <div class="table-wrapper">
 
                 <table class="register-table">
@@ -755,22 +1049,284 @@
                     <thead>
 
                         <tr>
-                            <th>S.No.</th>
-                            <th>Sequence ID</th>
-                            <th>Ref No.</th>
-                            <th>Subject</th>
-                            <th>Discipline</th>
-                            <th>Type</th>
-                            <th>Issue Date</th>
-                            <th>Submittal Requested By</th>
-                            <th>Issued By</th>
-                            <th>Method</th>
-                            <th>Receiver</th>
-                            <th>Received Date</th>
-                            <th>Status</th>
-                            <th>Action By</th>
-                            <th>Action Date</th>
-                            <th>PDF</th>
+
+                            <th>
+                                Revision
+                            </th>
+
+                            <th>
+                                Issue Date
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Submitted PDF
+                            </th>
+
+                            <th>
+                                Response PDF
+                            </th>
+
+                        </tr>
+
+                    </thead>
+
+
+                    <tbody id="revisionHistoryBody">
+
+                        <tr>
+
+                            <td
+                                colspan="5"
+                                class="no-data"
+                            >
+                                No previous revisions.
+                            </td>
+
+                        </tr>
+
+                    </tbody>
+
+                </table>
+
+            </div>
+
+        </div>
+
+
+
+        <!-- REGISTER -->
+        <div class="submittal-register-card">
+
+            <h2>
+                OUTGOING SUBMITTAL REGISTER
+            </h2>
+
+
+            <!-- REGISTER CONTROLS -->
+            <div class="register-controls">
+
+                <!-- SEARCH -->
+                <input
+                    type="text"
+                    id="searchInput"
+                    placeholder="Search submittals..."
+                >
+
+
+                <!-- DISCIPLINE FILTER -->
+                <select id="disciplineFilter">
+
+                    <option value="">
+                        All Disciplines
+                    </option>
+
+                    <option value="C">
+                        Civil
+                    </option>
+
+                    <option value="A">
+                        Architectural
+                    </option>
+
+                    <option value="M">
+                        Mechanical
+                    </option>
+
+                    <option value="E">
+                        Electrical
+                    </option>
+
+                </select>
+
+
+                <!-- DOCUMENT TYPE FILTER -->
+                <select id="documentTypeFilter">
+
+                    <option value="">
+                        All Document Types
+                    </option>
+
+                </select>
+
+
+                <!-- EDIT -->
+                <button
+                    type="button"
+                    id="editSelectedButton"
+                    class="edit-selected-btn"
+                    disabled
+                    data-permission="edit-submittal"
+                >
+                    Edit Selected
+                </button>
+
+
+                <!-- NEW REVISION -->
+                <button
+                    type="button"
+                    id="newRevisionButton"
+                    class="new-button"
+                    disabled
+                    data-permission="edit-submittal"
+                >
+                    + New Revision
+                </button>
+
+
+                <!-- DELETE -->
+                <button
+                    type="button"
+                    id="deleteSelectedButton"
+                    class="delete-selected-btn"
+                    disabled
+                    data-permission="delete-submittal"
+                >
+                    Delete Selected
+                </button>
+
+
+                <!-- NEW SUBMITTAL -->
+                <button
+                    type="button"
+                    id="newSubmittalButton"
+                    class="new-button"
+                    data-permission="create-submittal"
+                >
+                    + New Submittal
+                </button>
+
+
+                <!-- EXCEL -->
+                <button
+                    type="button"
+                    id="downloadExcelButton"
+                    class="excel-button"
+                    data-permission="download-reports"
+                >
+                    Download Excel
+                </button>
+
+            </div>
+
+
+            <!-- COLOR GUIDE -->
+            <div class="color-guide">
+
+                <strong>
+                    Color Guide:
+                </strong>
+
+
+                <span>
+
+                    <i class="green-dot"></i>
+
+                    Green = Within Time
+
+                </span>
+
+
+                <span>
+
+                    <i class="orange-dot"></i>
+
+                    Orange = Due Soon
+
+                </span>
+
+
+                <span>
+
+                    <i class="red-dot"></i>
+
+                    Red = Overdue
+
+                </span>
+
+            </div>
+
+
+            <!-- REGISTER TABLE -->
+            <div class="table-wrapper">
+
+                <table class="register-table">
+
+                    <thead>
+
+                        <tr>
+
+                            <th>
+                                S.No.
+                            </th>
+
+                            <th>
+                                Sequence ID
+                            </th>
+
+                            <th>
+                                Revision
+                            </th>
+
+                            <th>
+                                Ref No.
+                            </th>
+
+                            <th>
+                                Subject
+                            </th>
+
+                            <th>
+                                Discipline
+                            </th>
+
+                            <th>
+                                Type
+                            </th>
+
+                            <th>
+                                Issue Date
+                            </th>
+
+                            <th>
+                                Submittal Requested By
+                            </th>
+
+                            <th>
+                                Issued By
+                            </th>
+
+                            <th>
+                                Method
+                            </th>
+
+                            <th>
+                                Receiver
+                            </th>
+
+                            <th>
+                                Received Date
+                            </th>
+
+                            <th>
+                                Status
+                            </th>
+
+                            <th>
+                                Action By
+                            </th>
+
+                            <th>
+                                Action Date
+                            </th>
+
+                            <th>
+                                Files
+                            </th>
+
                         </tr>
 
                     </thead>
@@ -781,7 +1337,7 @@
                         <tr>
 
                             <td
-                                colspan="11"
+                                colspan="17"
                                 class="no-data"
                             >
                                 No submittals found.
@@ -799,12 +1355,19 @@
 
     </div>
 
-    <script src="https://cdn.jsdelivr.net/npm/xlsx-js-style@1.2.0/dist/xlsx.bundle.js"></script>
-    <script src="permissions.js?v=2"></script>
-    <script src="project.js?v=12"></script>
-    <script src="language.js=3"></script>
-    
-    
+
+    <!-- SCRIPTS -->
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+    <script src="supabase.js"></script>
+
+    <script src="permissions.js?v=4"></script>
+
+    <script src="auth.js?v=4"></script>
+
+    <script src="project.js?v=3"></script>
+
+    <script src="language.js?v=3"></script>
 
 </body>
 </html>

@@ -25,13 +25,13 @@ const usersTableBody =
 const userRoleSelect =
     document.getElementById("userRole");
 
+const userDisciplineSelect =
+    document.getElementById("userDiscipline");
+
 const rolePermissionsText =
     document.getElementById(
         "rolePermissionsText"
     );
-
-const logoutButton =
-    document.getElementById("logoutButton");
 
 
 // ==========================================
@@ -52,6 +52,8 @@ let editingUserId = null;
 
 userFormCard.style.display =
     "none";
+
+updateDisciplineRules();
 
 
 // ==========================================
@@ -78,7 +80,7 @@ addUserButton.addEventListener(
             "block";
 
         updateRolePermissionsPreview();
-
+        updateDisciplineRules();
     }
 );
 
@@ -105,7 +107,6 @@ cancelUserButton.addEventListener(
 
         userFormCard.style.display =
             "none";
-
     }
 );
 
@@ -116,13 +117,20 @@ cancelUserButton.addEventListener(
 
 saveUserButton.addEventListener(
     "click",
-    function () {
+    async function () {
 
         const name =
             document
                 .getElementById("userName")
                 .value
                 .trim();
+        
+        const username =
+            document
+                .getElementById("userUsername")
+                .value
+                .trim()
+                .toLowerCase();      
 
         const email =
             document
@@ -132,42 +140,86 @@ saveUserButton.addEventListener(
                 .toLowerCase();
 
         const role =
-            document
-                .getElementById("userRole")
-                .value;
+            userRoleSelect.value;
 
         const status =
             document
                 .getElementById("userStatus")
                 .value;
 
-
-        // Temporary password deliberately
-        // not stored in localStorage.
-
+        // Password abhi localStorage mein save nahi hoga.
+        // Real password Supabase Auth handle karega.
         const temporaryPassword =
             document
                 .getElementById("userPassword")
                 .value;
 
+        let discipline =
+            userDisciplineSelect.value;
+        
 
-        // VALIDATION
+        // ==================================
+        // ROLE / DISCIPLINE RULES
+        // ==================================
 
         if (
-            !name ||
-            !email ||
-            !role
+            role === "admin" ||
+            role === "document-controller"
+        ) {
+            discipline = "all";
+        }
+
+
+        // ENGINEER MUST HAVE ONE DISCIPLINE
+        if (
+            role === "engineer" &&
+            ![
+                "civil",
+                "architectural",
+                "electrical",
+                "mechanical"
+            ].includes(discipline)
         ) {
 
             alert(
-                "Please enter Name, Email and Role."
+                "Please select Civil, Architectural, Electrical or Mechanical discipline for Engineer."
             );
 
             return;
         }
 
 
+        // VIEWER WITHOUT DISCIPLINE = ALL
+        if (
+            role === "viewer" &&
+            !discipline
+        ) {
+            discipline = "all";
+        }
+
+
+        // ==================================
+        // VALIDATION
+        // ==================================
+
+        if (
+            !name ||
+            !username ||
+            !email ||
+            !role
+        ) {
+
+            alert(
+                "Please enter Name, Username, Email and Role."
+            );
+
+            return;
+        }
+
+
+        // ==================================
         // DUPLICATE EMAIL CHECK
+        // ==================================
 
         const duplicateEmail =
             users.some(
@@ -177,7 +229,6 @@ saveUserButton.addEventListener(
                         user.email === email &&
                         user.id !== editingUserId
                     );
-
                 }
             );
 
@@ -198,113 +249,94 @@ saveUserButton.addEventListener(
 
         if (editingUserId !== null) {
 
-            const user =
-                users.find(
-                    function (item) {
+    saveUserButton.disabled = true;
 
-                        return (
-                            item.id ===
-                            editingUserId
-                        );
+    saveUserButton.textContent =
+        "Updating User...";
 
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .functions
+                .invoke(
+                    "manage-user",
+                    {
+                        body: {
+                            action:
+                                "update",
+
+                            user_id:
+                                editingUserId,
+
+                            full_name:
+                                name,
+
+                            username:
+                                username,
+
+                            email:
+                                email,
+
+                            role:
+                                role,
+
+                            discipline:
+                                discipline,
+
+                            status:
+                                status.toLowerCase()
+                        }
                     }
                 );
 
 
-            if (!user) {
-                return;
-            }
+        if (error) {
 
-
-            user.name =
-                name;
-
-            user.email =
-                email;
-
-            user.role =
-                role;
-
-            user.status =
-                status;
-
-            user.updatedAt =
-                new Date().toISOString();
-
-
-            saveUsers();
-
-            renderUsers();
-
-
-            editingUserId =
-                null;
-
-            clearUserForm();
-
-
-            document
-                .getElementById(
-                    "userFormTitle"
-                )
-                .textContent =
-                "Add New User";
-
-
-            saveUserButton.textContent =
-                "Save User";
-
-
-            userFormCard.style.display =
-                "none";
-
+            console.error(
+                "Update User Error:",
+                error
+            );
 
             alert(
-                "User updated successfully."
+                "Unable to update user."
             );
 
             return;
         }
 
 
-        // ==================================
-        // CREATE USER
-        // ==================================
+        if (
+            !data ||
+            data.success !== true
+        ) {
 
-        const newUser = {
+            alert(
+                data?.error ||
+                "Unable to update user."
+            );
 
-            id:
-                Date.now(),
-
-            name:
-                name,
-
-            email:
-                email,
-
-            role:
-                role,
-
-            status:
-                status,
-
-            createdAt:
-                new Date().toISOString(),
-
-            updatedAt:
-                ""
-
-        };
+            return;
+        }
 
 
-        users.push(newUser);
+        await loadUsersFromSupabase();
 
 
-        saveUsers();
-
-        renderUsers();
+        editingUserId = null;
 
         clearUserForm();
+
+
+        document
+            .getElementById(
+                "userFormTitle"
+            )
+            .textContent =
+            "Add New User";
 
 
         userFormCard.style.display =
@@ -312,24 +344,455 @@ saveUserButton.addEventListener(
 
 
         alert(
-            "User added successfully."
+            "User updated successfully."
         );
 
+
+    } catch (error) {
+
+        console.error(
+            "Update User Error:",
+            error
+        );
+
+        alert(
+            "Unable to update user."
+        );
+
+    } finally {
+
+        saveUserButton.disabled =
+            false;
+
+        saveUserButton.textContent =
+            "Save User";
     }
+
+
+    return;
+}
+
+
+// ==================================
+// CREATE REAL SUPABASE USER
+// ==================================
+
+const passwordError =
+    document.getElementById("passwordError");
+
+passwordError.textContent = "";
+
+
+if (!temporaryPassword) {
+
+    passwordError.textContent =
+        "Please enter a temporary password.";
+
+    document
+        .getElementById("userPassword")
+        .focus();
+
+    return;
+}
+
+
+if (temporaryPassword.length < 8) {
+
+    passwordError.textContent =
+        "Password must be at least 8 characters.";
+
+    document
+        .getElementById("userPassword")
+        .focus();
+
+    return;
+}
+
+saveUserButton.disabled =
+    true;
+
+saveUserButton.textContent =
+    "Creating User...";
+
+
+try {
+
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .functions
+            .invoke(
+                "create-user",
+                {
+                    body: {
+
+                        full_name:
+                            name,
+
+                        username:
+                            username,
+
+                        email:
+                            email,
+
+                        password:
+                            temporaryPassword,
+
+                        role:
+                            role,
+
+                        discipline:
+                            discipline,
+
+                        status:
+                            status.toLowerCase()
+                    }
+                }
+            );    
+
+    if (error) {
+
+        console.error(
+            "Create User Function Error:",
+            error
+        );
+
+        alert(
+            "Unable to create user."
+        );
+
+        return;
+    }
+
+
+    if (
+        !data ||
+        data.success !== true ||
+        !data.user
+    ) {
+
+        alert(
+            data?.error ||
+            "Unable to create user."
+        );
+
+        return;
+    }
+
+
+    const newUser = {
+
+        id:
+            Date.now(),
+
+        authId:
+            data.user.id,
+
+        name:
+            data.user.full_name,
+
+        username:
+            data.user.username,
+
+        email:
+            data.user.email,
+
+        role:
+            data.user.role,
+
+        discipline:
+            data.user.discipline,
+
+        status:
+            data.user.status === "active"
+                ? "Active"
+                : "Inactive",
+
+        createdAt:
+            new Date().toISOString(),
+
+        updatedAt:
+            ""
+    };
+
+
+    await loadUsersFromSupabase();
+
+    clearUserForm();
+
+    userFormCard.style.display =
+        "none";
+
+    alert(
+        "User created successfully."
+    );
+
+
+} catch (error) {
+
+    console.error(
+        "Create User Error:",
+        error
+    );
+
+    alert(
+        "Unable to create user. Please try again."
+    );
+
+} finally {
+
+    saveUserButton.disabled =
+        false;
+
+    saveUserButton.textContent =
+        "Save User";
+    }
+    }    
 );
+
+
 
 
 // ==========================================
 // SAVE USERS
 // ==========================================
 
-function saveUsers() {
+async function loadUsersFromSupabase() {
 
-    localStorage.setItem(
-        "dcUsers",
-        JSON.stringify(users)
-    );
+    const {
+        data,
+        error
+    } =
+        await supabaseClient
+            .from("profiles")
+            .select(`
+                id,
+                full_name,
+                username,
+                email,
+                role,
+                discipline,
+                status
+            `)
+            .order(
+                "full_name",
+                { ascending: true }
+            );
 
+
+    if (error) {
+
+        console.error(
+            "Load Users Error:",
+            error
+        );
+
+        usersTableBody.innerHTML = `
+            <tr>
+                <td
+                    colspan="7"
+                    class="no-data"
+                >
+                    Unable to load users.
+                </td>
+            </tr>
+        `;
+
+        return;
+    }
+
+
+    users =
+        (data || []).map(
+            function(row) {
+
+                return {
+
+                    id:
+                        row.id,
+
+                    authId:
+                        row.id,
+
+                    name:
+                        row.full_name || "",
+
+                    username:
+                        row.username || "",
+
+                    email:
+                        row.email || "",
+
+                    role:
+                        row.role || "viewer",
+
+                    discipline:
+                        row.discipline || "",
+
+                    status:
+                        row.status === "active"
+                            ? "Active"
+                            : "Inactive"
+                };
+            }
+        );
+
+
+    renderUsers();
+}
+
+
+// ==========================================
+// DISCIPLINE RULES
+// ==========================================
+
+function updateDisciplineRules() {
+
+    const role =
+        userRoleSelect.value;
+
+    const allOption =
+        userDisciplineSelect.querySelector(
+            'option[value="all"]'
+        );
+
+
+    // NO ROLE SELECTED
+    if (!role) {
+
+        userDisciplineSelect.value =
+            "";
+
+        userDisciplineSelect.disabled =
+            true;
+
+        if (allOption) {
+            allOption.disabled = false;
+        }
+
+        return;
+    }
+
+
+    // ADMIN + DC = ALL DISCIPLINES
+    if (
+        role === "admin" ||
+        role === "document-controller"
+    ) {
+
+        if (allOption) {
+            allOption.disabled = false;
+        }
+
+        userDisciplineSelect.value =
+            "all";
+
+        userDisciplineSelect.disabled =
+            true;
+
+        return;
+    }
+
+
+    userDisciplineSelect.disabled =
+        false;
+
+
+    // ENGINEER MUST HAVE SPECIFIC DISCIPLINE
+    if (role === "engineer") {
+
+        if (allOption) {
+            allOption.disabled = true;
+        }
+
+        if (
+            userDisciplineSelect.value ===
+            "all"
+        ) {
+            userDisciplineSelect.value =
+                "";
+        }
+
+        return;
+    }
+
+
+    // VIEWER CAN HAVE ALL OR SPECIFIC
+    if (allOption) {
+        allOption.disabled = false;
+    }
+}
+
+
+// ==========================================
+// DISCIPLINE DISPLAY NAME
+// ==========================================
+
+function getDisciplineDisplayName(
+    discipline
+) {
+
+    if (discipline === "all") {
+        return "All Disciplines";
+    }
+
+    if (discipline === "civil") {
+        return "Civil";
+    }
+
+    if (
+        discipline ===
+        "architectural"
+    ) {
+        return "Architectural";
+    }
+
+    if (
+        discipline ===
+        "electrical"
+    ) {
+        return "Electrical";
+    }
+
+    if (
+        discipline ===
+        "mechanical"
+    ) {
+        return "Mechanical";
+    }
+
+    return "Not Assigned";
+}
+
+
+// ==========================================
+// GET SAVED USER DISCIPLINE
+// ==========================================
+
+function getUserDiscipline(user) {
+
+    if (
+        user.role === "admin" ||
+        user.role ===
+            "document-controller"
+    ) {
+        return "all";
+    }
+
+
+    if (user.discipline) {
+        return user.discipline;
+    }
+
+
+    if (user.role === "viewer") {
+        return "all";
+    }
+
+
+    return "";
 }
 
 
@@ -350,7 +813,7 @@ function renderUsers() {
             <tr>
 
                 <td
-                    colspan="6"
+                    colspan="7"
                     class="no-data"
                 >
                     No users found.
@@ -370,6 +833,9 @@ function renderUsers() {
             const row =
                 document.createElement("tr");
 
+            const discipline =
+                getUserDiscipline(user);
+
 
             row.innerHTML = `
 
@@ -386,11 +852,26 @@ function renderUsers() {
                 </td>
 
                 <td>
-                    ${getRoleDisplayName(user.role)}
+                    ${escapeHTML(
+                        getRoleDisplayName(
+                            user.role
+                        )
+                    )}
                 </td>
 
                 <td>
-                    ${user.status || "Active"}
+                    ${escapeHTML(
+                        getDisciplineDisplayName(
+                            discipline
+                        )
+                    )}
+                </td>
+
+                <td>
+                    ${escapeHTML(
+                        user.status ||
+                        "Active"
+                    )}
                 </td>
 
                 <td class="user-action-cell">
@@ -398,7 +879,7 @@ function renderUsers() {
                     <button
                         type="button"
                         class="edit-user-btn"
-                        onclick="editUser(${user.id})"
+                        onclick="editUser('${user.id}')"
                     >
                         Edit
                     </button>
@@ -406,7 +887,7 @@ function renderUsers() {
                     <button
                         type="button"
                         class="reset-password-btn"
-                        onclick="resetUserPassword(${user.id})"
+                        onclick="resetUserPassword('${user.id}')"
                     >
                         Reset Password
                     </button>
@@ -414,10 +895,11 @@ function renderUsers() {
                     <button
                         type="button"
                         class="toggle-user-btn"
-                        onclick="toggleUserStatus(${user.id})"
+                        onclick="toggleUserStatus('${user.id}')"
                     >
                         ${
-                            user.status === "Active"
+                            user.status ===
+                            "Active"
                                 ? "Deactivate"
                                 : "Activate"
                         }
@@ -431,10 +913,8 @@ function renderUsers() {
             usersTableBody.appendChild(
                 row
             );
-
         }
     );
-
 }
 
 
@@ -451,7 +931,6 @@ function editUser(userId) {
                 return (
                     item.id === userId
                 );
-
             }
         );
 
@@ -476,11 +955,29 @@ function editUser(userId) {
         .value =
         user.email || "";
 
-
     document
-        .getElementById("userRole")
+        .getElementById("userUsername")
         .value =
+        user.username || "";    
+
+    userRoleSelect.value =
         user.role || "";
+
+
+    // Apply role rule first
+    updateDisciplineRules();
+
+
+    // Load saved discipline
+    if (
+        user.role !== "admin" &&
+        user.role !==
+            "document-controller"
+    ) {
+
+        userDisciplineSelect.value =
+            getUserDiscipline(user);
+    }
 
 
     document
@@ -517,9 +1014,7 @@ function editUser(userId) {
         top: 0,
 
         behavior: "smooth"
-
     });
-
 }
 
 
@@ -527,16 +1022,12 @@ function editUser(userId) {
 // ACTIVATE / DEACTIVATE
 // ==========================================
 
-function toggleUserStatus(userId) {
+async function toggleUserStatus(userId) {
 
     const user =
         users.find(
-            function (item) {
-
-                return (
-                    item.id === userId
-                );
-
+            function(item) {
+                return item.id === userId;
             }
         );
 
@@ -546,27 +1037,129 @@ function toggleUserStatus(userId) {
     }
 
 
-    if (user.status === "Active") {
+    const newStatus =
+        user.status === "Active"
+            ? "inactive"
+            : "active";
 
-        user.status =
-            "Inactive";
 
-    } else {
+    // Prevent Admin from disabling own account
+    const currentUserId =
+        localStorage.getItem(
+            "currentUserId"
+        );
 
-        user.status =
-            "Active";
 
+    if (
+        userId === currentUserId &&
+        newStatus === "inactive"
+    ) {
+
+        alert(
+            "You cannot deactivate your own account."
+        );
+
+        return;
     }
 
 
-    user.updatedAt =
-        new Date().toISOString();
+    const actionText =
+        newStatus === "inactive"
+            ? "deactivate"
+            : "activate";
 
 
-    saveUsers();
+    const confirmed =
+        confirm(
+            "Are you sure you want to " +
+            actionText +
+            " " +
+            user.name +
+            "?"
+        );
 
-    renderUsers();
 
+    if (!confirmed) {
+        return;
+    }
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .functions
+                .invoke(
+                    "manage-user",
+                    {
+                        body: {
+
+                            action:
+                                "status",
+
+                            user_id:
+                                userId,
+
+                            status:
+                                newStatus
+                        }
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Status Update Error:",
+                error
+            );
+
+            alert(
+                "Unable to update user status."
+            );
+
+            return;
+        }
+
+
+        if (
+            !data ||
+            data.success !== true
+        ) {
+
+            alert(
+                data?.error ||
+                "Unable to update user status."
+            );
+
+            return;
+        }
+
+
+        await loadUsersFromSupabase();
+
+
+        alert(
+            newStatus === "active"
+                ? "User activated successfully."
+                : "User deactivated successfully."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Status Error:",
+            error
+        );
+
+        alert(
+            "Unable to update user status."
+        );
+    }
 }
 
 
@@ -574,16 +1167,12 @@ function toggleUserStatus(userId) {
 // RESET PASSWORD
 // ==========================================
 
-function resetUserPassword(userId) {
+async function resetUserPassword(userId) {
 
     const user =
         users.find(
-            function (item) {
-
-                return (
-                    item.id === userId
-                );
-
+            function(item) {
+                return item.id === userId;
             }
         );
 
@@ -593,14 +1182,102 @@ function resetUserPassword(userId) {
     }
 
 
-    alert(
-        "Password reset for " +
-        user.name +
-        " will be available after Cloud Authentication is connected."
-    );
+    const newPassword =
+        prompt(
+            "Enter new password for " +
+            user.name +
+            "\n\nMinimum 8 characters:"
+        );
 
+
+    // User pressed Cancel
+    if (newPassword === null) {
+        return;
+    }
+
+
+    if (newPassword.length < 8) {
+
+        alert(
+            "Password must be at least 8 characters."
+        );
+
+        return;
+    }
+
+
+    try {
+
+        const {
+            data,
+            error
+        } =
+            await supabaseClient
+                .functions
+                .invoke(
+                    "manage-user",
+                    {
+                        body: {
+
+                            action:
+                                "password",
+
+                            user_id:
+                                userId,
+
+                            password:
+                                newPassword
+                        }
+                    }
+                );
+
+
+        if (error) {
+
+            console.error(
+                "Password Reset Error:",
+                error
+            );
+
+            alert(
+                "Unable to reset password."
+            );
+
+            return;
+        }
+
+
+        if (
+            !data ||
+            data.success !== true
+        ) {
+
+            alert(
+                data?.error ||
+                "Unable to reset password."
+            );
+
+            return;
+        }
+
+
+        alert(
+            "Password reset successfully."
+        );
+
+
+    } catch (error) {
+
+        console.error(
+            "Password Reset Error:",
+            error
+        );
+
+        alert(
+            "Unable to reset password."
+        );
+    }
 }
-
 
 // ==========================================
 // PERMISSIONS PREVIEW
@@ -620,10 +1297,8 @@ function formatPermission(permission) {
             function (letter) {
 
                 return letter.toUpperCase();
-
             }
         );
-
 }
 
 
@@ -657,17 +1332,44 @@ function updateRolePermissionsPreview() {
     }
 
 
+    let disciplineText =
+        "";
+
+
+    if (
+        role === "admin" ||
+        role === "document-controller"
+    ) {
+
+        disciplineText =
+            " | Discipline Access: All";
+    }
+
+
+    if (role === "engineer") {
+
+        disciplineText =
+            " | Discipline Access: Assigned Discipline Only";
+    }
+
+
     rolePermissionsText.textContent =
         permissions
             .map(formatPermission)
-            .join(" | ");
-
+            .join(" | ") +
+        disciplineText;
 }
 
 
+// ROLE CHANGE
 userRoleSelect.addEventListener(
     "change",
-    updateRolePermissionsPreview
+    function () {
+
+        updateRolePermissionsPreview();
+
+        updateDisciplineRules();
+    }
 );
 
 
@@ -681,7 +1383,10 @@ function clearUserForm() {
         .getElementById("userName")
         .value =
         "";
-
+    
+    document
+        .getElementById("userUsername")
+        .value = "";    
 
     document
         .getElementById("userEmail")
@@ -689,9 +1394,11 @@ function clearUserForm() {
         "";
 
 
-    document
-        .getElementById("userRole")
-        .value =
+    userRoleSelect.value =
+        "";
+
+
+    userDisciplineSelect.value =
         "";
 
 
@@ -709,6 +1416,7 @@ function clearUserForm() {
 
     updateRolePermissionsPreview();
 
+    updateDisciplineRules();
 }
 
 
@@ -744,7 +1452,6 @@ function escapeHTML(value) {
             /'/g,
             "&#039;"
         );
-
 }
 
 
@@ -758,48 +1465,12 @@ function applyUsersPagePermission() {
         getCurrentRole();
 
 
-    // For current development stage:
-    // admin has full user management.
-
-    if (
-        role !== "admin" &&
-        localStorage.getItem(
-            "currentRole"
-        )
-    ) {
+    // USERS MANAGEMENT = ADMIN ONLY
+    if (role !== "admin") {
 
         addUserButton.style.display =
             "none";
-
     }
-
-}
-
-
-// ==========================================
-// LOGOUT
-// ==========================================
-
-if (logoutButton) {
-
-    logoutButton.addEventListener(
-        "click",
-        function () {
-
-            localStorage.removeItem(
-                "currentUser"
-            );
-
-            localStorage.removeItem(
-                "currentRole"
-            );
-
-            window.location.href =
-                "login.html";
-
-        }
-    );
-
 }
 
 
@@ -807,8 +1478,10 @@ if (logoutButton) {
 // START
 // ==========================================
 
-renderUsers();
+loadUsersFromSupabase();
 
 updateRolePermissionsPreview();
+
+updateDisciplineRules();
 
 applyUsersPagePermission();

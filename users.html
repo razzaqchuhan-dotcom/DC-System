@@ -129,6 +129,22 @@
                     >
 
                 </div>
+                <!-- USERNAME -->
+
+                <div class="form-group">
+
+                    <label for="userUsername">
+                        Username
+                    </label>
+
+                    <input
+                        type="text"
+                        id="userUsername"
+                        placeholder="Enter Username"
+                        autocomplete="off"
+                    >
+
+                </div>
 
 
                 <!-- EMAIL -->
@@ -181,7 +197,42 @@
                     </select>
 
                 </div>
+                <!-- DISCIPLINE -->
+                <div class="form-group">
 
+                    <label for="userDiscipline">
+                        Discipline
+                    </label>
+
+                    <select id="userDiscipline">
+
+                        <option value="">
+                            Select Discipline
+                        </option>
+
+                        <option value="all">
+                            All Disciplines
+                        </option>
+
+                        <option value="civil">
+                            Civil
+                        </option>
+
+                        <option value="architectural">
+                            Architectural
+                        </option>
+
+                        <option value="electrical">
+                            Electrical
+                        </option>
+
+                        <option value="mechanical">
+                            Mechanical
+                        </option>
+
+                    </select>
+
+                </div>
 
                 <!-- STATUS -->
 
@@ -218,7 +269,12 @@
                         type="password"
                         id="userPassword"
                         placeholder="Set Temporary Password"
+                         minlength="8"
                     >
+                    <small id="passwordHelp" class="password-help">
+                            Minimum 8 characters required.
+                    </small>
+                     <small id="passwordError" class="password-error"></small>
 
                 </div>
 
@@ -305,6 +361,10 @@
                             </th>
 
                             <th>
+                                Discipline
+                            </th>    
+
+                            <th>
                                 Status
                             </th>
 
@@ -322,7 +382,7 @@
                         <tr>
 
                             <td
-                                colspan="6"
+                                colspan="7"
                                 class="no-data"
                             >
                                 No users found.
@@ -345,11 +405,14 @@
          JAVASCRIPT
     ====================================== -->
 
-    <script src="permissions.js?v=2"></script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase.js"></script>
 
-    <script src="users.js?v=3"></script>
+<script src="permissions.js?v=3"></script>
+<script src="auth.js?v=5"></script>
 
-    <script src="language.js?v=3"></script>
+<script src="users.js?v=8"></script>
+<script src="language.js?v=3"></script>
 
 </body>
 
